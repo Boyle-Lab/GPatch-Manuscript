@@ -1,0 +1,9 @@
+*~
+*.bam
+*.bai
+*.paf
+*.pdf
+*.fa
+*.fasta
+*.RData
+*.Rhistory
