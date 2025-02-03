@@ -1,4 +1,6 @@
 ## Simulated Data Generation
+
+### Simulate the data
 ```
 ../simulate_contigs.py -f ../..//data/GenBank.GCA_009914755.4/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa -l NA12878.1.contig-lengths.txt -r -p CHM13.pseudocontigs.NA12878.1.rc
 ```
