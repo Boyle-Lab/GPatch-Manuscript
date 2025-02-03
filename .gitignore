@@ -6,5 +6,6 @@
 *.fa
 *.fasta
 *.fai
+*.vcf
 *.RData
 *.Rhistory
