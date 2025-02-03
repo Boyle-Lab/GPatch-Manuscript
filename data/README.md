@@ -27,3 +27,8 @@ bedtools complement -i T2T_CHM13.excluderanges.sorted.bed -g GCA_009914755.4_T2T
 ```
 wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC2/release/v1.0/assemblies/20200628_HHU_assembly-results_CCS_v12/assemblies/phased/v12_NA12878_giab_pbsq2-ccs_1000-pereg.h1-un.racon-p2.fasta
 ```
+
+## HG002 contigs from HPRC
+```
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/working/HPRC_PLUS/HG002/assemblies/hifiasm_v0.14.1_raw/HG002-full-0.14.1.pat.fa.gz
+```
