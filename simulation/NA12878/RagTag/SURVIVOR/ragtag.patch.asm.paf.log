@@ -1,0 +1,15 @@
+[M::mm_idx_gen::54.945*1.94] collected minimizers
+[M::mm_idx_gen::57.914*2.84] sorted minimizers
+[M::main::57.914*2.84] loaded/built the index for 11011 target sequence(s)
+[M::mm_mapopt_update::62.283*2.71] mid_occ = 158
+[M::mm_idx_stat] kmer size: 19; skip: 10; is_hpc: 0; #seq: 11011
+[M::mm_idx_stat::64.978*2.64] distinct minimizers: 406365640 (92.61% are singletons); average occurrences: 1.397; average spacing: 5.493
+[M::worker_pipeline::554.269*2.10] mapped 3 sequences
+[M::worker_pipeline::838.427*2.22] mapped 3 sequences
+[M::worker_pipeline::1216.995*2.20] mapped 4 sequences
+[M::worker_pipeline::1572.954*2.38] mapped 5 sequences
+[M::worker_pipeline::1847.335*2.79] mapped 8 sequences
+[M::worker_pipeline::2332.701*2.42] mapped 2 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -x asm20 -c -t 24 /data/projects/adadiehl/genome_patching/GPatch-Manuscript/simulation/NA12878/RagTag/SURVIVOR/ragtag.patch.ctg.fasta /data/projects/adadiehl/genome_patching/GPatch-Manuscript/simulation/NA12878/RagTag/SURVIVOR/ragtag.patch.rename.fasta
+[M::main] Real time: 2333.651 sec; CPU: 5635.735 sec; Peak RSS: 43.653 GB

@@ -1,0 +1,4 @@
+           n_contigs             n_mapped   n_mapped_correctly 
+        1.061000e+04         4.739000e+03         1.242000e+03 
+pct_mapped_correctly  clustering_accuracy orientation_accuracy 
+        2.620806e-01         9.991559e-01         7.377084e-01 
