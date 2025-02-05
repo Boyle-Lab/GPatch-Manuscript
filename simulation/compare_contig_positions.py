@@ -43,13 +43,15 @@ def main():
                         required=True, help='BED file containing locations of contigs in the reference sequence.')
     parser.add_argument('-p', '--patched_contigs', metavar='STR', type=str,
                         required=True, help='BED file containing locations of contigs in the patched sequence.')
-    parser.add_argument('-b', '--bam', metavar='STR', type=str,
-                        required=True, help='BAM file originally used to generate the patched genome.')
+    parser.add_argument('-b', '--bam', metavar='STR', type=str, default="",
+                        required=False, help='BAM file originally used to generate the patched genome.')
     
     args = parser.parse_args()
 
     patched_contigs = parse_contigs(args.patched_contigs)
-    contigs_bam = parse_bam(args.bam)
+    contigs_bam = None
+    if args.bam != "":
+        contigs_bam = parse_bam(args.bam)
 
     # Loop through reference contig records, checking each one
     # for correct placement in the patched genome.
@@ -58,7 +60,10 @@ def main():
     with open(args.reference_contigs) as reference_contigs:
         for line in reference_contigs:
             reference_contig = line.strip().split()
-            aligned_contig = contigs_bam[reference_contig[3]]
+            mapq = "."
+            if contigs_bam is not None:
+                aligned_contig = contigs_bam[reference_contig[3]]
+                mapq = aligned_contig.mapping_quality
 
             # First see if there is a mapped contig in patched_contigs
             is_mapped = False
@@ -66,7 +71,7 @@ def main():
             is_correct_orientation = False
             is_correct_order = False
             if reference_contig[3] not in patched_contigs:
-                sys.stdout.write("%s\t%d\t%d\t%s\t%d\t.\t.\t.\t.\tFalse\tFalse\tFalse\tFalse\t%s\n" % (reference_contig[0], int(reference_contig[1]), int(reference_contig[2]), reference_contig[3], int(reference_contig[4]), aligned_contig.mapping_quality))
+                sys.stdout.write("%s\t%d\t%d\t%s\t%d\t.\t.\t.\t.\tFalse\tFalse\tFalse\tFalse\t%s\n" % (reference_contig[0], int(reference_contig[1]), int(reference_contig[2]), reference_contig[3], int(reference_contig[4]), mapq))
             else:
                 patched_contig = patched_contigs[reference_contig[3]]
                 is_mapped = True
@@ -78,7 +83,7 @@ def main():
                 else:
                     is_mapped_correctly = False
                 # Check for proper orientation. All should map to the + strand.
-                if patched_contig[5] == "+":
+                if patched_contig[5] == reference_contig[5]:
                     is_correct_orientation = True
                 # Check for correct order. We will do this by comparing to the
                 # mapped position of the previous reference contig.
@@ -88,7 +93,7 @@ def main():
                 elif patched_contig[0] == previous_reference_contig[0]:
                     if int(patched_contig[1]) >= int(previous_reference_contig[2]):
                         is_correct_order = True
-                sys.stdout.write("%s\t%d\t%d\t%s\t%d\t%s\t%d\t%d\t%d\t%s\t%s\t%s\t%s\t%s\n" % (reference_contig[0], int(reference_contig[1]), int(reference_contig[2]), reference_contig[3], int(reference_contig[4]), patched_contig[0], int(patched_contig[1]), int(patched_contig[2]), int(patched_contig[7]), is_mapped, is_mapped_correctly, is_correct_orientation, is_correct_order, aligned_contig.mapping_quality))
+                sys.stdout.write("%s\t%d\t%d\t%s\t%d\t%s\t%d\t%d\t%d\t%s\t%s\t%s\t%s\t%s\n" % (reference_contig[0], int(reference_contig[1]), int(reference_contig[2]), reference_contig[3], int(reference_contig[4]), patched_contig[0], int(patched_contig[1]), int(patched_contig[2]), int(patched_contig[7]), is_mapped, is_mapped_correctly, is_correct_orientation, is_correct_order, mapq))
                         
             previous_reference_contig = reference_contig
 
