@@ -7,5 +7,9 @@
 *.fasta
 *.fai
 *.vcf
+*.gz
 *.RData
 *.Rhistory
+*old
+*compleasm
+*mb_downloads

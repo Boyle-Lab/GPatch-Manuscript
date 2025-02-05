@@ -29,9 +29,9 @@ minimap2 -x asm20 -t 24 -a $REFERENCE_FASTA $ASSEMBLY_FASTA | samtools view -b -
 
 echo "Initial genome patching..."
 if [ $DROP_MISSING = true ]; then
-    /usr/bin/time -v $PG_PATH/GPatch.py -q $PREFIX.bam -r $REFERENCE_FASTA -x $PREFIX -d -w $WHITELIST
+    /usr/bin/time -v $PG_PATH/GPatch.py -q $PREFIX.bam -r $REFERENCE_FASTA -x $PREFIX -d -m 10 -t
 else
-    /usr/bin/time -v $PG_PATH/GPatch.py -q $PREFIX.bam -r $REFERENCE_FASTA -x $PREFIX -w $WHITELIST
+    /usr/bin/time -v $PG_PATH/GPatch.py -q $PREFIX.bam -r $REFERENCE_FASTA -x $PREFIX -m 10 -t
 fi
 
 # Stats and dot plots
