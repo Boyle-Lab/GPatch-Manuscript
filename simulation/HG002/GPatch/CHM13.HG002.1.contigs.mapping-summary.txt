@@ -1,4 +1,4 @@
            n_contigs             n_mapped   n_mapped_correctly 
-                 715                  705                  705 
+                 728                  718                  718 
 pct_mapped_correctly  clustering_accuracy orientation_accuracy 
                    1                    1                    1 

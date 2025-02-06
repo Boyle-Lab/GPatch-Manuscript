@@ -6,15 +6,15 @@ stats_f = args[1]
 
 mdat = read.table(stats_f, header=TRUE, stringsAsFactors=FALSE, sep="\t")
 
-n_contigs = length(which(mdat$ref_chrom != "chrY" & mdat$ref_chrom != "chrM"))
-n_mapped = length(which(mdat$ref_chrom != "chrY" & mdat$ref_chrom != "chrM" & mdat$is_mapped == "True"))
-n_mapped_correctly = length(which(mdat$ref_chrom != "chrY" & mdat$ref_chrom != "chrM" & mdat$is_mapped_correctly == "True"))
+n_contigs = nrow(mdat)
+n_mapped = length(which(mdat$is_mapped == "True"))
+n_mapped_correctly = length(which(mdat$is_mapped_correctly == "True"))
 pct_mapped_correctly = n_mapped_correctly / n_mapped
 
 # Clustering Accuracy:
-clust_accuracy = length(which(mdat$ref_chrom != "chrY" & mdat$ref_chrom != "chrM" & mdat$is_mapped == "True" & mdat$ref_chrom == mdat$mapped_chrom)) / n_mapped
+clust_accuracy = length(which(mdat$is_mapped == "True" & mdat$ref_chrom == mdat$mapped_chrom)) / n_mapped
 
 # Orientation Accuracy:
-orientation_accuracy = length(which(mdat$ref_chrom != "chrY" & mdat$ref_chrom != "chrM" & mdat$is_mapped == "True" & mdat$is_correct_orientation == "True")) / n_mapped
+orientation_accuracy = length(which(mdat$is_mapped == "True" & mdat$is_correct_orientation == "True")) / n_mapped
 
 print(c("n_contigs"=n_contigs, "n_mapped"=n_mapped, "n_mapped_correctly"=n_mapped_correctly, "pct_mapped_correctly"=pct_mapped_correctly, "clustering_accuracy"=clust_accuracy, "orientation_accuracy"=orientation_accuracy))
