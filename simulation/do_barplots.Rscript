@@ -1,0 +1,54 @@
+#!/usr/bin/env -S Rscript --vanilla
+
+require("ggplot2")
+
+args = commandArgs(trailingOnly=TRUE)
+
+data_f = args[1]
+prefix = args[2]
+
+dat = read.table(data_f, header=TRUE, stringsAsFactors=FALSE)
+
+cols = c("pct_assembly_localized", "norm_edit_dist", "pct_pairs_recovered", "pct_pairs_correct", "switch_err_rate", "norm_bag_dist")
+
+name = paste(prefix, "pct_assembly_localized", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=pct_assembly_localized, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "norm_edit_dist", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=norm_edit_dist, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "pct_pairs_recovered", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=pct_pairs_recovered, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "pct_pairs_correct", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=pct_pairs_correct, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "switch_err_rate", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=switch_err_rate, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "norm_bag_dist", "pdf", sep=".")
+pdf(name)
+ggplot(dat[which(dat$Chrom == "All"),], aes(x=Method, y=norm_bag_dist, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
