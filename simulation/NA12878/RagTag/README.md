@@ -23,3 +23,6 @@
 ```
 /usr/bin/time -v ./do_RagTag_Patch.SURVIVOR.sh ../CHM13.pseudocontigs.NA12878.1.rc.contigs.SURVIVOR.with-missing.fasta ../../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa T2T-CHM13.SURVIVOR CHM13.NA12878.1.SURVIVOR SURVIVOR
 ```
+
+### RagTag Patch patching attempt for SURVIVOR dataset with nucmer alignment
+/usr/bin/time -v ./do_RagTag_Patch.SURVIVOR.nucmer.sh ../CHM13.pseudocontigs.HG002.1.rc.contigs.SURVIVOR.with-missing.fasta ../../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa T2T-CHM13.SURVIVOR CHM13.HG002.1.SURVIVOR SURVIVOR.nucmer
