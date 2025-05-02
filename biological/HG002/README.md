@@ -26,4 +26,6 @@ n50 HG002.1.patched.fasta
 n50 ../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa
 
 ### Phenogram data table
+```
 awk 'BEGIN {printf "chr\tpos\tendpos\tpheno\tposcolor\n"}; {gsub(/chr/, "", $1); printf "%s\t%d\t%d\tCHM13\t2\n", $1, $2, $3}' HG002.1.patches.bed | grep -v "^Y" | grep -v "^M" > HG002.1.patches.phenogram.txt
+```

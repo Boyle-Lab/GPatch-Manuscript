@@ -1,0 +1,31 @@
+#!/usr/bin/env -S Rscript --vanilla
+
+require("ggplot2")
+
+args = commandArgs(trailingOnly=TRUE)
+
+data_f = args[1]
+prefix = args[2]
+
+dat = read.table(data_f, header=TRUE, stringsAsFactors=FALSE)
+
+name = paste(prefix, "pct_contigs_localized", "pdf", sep=".")
+pdf(name)
+ggplot(dat, aes(x=Method, y=pct_contigs_localized, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "pct_assembly_localized", "pdf", sep=".")
+pdf(name)
+ggplot(dat, aes(x=Method, y=pct_assembly_localized, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
+
+name = paste(prefix, "pct_contig_coverage", "pdf", sep=".")
+pdf(name)
+ggplot(dat, aes(x=Method, y=pct_contig_coverage, fill=Sample)) +
+geom_bar(stat="identity", position="dodge") +
+ylim(0,1)
+dev.off()
