@@ -20,6 +20,10 @@ Analysis steps for producing GPatch NA12878 from HGSVC NA12878.
 ./do_target_dotplots.sh NA12878.2.patched.fasta ../../data/NA12878.1.chroms.complete.fasta NA12878_MAT NA12878.2
 
 # Calculate N50s
+n50 ../../data/v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.fasta
+n50 ../../data/NA12878.1.chroms.complete.fasta
+n50 ../../data/NA12878.1.chroms.fasta
+n50 ../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa
 n50 NA12878.2.cbreak_2.patched.fasta 
 n50 NA12878.2.cbreak.patched.fasta 
 n50 NA12878.2.patched.fasta
