@@ -29,4 +29,6 @@ n50 NA12878.2.cbreak.patched.fasta
 n50 NA12878.2.patched.fasta
 
 ### Generate data for phenogram
-awk 'BEGIN {printf "chr\tpos\tendpos\tpheno\tposcolor\n"}; {gsub(/chr/, "", $1); printf "%s\t%d\t%d\tCHM13\t2\n", $1, $2, $3}' HG002.1.patches.bed | grep -v "^Y" | grep -v "^M" > HG002.1.patches.phenogram.txt
+```
+awk 'BEGIN {printf "chr\tpos\tendpos\tpheno\tposcolor\n"}; {gsub(/chr/, "", $1); printf "%s\t%d\t%d\tCHM13\t2\n", $1, $2, $3}' NA12878.2.cbreak_2.patches.bed | grep -v "^Y" | grep -v "^M" > NA12878.2.cbreak_2.patches.phenogram.txt
+```
