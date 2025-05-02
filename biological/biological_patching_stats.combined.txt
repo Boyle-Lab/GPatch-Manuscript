@@ -1,0 +1,3 @@
+Sample	Method	pct_contigs_localized	pct_assembly_localized	pct_contig_coverage
+NA12878	GPatch 0.2241	0.9513	0.9065
+HG002	GPatch 0.1877	0.9841	0.9785
