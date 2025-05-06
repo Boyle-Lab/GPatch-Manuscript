@@ -1,0 +1,234 @@
+ROOTDIR = /scratch/apboyle_root/apboyle/adadiehl/GPatch_Hi-C/NA12878
+FASTADIR = ${ROOTDIR}/fastq
+RESDIR = ${ROOTDIR}/raw
+TMPDIR = '.'
+NAME = NA12878_raw
+
+### NOTE: These data don't have the same directory structure as those from the Core.
+### For this reason, there is no folder prefix. DON'T USE THIS AS A TEMPLATE FOR LOCAL
+### DATASETS!!!
+REPLICATES = SRR1658592 SRR1658572
+
+
+ASSEMBLY = v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2
+REFERENCE = v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.fasta
+GENOMEDIR = ${ROOTDIR}/genomes
+RE_SITES_FILE = ${ROOTDIR}/genomes/${ASSEMBLY}_MboI.txt
+
+CHROMSIZES = ${ROOTDIR}/genomes/${ASSEMBLY}.chrom.sizes
+
+SCRIPTSDIR_4DN = /home/adadiehl/software/4DN_Hi-C
+SCRIPTSDIR_JUICER = /home/adadiehl/software/Juicer/1.6/juicer/CPU/common
+JT_PATH = /home/adadiehl/software/Juicer/1.8.9
+JT_CMD = /home/adadiehl/software/Juicer/1.8.9/juicer_tools.1.8.9_jcuda.0.8.jar
+
+PAIRTOOLS_MIN_MAPQ = 40
+
+# Cooler/Juicer options for matrix preparation
+MAX_SPLIT = 2
+BIN_SIZE = 1000
+MAPQ_FILTER = 0
+MIN_RES = 5000
+RESLIST = "5000,10000,20000,40000,80000,160000,320000,640000,1280000,2560000,5120000,10240000,20480000"  # Output from python3 -c "from cooler.contrib import higlass; higlass.print_zoom_resolutions('/data/genomes/mm10/mm10.chrom.sizes', 5000)" (Must use cooler >= 0.6.0 && <= 0.7.11!)
+MAXMEM = 1503G
+HIGLASS = 1  # Create higlass compatible output
+CUSTOM_RES = ''  # Define custom resolutions for aggregation (HIGLASS == 0 will override!)
+CHUNK_SIZE = 10000000
+
+CPUS=12
+
+
+#all: fastqc bwa-mem pairsam-parse-sort pairsam-merge pairsam-markasdup pairsam-filter pairsqc-single merge-pairs addfrag2pairs cooler juicebox-pre cool2multirescool add-hicnormvector-to-mcool postProcessJuicer postProcessCooler
+all: pairsam-parse-sort pairsam-merge pairsam-markasdup pairsam-filter merge-pairs addfrag2pairs juicebox-pre
+
+fastqc:
+	if [ ! -d $(RESDIR)/fastqc ] ; then \
+		mkdir -pv $(RESDIR)/fastqc ;\
+	fi ;\
+	for REPLICATE in $(REPLICATES); do \
+		for FASTQ in $$(ls $(FASTADIR)/$$REPLICATE*.fastq.gz); do \
+			echo $$FASTQ ;\
+			fastqc -t $(CPUS) -o $(RESDIR)/fastqc $$FASTQ ;\
+		done ;\
+	done ;
+
+bwa-mem:
+	if [ ! -d $(RESDIR)/bam ] ; then \
+		mkdir -pv $(RESDIR)/bam ;\
+	fi ;\
+	for REPLICATE in $(REPLICATES); do \
+		bwa mem \
+			-t $(CPUS) \
+			-SP5M \
+			$(GENOMEDIR)/$(REFERENCE) \
+			$$(ls $(FASTADIR)/$$REPLICATE*.fastq.gz) | \
+		samtools view -Shb - > $(RESDIR)/bam/$$REPLICATE.bam ;\
+	done ;
+
+pairsam-parse-sort:
+	if [ ! -d $(RESDIR)/pairsam-parse-sort ] ; then \
+		mkdir -pv $(RESDIR)/pairsam-parse-sort ;\
+	fi ;\
+	if [ ! -d $(TMPDIR) ] ; then \
+                mkdir -pv $(TMPDIR) ;\
+        fi ;\
+	for REPLICATE in $(REPLICATES); do \
+		samtools view -h $(RESDIR)/bam/$$REPLICATE.bam | \
+		pairtools parse --min-mapq $(PAIRTOOLS_MIN_MAPQ) \
+                          --walks-policy 5unique \
+                          --max-inter-align-gap 30 \
+			  -c $(CHROMSIZES) --add-columns mapq | \
+		pairtools sort --nproc $(CPUS) \
+		--memory $(MAXMEM) \
+		--compress-program lz4c \
+		--tmpdir $(TMPDIR) \
+		--output $(RESDIR)/pairsam-parse-sort/$$REPLICATE.sam.pairs.gz ;\
+	done ;
+
+pairsam-merge:
+	if [ ! -d $(RESDIR)/pairsam-merge ] ; then \
+		mkdir -pv $(RESDIR)/pairsam-merge ;\
+	fi ;\
+	pairtools merge \
+		--max-nmerge $$(ls $(RESDIR)/pairsam-parse-sort/*.sam.pairs.gz | wc -l) \
+		--nproc $(CPUS) \
+		--compress-program lz4c \
+		--output $(RESDIR)/pairsam-merge/$(NAME).merged.sam.pairs.gz \
+		$$(ls $(RESDIR)/pairsam-parse-sort/*.sam.pairs.gz) ;\
+
+pairsam-markasdup:
+	if [ ! -d $(RESDIR)/pairsam-markasdup ] ; then \
+		mkdir -pv $(RESDIR)/pairsam-markasdup ;\
+	fi ;\
+	pairtools dedup \
+		--mark-dups \
+		--output-dups - \
+		--output-unmapped - \
+		--output $(RESDIR)/pairsam-markasdup/$(NAME).marked.sam.pairs.gz \
+		$(RESDIR)/pairsam-merge/$(NAME).merged.sam.pairs.gz ;\
+
+	pairix $(RESDIR)/pairsam-markasdup/$(NAME).marked.sam.pairs.gz
+
+pairsam-filter:
+	if [ ! -d $(RESDIR)/pairsam-filter ] ; then \
+		mkdir -pv $(RESDIR)/pairsam-filter ;\
+	fi ;\
+	## Generate lossless bam
+	pairtools split \
+		--nproc-in $$(expr $(CPUS) / 2 ) \
+		--nproc-out $$(expr $(CPUS) / 2 ) \
+		--output-sam $(RESDIR)/pairsam-filter/$(NAME).lossless.bam \
+		$(RESDIR)/pairsam-markasdup/$(NAME).marked.sam.pairs.gz ;\
+
+	# Select UU, UR, RU reads
+	pairtools select \
+		'(pair_type == "UU") or (pair_type == "UR") or (pair_type == "RU")' \
+		--output-rest $(RESDIR)/pairsam-filter/$(NAME).unmapped.sam.pairs.gz \
+		--output temp.gz \
+		--nproc-in $$(expr $(CPUS) / 2 ) \
+		--nproc-out $$(expr $(CPUS) / 2 ) \
+		$(RESDIR)/pairsam-markasdup/$(NAME).marked.sam.pairs.gz ;\
+
+	pairtools split \
+		--nproc-in $$(expr $(CPUS) / 2 ) \
+		--nproc-out $$(expr $(CPUS) / 2 ) \
+		--output-pairs temp1.gz \
+		temp.gz ;\
+
+	pairtools select \
+		'True' \
+		--chrom-subset $(CHROMSIZES) \
+		-o $(RESDIR)/pairsam-filter/$(NAME).dedup.pairs.gz \
+		--nproc-in $$(expr $(CPUS) / 2 ) \
+		--nproc-out $$(expr $(CPUS) / 2 ) \
+		temp1.gz ;\
+
+	pairix $(RESDIR)/pairsam-filter/$(NAME).dedup.pairs.gz  # sanity check & indexing
+
+pairsqc-single:
+	if [ ! -d $(RESDIR)/pairsqc ] ; then \
+		mkdir -pv $(RESDIR)/pairsqc ;\
+	fi ;\
+	cd $(RESDIR)/pairsqc ;\
+	pairsqc.py \
+		-p $(RESDIR)/pairsam-filter/$(NAME).dedup.pairs.gz \
+		-c $(CHROMSIZES) \
+		-tP \
+		-s $(NAME) \
+		-O $(NAME) \
+		-M 8.2 ;\
+	plot.r \
+		4 \
+		$(NAME)\_report ;\
+	cd ../../ ;
+
+merge-pairs:
+	# As implemented in the 4DN pipeline, this function appears to combine multiple
+	# pairs files line-by-line, including headers. The origin of these files is
+	# unclear -- the input pairs file in the example online doesn't exist as an output
+	# in the preceding pipeline. The actual implementation is overwrought, using named-
+	# pipes and repeatedly unzipping the same files. It's not clear the process is
+	# necessary, since I don't see where multiple input files would come from and, if only
+	# a single file is given as an arg, all the script does is literally copy the input file
+	# to a new name and index the new file with pairix.
+	echo "merge-pairs reporting for duty: Nothing to see here, folks."
+
+addfrag2pairs:
+	# Addfrag2pairs adds restriction site data to pairs file. Restriction site data
+	# follow the juicer pipeline format and can be created using generate_site_positions.py
+	# from their pipeline (https://github.com/aidenlab/juicer/blob/master/misc/generate_site_positions.py)
+	# The Arima kit uses a four-cutter and five-cutter (likely DpnII as the four-cutter).
+	# Recognition sites are GATC and GANTC, according to information in the script above,
+	# for the Arima flag.
+	if [ ! -d $(RESDIR)/pairsfrag ] ; then \
+                mkdir -pv $(RESDIR)/pairsfrag ;\
+        fi ;\
+	zcat $(RESDIR)/pairsam-filter/$(NAME).dedup.pairs.gz | $(SCRIPTSDIR_4DN)/pairix/util/fragment_4dnpairs.pl -a - $(RESDIR)/pairsfrag/$(NAME).ff.pairs $(RE_SITES_FILE) ;\
+	bgzip -f $(RESDIR)/pairsfrag/$(NAME).ff.pairs ;\
+	pairix -f $(RESDIR)/pairsfrag/$(NAME).ff.pairs.gz ;
+
+cooler:
+	# Create an interactin matrix in cooler format.
+	if [ ! -d $(RESDIR)/cooler ] ; then \
+                mkdir -pv $(RESDIR)/cooler ;\
+        fi ;\
+	cooler cload pairix -p $(CPUS) -s $(MAX_SPLIT) $(CHROMSIZES):$(BIN_SIZE) $(RESDIR)/pairsfrag/$(NAME).ff.pairs.gz $(RESDIR)/cooler/$(NAME).cool
+
+juicebox-pre:
+	# Create an interaction matrix in juicebox format.
+	if [ ! -d $(RESDIR)/juicer ] ; then \
+                mkdir -pv $(RESDIR)/juicer ;\
+        fi ;\
+	if [ $(HIGLASS) -eq '1' ] ; then \
+		java -Xmx$(MAXMEM) -Xms$(MAXMEM) -jar $(JT_CMD) pre -n $(RESDIR)/pairsfrag/$(NAME).ff.pairs.gz $(RESDIR)/juicer/$(NAME).hic $(CHROMSIZES) -r $(RESLIST) -q $(MAPQ_FILTER) ;\
+	elif [ ! -z $custom_res ] ; then \
+		java -Xmx$(MAXMEM) -Xms$(MAXMEM) -jar $(JT_CMD) pre -n $(RESDIR)/pairsfrag/$(NAME).ff.pairs.gz $(RESDIR)/juicer/$(NAME).hic $(CHROMSIZES) -r $(CUSTOM_RES) -q $(MAPQ_FILTER) ;\
+	else \
+		java -Xmx$(MAXMEM) -Xms$(MAXMEM) -jar $(JT_CMD) pre -n $(RESDIR)/pairsfrag/$(NAME).ff.pairs.gz $(RESDIR)/juicer/$(NAME).hic $(CHROMSIZES) -q $(MAPQ_FILTER) ;\
+	fi ; \
+	java -Xmx$(MAXMEM) -Xms$(MAXMEM) -jar $(JT_CMD) addNorm -w $(MIN_RES) -d -F $(RESDIR)/juicer/$(NAME).hic
+
+cool2multirescool:
+	cooler zoomify --balance --balance-args '--convergence-policy store_nan' -n $(CPUS) -o $(RESDIR)/cooler/$(NAME).multires.cool -c $(CHUNK_SIZE) "-r 5000,10000,25000,50000,100000,250000,500000,1000000,2500000" $(RESDIR)/cooler/$(NAME).cool
+
+add-hicnormvector-to-mcool:
+	# Add norm vector to cooler matrix
+	cp $(RESDIR)/cooler/$(NAME).multires.cool $(RESDIR)/cooler/$(NAME).multires.norm.cool ;\
+	hic2cool extract-norms -e $(RESDIR)/juicer/$(NAME).hic $(RESDIR)/cooler/$(NAME).multires.norm.cool
+
+postProcessJuicer:
+	# Call loops and domains with Juicer tools. (Will not run motif finding step as written!)
+	$(SCRIPTSDIR_JUICER)/juicer_postprocessing.sh -j $(SCRIPTSDIR_JUICER)/juicer_tools -i $(RESDIR)/juicer/$(NAME).hic -g $(ASSEMBLY)
+
+postProcessCooler:
+	# Call loops at various resolutions from the cooler matrices.
+	if [ ! -d $(RESDIR)/cooler/expected ] ; then \
+		mkdir -pv $(RESDIR)/cooler/expected ;\
+	fi ;\
+	if [ ! -d $(RESDIR)/cooler/loops ] ; then \
+		mkdir -pv $(RESDIR)/cooler/loops ;\
+	fi ;\
+	for res in 5000 10000 25000 ; do \
+		cooltools expected-cis -p $(CPUS) -o  $(RESDIR)/cooler/expected/$(NAME).$${res}kb.tsv $(RESDIR)/cooler/$(NAME).multires.norm.cool::/resolutions/$$res ;\
+		cooltools dots -p $(CPUS) -o $(RESDIR)/cooler/loops/$(NAME).$${res}kb $(RESDIR)/cooler/$(NAME).multires.norm.cool::/resolutions/$$res $(RESDIR)/cooler/expected/$(NAME).$${res}kb.tsv ;\
+	done
