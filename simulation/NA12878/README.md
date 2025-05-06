@@ -20,3 +20,6 @@ SURVIVOR simSV CHM13.pseudocontigs.NA12878.1.rc.contigs.fa SURVIVOR.params.NA128
 ```
 ../build_SURVIVOR_contigs_bed.py -s CHM13.pseudocontigs.NA12878.1.rc.contigs.SURVIVOR.with-missing.fasta -r CHM13.pseudocontigs.NA12878.1.rc.contigs.bed -f CHM13.pseudocontigs.NA12878.1.rc.contigs.SURVIVOR.with-missing.concat.fasta > CHM13.pseudocontigs.NA12878.1.rc.contigs.SURVIVOR.with-missing.bed
 ```
+
+### Simulated genome sizes
+Genome sizes in Table S2 can be found in {NA18278,HG002}/{GPatch,RagTag}/*.stats
