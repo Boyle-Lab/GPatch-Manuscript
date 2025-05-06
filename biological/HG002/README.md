@@ -12,7 +12,9 @@ Analysis steps for producing GPatch HG002 from HPRC HG002.
 
 
 ### Alignment, analysis, and dot-plot generation for HPRC HG002
+```
 /usr/bin/time -v ./patch_genome.sh ../../data/HG002-full-0.14.1.pat.fa ../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa T2T-CHM13 HG002.1 "" "-d -t -m 10"
+```
 
 ### Generate dot-plots to T2T-NA12878
 ```
