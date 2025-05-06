@@ -25,3 +25,8 @@ paste HG002/GPatch/CHM13.HG002.1.SURVIVOR.contigs.ordering-stats.txt <(awk '{for
 ```
 ./do_barplots.Rscript simulation_stats.combined.txt "simulation_stats.combined"
 ```
+
+### Data for Tables S2 and S3
+Genome lengths in Tables S2 and S3 can be found in {NA12878,HG002}/{GPatch,RagTag}/*.stats
+Counts required to calculate patched genome contig coverage %, and % assembly localized (Table S3) are also found in {NA12878,HG002}/{GPatch,RagTag}/*.stats
+Remaining rows, with the exception of runtime and max memory, are from simulation_stats.*.combined.txt
