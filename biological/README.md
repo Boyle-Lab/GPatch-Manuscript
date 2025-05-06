@@ -4,7 +4,7 @@ This folder contains scripts used for the biological data analyses performed in 
 
 biological_patching_stats.combined.txt was compiled manually from data in NA12878 and HG002 subdirectories.
 
-### Compile counts/pct for biological_patching_stats.combined.txt (Presented in Figure 4A-C)
+### Compile counts/pct for biological_patching_stats.combined.txt (Presented in Figure 3A-C)
 
 Pct contigs localized = placed contigs / total contigs
 ```
@@ -39,5 +39,5 @@ grep "pre-break contig base count" HG002/HG002.1.contigs.bed
 grep "post-break_2 total patched genome size" HG002/HG002.1.contigs.bed
 ```
 
-### Bar plots for figures 4A-C
+### Bar plots for figures 3A-C
 ./do_barplots.Rscript biological_patching_stats.combined.txt "biological_patching_stats.combined"
