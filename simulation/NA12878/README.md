@@ -22,4 +22,4 @@ SURVIVOR simSV CHM13.pseudocontigs.NA12878.1.rc.contigs.fa SURVIVOR.params.NA128
 ```
 
 ### Simulated genome sizes
-Genome sizes in Table S2 can be found in {NA18278,HG002}/{GPatch,RagTag}/*.stats
+Genome sizes in Table S2 can be found in {GPatch,RagTag}/*.stats
