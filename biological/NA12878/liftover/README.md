@@ -10,7 +10,14 @@ Steps for producing aligment chains between GPatch NA12878 and T2T-CHM13.
 * chain2paf (https://github.com/AndreaGuarracino/chain2paf)
 * paf2Chain (https://github.com/AndreaGuarracino/paf2chain)
 
-Final alignment chains to convert GPatch NA12878 to T2T-CHM13 coordinates and vice-versa are in the alignment_results/chainnet/ directory.
+Final alignment chains to convert GPatch NA12878 to T2T-CHM13 coordinates and vice-versa are in the alignment_results_mm2/chainnet/ directory:
+```
+ls -alth alignment_results_mm2/chainnet/
+total 75M
+-rw-rw-rw-  1 adadiehl boyle-lab 5.8M Apr 23 09:59 T2T-CHM13.NA12878.over.chain
+drwxrwsrwx+ 2 adadiehl boyle-lab 4.0K Apr 23 09:59 .
+-rw-rw-rw-  1 adadiehl boyle-lab 5.8M Apr 23 09:59 NA12878.T2T-CHM13.over.chain
+```
 
 ### nf-LO nextflow pipeline for initial chain production
 ```
