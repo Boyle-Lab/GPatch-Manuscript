@@ -58,6 +58,8 @@ sbatch <slurm_script.target.slurm.sh> <Makefile.target>
 ```
 Results are written to a location specified within Makefile.target. These were then copied to a local server for loop prediction steps.
 
+Additional processing steps to gather data presented in the manuscript and figures are documented in the patched (GPatch NA12878), raw (HGSVC NA12878), and T2T-CHM13 subdirectories.
+
 ### Loop prediction at 5kb and 10kb resolution with Juicer Tools
 Loop prediction steps were performed on a local, GPU-enabled server, with Makefiles with the '.loops' suffix used to automate the process. Steps are documented in each target's subdirectory.
 
