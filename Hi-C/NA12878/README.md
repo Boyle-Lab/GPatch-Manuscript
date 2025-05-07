@@ -1,65 +1,49 @@
-# Hi-C Data Analysis
+# Hi-C Data Loop Comparison between GPatch NA12878 and T2T-CHM13
 
-This folder contains scripts used for the analysis of NA12878 Hi-C data using GPatch NA12878, T2T-CHM13, and HGSVC NA12878 (unpatched) assemblies as the reference.
+This document describes steps taken to directly compare loop loci between Hi-C data mapped to GPatch NA12878 or T2T-CH13 assemblies.
 
 ### Dependencies
-* conda (https://anaconda.org/anaconda/conda)
-* BWA (https://github.com/lh3/bwa)
-* Juicer Tools (https://github.com/aidenlab/JuicerTools)
-* SAMtools (https://www.htslib.org/)
-* FastQC (https://github.com/s-andrews/FastQC)
-* R (https://www.r-project.org/)
-* JCuda (http://www.jcuda.org/jcuda/JCuda.html)
-* CUDA Toolkit (https://developer.nvidia.com/cuda-toolkit)
+* BEDtools (https://bedtools.readthedocs.io/en/latest/)
+* Kent Tools (https://github.com/ucscGenomeBrowser/kent)
 
-### Copy GPatch NA12878 to the central /data folder for convenience.
+### First decompose loops into individual anchors
 ```
-cp ../../../biological/NA12878/NA12878.2.cbreak_2.patched.fasta ../../../data/
+cd patched/juicer/NA12878_patched_loops
+
+cat enriched_pixels_5000.bedpe | awk 'BEGIN {N=1}; {if (NR > 1) {printf "chr%s\t%d\t%d\tloop%d_1\nchr%s\t%d\t%d\tloop%d_2\n", $1, $2, $3, N, $4, $5, $6, N; N++}}' > loop_anchors.5kb.bed
+
+cat enriched_pixels_10000.bedpe | awk 'BEGIN {N=1}; {if (NR > 1) {printf "chr%s\t%d\t%d\tloop%d_1\nchr%s\t%d\t%d\tloop%d_2\n", $1, $2, $3, N, $4, $5, $6, N; N++}}' > loop_anchors.10kb.bed
 ```
 
-### Generate chrom.sizes for T2T-CHM13, GPatch NA12878, and HGSVC NA12878.
+### Use previously-prepared liftover chains to convert GPatch NA12878 to T2T-CHM13 frame
 ```
-cd ../../../data
-cat NA12878.2.cbreak_2.patched.fasta | awk 'BEGIN {len=0}; {if ($1 ~ ">") {if (len > 0) {printf "%d\n", len}; printf "%s\t", $1; len=0} else {len += length($1)} }; END {printf "%d\n", len}' | sed 's/>//' > NA12878.2.cbreak_2.patched.chrom.sizes
-cat v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.fasta | awk 'BEGIN {len=0}; {if ($1 ~ ">") {if (len > 0) {printf "%d\n", len}; printf "%s\t", $1; len=0} else {len += length($1)} }; END {printf "%d\n", len}' | sed 's/>//' > v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.chrom.sizes
-cat GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa | awk 'BEGIN {len=0}; {if ($1 ~ ">") {if (len > 0) {printf "%d\n", len}; printf "%s\t", $1; len=0} else {len += length($1)} }; END {printf "%d\n", len}' | sed 's/>//' > GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.chrom.sizes
+liftOver loop_anchors.5kb.bed ../../../../../biological/NA12878/liftover/alignment_results_mm2/chainnet/NA12878.T2T-CHM13.over.chain loop_anchors.5kb.T2T-CHM13.bed loop_anchors.5kb.unmapped.bed
+liftOver loop_anchors.10kb.bed ../../../../../biological/NA12878/liftover/alignment_results_mm2/chainnet/NA12878.T2T-CHM13.over.chain loop_anchors.10kb.T2T-CHM13.bed loop_anchors.10kb.unmapped.bed
 ```
 
-### Generate BWA indexes for the three assemblies.
+### Intersect lifted anchors with T2T-CHM13 to isolate shared anchors.
 ```
-bwa index NA12878.2.cbreak_2.patched.fasta
-bwa index v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.fasta 
-bwa index GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa 
+bedtools intersect -a loop_anchors.5kb.T2T-CHM13.bed -b ../../../../T2T-CHM13/juicer/T2T-CHM13_loops/loop_anchors.5kb.bed -u > loop_anchors.5kb.T2T-CHM13.shared.bed
+bedtools intersect -a loop_anchors.10kb.T2T-CHM13.bed -b ../../../../T2T-CHM13/juicer/T2T-CHM13_loops/loop_anchors.10kb.bed -u > loop_anchors.10kb.T2T-CHM13.shared.bed
 ```
 
-### Generate restriction enzyme sites files for the three assemblies.
-Juicer tools scripts should be located at the path indicated in $JUICER_TOOLS_PATH.
+### Reconstruct loop records from the sets of lifted anchors
+../../../../reconstitute_loops.py -b loop_anchors.5kb.T2T-CHM13.shared.bed > loops.5kb.T2T-CHM13.shared.bed
+../../../../reconstitute_loops.py -b loop_anchors.5kb.T2T-CHM13.bed > loops.5kb.T2T-CHM13.bed
+
+../../../../reconstitute_loops.py -b loop_anchors.10kb.T2T-CHM13.shared.bed > loops.10kb.T2T-CHM13.shared.bed
+../../../../reconstitute_loops.py -b loop_anchors.10kb.T2T-CHM13.bed > loops.10kb.T2T-CHM13.bed
 ```
-python3 $JUICER_TOOLS_PATH/generate_site_positions.py MboI NA12878.2.cbreak_2.patched NA12878.2.cbreak_2.patched.fasta
 
-python3 $JUICER_TOOLS_PATH/generate_site_positions.py MboI v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2 v12_NA12878_giab_pbsq2-ccs_1000-pereg.h2-un.racon-p2.fasta
-
-python3 $JUICER_TOOLS_PATH/generate_site_positions.py MboI GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa
+### Gather counts
 ```
-## The following steps are performed on the compute cluster.
+# Fully-conserved loops (both anchors are lifted and shared with T2T-CHM13)
+grep -v '\.' loops.5kb.T2T-CHM13.shared.bed | wc -l
+grep -v '\.' loops.10kb.T2T-CHM13.shared.bed | wc -l
 
-### Prerequisites
-Make sure BWA, Juicer Tools, and SAMtools, are accessible on your system. All other dependencies will be installed in the conda environment.
-
-### Set up the conda environment for Hi-C processing
-conda create -n 4DN_HiC_env -c conda-forge -c bioconda pairtools pairix cooler numpy cython
-
-### Initial processing with 4DN pipeline and Juicer Tools
-Initial mapping, pairs extraction, filtering, Hi-C matrix construction, and normalization steps are automated in `Makefile.*`. These files contain target-assembly-specific paths and variables, most-importantly, cluster-accessible paths to the Hi-C read data and fasta target assembly sequences, chrom.sizes, and BWA indexes, and RE sites files, needed for Hi-C processing.
-
-Jobs for each target assembly were processed on memory-optimized cluster nodes allocated with 12 processor cores and 500G memory, with jobs provisioned through Slurm:
+# Partially-conserved (both anchors are lifted but only one shared with T2T-CHM13)
+grep '\.' loops.5kb.T2T-CHM13.shared.bed | wc -l
+grep '\.' loops.10kb.T2T-CHM13.shared.bed | wc -l
 ```
-sbatch <slurm_script.target.slurm.sh> <Makefile.target>
-```
-Results are written to a location specified within Makefile.target. These were then copied to a local server for loop prediction steps.
 
-Additional processing steps to gather data presented in the manuscript and figures are documented in the patched (GPatch NA12878), raw (HGSVC NA12878), and T2T-CHM13 subdirectories.
-
-### Loop prediction at 5kb and 10kb resolution with Juicer Tools
-Loop prediction steps were performed on a local, GPU-enabled server, with Makefiles with the '.loops' suffix used to automate the process. Steps are documented in each target's subdirectory.
-
+The NA12878-only loop count was taken as the difference between total loops and the sum of fully-conserved and partially-conserved loops.
