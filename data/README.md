@@ -54,3 +54,10 @@ minimap2 -x asm5 -a -t 24 /data/genomes/T2T-CHM13v2.0/GenBank.GCA_009914755.4/GC
 ./scripts/extract_complete_NA12878_chroms.py -f NA12878.1.chroms.fasta > NA12878.1.chroms.complete.fasta
 ./scripts/extract_complete_NA12878_chroms.py -f NA12878.2.chroms.fasta > NA12878.2.chroms.complete.fasta
 ```
+
+## NA12878 Hi-C Read Data from Rao and Huntley, 2014 (https://pubmed.ncbi.nlm.nih.gov/25497547/)
+```
+cd Hi-C/NA12878
+for acc in $(cat ../../SraRunTable.csv | awk -F ',' '{if (NR > 1) {print $1}}') ; do echo $acc ; fastq-dump --gzip --split-files $acc ; rm ~/ncbi/public/sra/* ; done
+cd ../../
+```
