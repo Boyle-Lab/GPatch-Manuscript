@@ -60,6 +60,7 @@ cat loop_intervals.5kb.bed | awk 'BEGIN {SUM=0;N=0}; {SUM+=($3-$2);N++}; END {pr
 
 cat enriched_pixels_10000.bedpe | awk 'BEGIN {N=1}; {if (NR > 1) {printf "chr%s\t%d\t%d\tloop%d\n", $1, $2, $6, N; N++}}' > loop_intervals.10kb.bed
 cat loop_intervals.10kb.bed | awk 'BEGIN {SUM=0;N=0}; {SUM+=($3-$2);N++}; END {print SUM/N}'
+```
 
 ### Visualize heatmaps with CoolBox API
 ```
