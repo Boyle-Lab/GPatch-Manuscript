@@ -28,6 +28,7 @@ bedtools intersect -a loop_anchors.10kb.T2T-CHM13.bed -b ../../../../T2T-CHM13/j
 ```
 
 ### Reconstruct loop records from the sets of lifted anchors
+```
 ../../../../reconstitute_loops.py -b loop_anchors.5kb.T2T-CHM13.shared.bed > loops.5kb.T2T-CHM13.shared.bed
 ../../../../reconstitute_loops.py -b loop_anchors.5kb.T2T-CHM13.bed > loops.5kb.T2T-CHM13.bed
 
