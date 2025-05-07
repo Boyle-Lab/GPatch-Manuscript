@@ -36,6 +36,6 @@ zcat pairsam-filter/NA12878_raw.dedup.pairs.gz | grep -v "#" | wc -l
 # Unmapped, duplicate, and other non-UU, -UR, and -RU pairs.
 zcat pairsam-filter/NA12878_raw.unmapped.sam.pairs.gz | grep -v "#" | wc -l
 # Final, filtered pairs with mate on different chromosome
-zcat pairsam-filter/NA12878_patched.dedup.pairs.gz | grep -v "#" | awk '{if ($2 != $4) print $0}' | wc -l
+zcat pairsam-filter/NA12878_raw.dedup.pairs.gz | grep -v "#" | awk '{if ($2 != $4) print $0}' | wc -l
 ```
 Total pairs is the sum of unmapped and filtered pairs.
