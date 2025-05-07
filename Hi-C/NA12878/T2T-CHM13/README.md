@@ -9,6 +9,7 @@ This folder contains scripts used for the analysis of NA12878 Hi-C data using T2
 * JCuda (http://www.jcuda.org/jcuda/JCuda.html)
 * CUDA Toolkit (https://developer.nvidia.com/cuda-toolkit)
 * BEDtools (https://bedtools.readthedocs.io/en/latest/)
+* CoolBox (https://github.com/GangCaoLab/CoolBox)
 
 ### Gathering basic alignment stats
 ```
@@ -59,3 +60,8 @@ cat loop_intervals.5kb.bed | awk 'BEGIN {SUM=0;N=0}; {SUM+=($3-$2);N++}; END {pr
 
 cat enriched_pixels_10000.bedpe | awk 'BEGIN {N=1}; {if (NR > 1) {printf "chr%s\t%d\t%d\tloop%d\n", $1, $2, $6, N; N++}}' > loop_intervals.10kb.bed
 cat loop_intervals.10kb.bed | awk 'BEGIN {SUM=0;N=0}; {SUM+=($3-$2);N++}; END {print SUM/N}'
+
+### Visualize heatmaps with CoolBox API
+```
+../do_hic_heatmaps.coolbox.py -m juicer/T2T-CHM13.hic -s ../../../data/GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.chrom.sizes -k "chrY,chrM" -p T2T-CHM13 -l
+```

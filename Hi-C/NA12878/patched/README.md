@@ -9,6 +9,7 @@ This folder contains scripts used for the analysis of NA12878 Hi-C data using GP
 * JCuda (http://www.jcuda.org/jcuda/JCuda.html)
 * CUDA Toolkit (https://developer.nvidia.com/cuda-toolkit)
 * BEDtools (https://bedtools.readthedocs.io/en/latest/)
+* CoolBox (https://github.com/GangCaoLab/CoolBox)
 
 ### Gathering basic alignment stats
 ```
@@ -66,3 +67,7 @@ bedtools intersect -a loop_intervals.5kb.bed -b ../../../juicer/NA12878_patched_
 bedtools intersect -a loop_intervals.10kb.bed -b ../../../juicer/NA12878_patched_loops/NA12878.2.cbreak_2.contig-boundaries.bed -u | wc -l
 ```
 
+### Visualize heatmaps with CoolBox API
+```
+../do_hic_heatmaps.coolbox.py -m juicer/NA12878_patched.hic -s ../../../data/NA12878.2.cbreak_2.patched.fasta.chrom.sizes -b contigs.bed -k "chrY,chrM" -p NA12878.2.cbreak_2.patched -l
+```
