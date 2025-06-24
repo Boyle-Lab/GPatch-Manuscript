@@ -1,7 +1,9 @@
 # GPatch-Manuscript
 Data retrieval and Analysis steps for the GPatch manuscript:
 
-Citation Here
+Fast and Accurate Draft Genome Patching with GPatch
+Adam Diehl, Alan Boyle
+bioRxiv 2025.05.22.655567; doi: https://doi.org/10.1101/2025.05.22.655567
 
 # Overview
 Recent advancements in sequencing technologies have yielded numerous long-read draft genomes, promising to enhance our understanding of genomic variation. However, draft genomes are typically highly fragmented, posing significant challenges for functional genomics. We introduce GPatch, a tool that constructs chromosome-scale pseudoassemblies from fragmented drafts using alignments to a reference genome. GPatch produces complete, accurate, gap-free assemblies preserving over 95% of nucleotides from draft genomes. We show that GPatch assemblies can be used as references for Hi-C data analysis, whereas draft assemblies cannot. Until complete genome assembly becomes routine, GPatch presents a necessary tool for maximizing the utility of draft genomes.
