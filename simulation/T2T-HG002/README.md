@@ -71,6 +71,39 @@ bigBed (joined format) is converted with pyBigWig from `HiCExplorer_env`, and on
 are used. With `-M 100000`, 94.6% of breakpoints fall in CenSat or SDs (12.7% of the genome):
 α-satellite 12.4×, rDNA 54×, SD ≥98% 4.5×, while interspersed repeats are depleted.
 
+## GPatch junction accuracy (trims and patches)
+
+`compare_overlap_trimming.py` checks GPatch's handling of each junction against the true
+junctions. It compares the 5′ trim of overlapping contigs with the true overlap, and patch lengths
+with the true gaps, including chromosome ends. It also flags contigs placed in the opposite
+orientation to the benchmark.
+```
+P=T2T-HG002.HG002.1.simulated.merge100000
+./compare_overlap_trimming.py -l "GPatch" -g GPatch/$P.contigs.bed -P GPatch/$P.patches.bed \
+    -s $P.contigs.bed -j $P.junctions.tsv --bench-paf T2T-HG002.HG002.1.simulated.paf \
+    --ref-fai GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa.fai -o GPatch/$P.trim-vs-overlap.tsv
+```
+`gpatch_junction_prototype.py` is the prototype of the revised junction handling, now in GPatch
+itself (default mode; the old behaviour is `--legacy_junctions`). It keeps GPatch's contig
+placement and re-decides each junction as trim, reference patch or bookend, never adding Ns:
+- **Contig ends:** chained supplementary alignments set each contig's extent.
+- **Overlaps:** measured with an anchored suffix/prefix test on the contig sequences.
+- **Tandem repeats:** ties are broken with the extent estimate.
+- **Patching:** gaps are patched when at least one side is well anchored.
+
+Outputs go to `GPatch_prototype/`, including `junctions.tsv`.
+```
+./gpatch_junction_prototype.py -b GPatch/$P.bam -c GPatch/$P.contigs.bed -a $P.contigs.fa \
+    -r GCA_009914755.4_T2T-CHM13v2.0_genomic.chroms.fa -x GPatch_prototype/$P --write-fasta -j 24
+```
+Autosomal results on the same placement:
+
+| Measure | Old GPatch | Prototype |
+|---|---|---|
+| Exact overlap trims | 0 of 31 | 22 of 31 |
+| Sequence lost to over-trimming | 1.6 Mb | 11 kb |
+| Total net junction error | 66.8 Mb | 43.7 Mb |
+
 ## Outputs (prefix `T2T-HG002.HG002.1.simulated`)
 
 | File | Contents |
