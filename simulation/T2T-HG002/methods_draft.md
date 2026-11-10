@@ -22,7 +22,7 @@ The remaining 91 contigs (3.07 Mb; median 28.1 kb, maximum 194 kb) produced no a
 
 ### Junction handling: overlap trimming, gap patching and bookending
 
-After contigs are placed and ordered along each reference chromosome, GPatch decides how to join each pair of adjacent contigs. If the two contigs overlap, it trims the 5′ end of the downstream contig. If there is a gap between them, it fills the gap with reference sequence ("patching"). Otherwise it joins them directly ("bookending"). Patches are written in lower case, and no N characters are introduced except in scaffold-only mode. Earlier versions of GPatch derived each contig's extent on the reference from its primary alignment, extended at each end by the full length of the soft-clipped sequence, and trimmed or patched by the overlap or distance between those extents. That extrapolation assumes unaligned contig sequence spans the same length of reference as of contig. The assumption fails when the unaligned sequence lies in a centromere, segmental duplication or structural variant, where it can be hundreds of kilobases to megabases long. We therefore replaced it with a procedure that estimates contig extents more conservatively and measures overlaps directly from the contig sequences.
+After contigs are placed and ordered along each reference chromosome, GPatch (v0.6.0) decides how to join each pair of adjacent contigs. If the two contigs overlap, it trims the 5′ end of the downstream contig. If there is a gap between them, it fills the gap with reference sequence ("patching"). Otherwise it joins them directly ("bookending"). Patches are written in lower case, and no N characters are introduced except in scaffold-only mode. GPatch versions up to 0.4.0 derived each contig's extent on the reference from its primary alignment, extended at each end by the full length of the soft-clipped sequence, and trimmed or patched by the overlap or distance between those extents. That extrapolation assumes unaligned contig sequence spans the same length of reference as of contig. The assumption fails when the unaligned sequence lies in a centromere, segmental duplication or structural variant, where it can be hundreds of kilobases to megabases long. We therefore replaced it with a procedure that estimates contig extents more conservatively and measures overlaps directly from the contig sequences.
 
 *Contig extents.* The primary alignment of each placed contig is chained to that contig's supplementary alignments. A supplementary alignment is added if it has mapping quality ≥ 20, an aligned length ≥ 10 kb, the same chromosome and strand as the primary alignment, and is colinear with the growing chain in both contig and reference coordinates. Consecutive chained alignments may be separated by at most 1 Mb, or overlap by at most 10 kb, in both coordinate systems. Each contig end is then extrapolated onto the reference only by the residual unaligned sequence beyond the outermost chained alignment. The gap or overlap between adjacent contigs is estimated from these extents, as the distance from the end of the sequence placed so far to the extrapolated start of the next contig.
 
@@ -52,30 +52,70 @@ Leading and trailing chromosome ends are patched when the residual at the termin
 
 ### Benchmarking junction handling against the simulated assembly
 
-To evaluate junction handling, we aligned the simulated contigs to T2T-CHM13 v2.0 with minimap2 v2.28 (`-x asm20 -a`) and ran GPatch (`-d -m 10`) with both the previous (soft-clip) and the revised junction handling. The two runs place the same contigs in the same order and orientation, so they differ only at junctions. For this comparison, nested contigs were identified with soft-clip extents in both runs, as in the original implementation (see the next section for the revised nested-contig check). GPatch placed 148 of the 332 simulated contigs, giving 125 junctions between adjacent placed contigs plus 46 chromosome ends.
+To evaluate junction handling, we aligned the simulated contigs to T2T-CHM13 v2.0 with minimap2 v2.28 (`-x asm20 -a`). We then ran GPatch v0.6.0 (`-d -m 10`) in three configurations:
 
-Each junction was compared with the truth from the simulation. Junctions between contigs that are adjacent in the simulation (83) were compared with the recorded overlap or gap. For pairs separated by unplaced contigs (35), the true distance was computed from the contigs' benchmark coordinates. Chromosome ends (41) were compared with the benchmark sequence preceding the first or following the last placed contig. Junctions between contigs from different benchmark chromosomes (12) were excluded. For each junction, the signed error is the GPatch distance (patch length, or minus the trim length) minus the true distance (gap length, or minus the overlap length). Positive errors represent extra sequence (duplicated overlap or excess patch) and negative errors represent missing sequence. Because T2T-CHM13 v2.0 chrY is the HG002 chrY assembly, chrY junctions are trivially accurate, so we report results for the autosomes (123 junctions with truth).
+1. `--legacy_junctions`, which reproduces GPatch 0.4.0 with soft-clip extrapolation and trimming enabled (outputs byte-identical to GPatch 0.4.0);
+2. the revised junction handling without overlap extension (`--no_extension`);
+3. the default, which adds overlap extension (see the next section).
 
-The revised procedure trimmed 30 of 31 true overlaps, 22 of them exactly, compared with none exactly under soft-clip extrapolation (Table X). Over-trimming, which deletes real sequence, fell from 1.61 Mb at 11 junctions to 11 kb at 4. Under-trimming, which duplicates sequence, was similar for the two methods (18.8 kb at 4 junctions vs 18.2 kb at 14). Under soft-clip extrapolation, the largest errors arose where unaligned contig ends were extrapolated across sequence whose length differs between HG002 and CHM13. At the chr10 centromere, the two contigs' unaligned ends (3.68 and 3.13 Mb) were extrapolated across 5.82 Mb of CHM13 sequence. This produced a 993 kb trim at a true 2.6 kb overlap. Soft-clip extrapolation also patched 6 true overlaps (2.9–903 kb), duplicating 5.6 Mb, and trimmed 10 true gaps by 1.6–619 kb. The revised procedure detected all but one of the true overlaps. The exception was a contig that GPatch placed in the opposite orientation to the benchmark, so no overlap exists in placement orientation.
+The first two runs differ in only seven contigs: the revised nested-contig check placed 155 contigs rather than 148, and contig order and orientation are otherwise the same. The default run placed 176 contigs. Because the runs place different contigs, the number of junctions in each class differs between them (Table X).
 
-Patch lengths were also more accurate (Table X). Of the 16 true gaps the revised procedure patched, 9 were within 1 kb of the true gap length (median absolute error 127 bp). Of the 11 true gaps patched under soft-clip extrapolation, 2 were (median absolute error 28 kb). Most remaining patch-length errors reflect genuine differences in length between the HG002 gap sequence and the CHM13 sequence used to fill it, such as an 845 kb excess at chr7_7/chr7_8. Across all 123 autosomal junctions and chromosome ends, extra sequence fell from 29.2 Mb to 10.3 Mb and missing sequence from 37.7 Mb to 33.3 Mb. The total absolute junction error fell from 66.8 Mb to 43.7 Mb. Most of the remaining error (41.8 Mb) lies at junctions flanking contigs that GPatch did not place. There, the true distance includes the sequence of the unplaced contigs, so it cannot be recovered by junction handling.
+Each junction was compared with the truth from the simulation:
 
-Of the 125 junctions, the revised procedure trimmed 54 (45 single overlaps and 9 ambiguous), patched 50 (36 trusted and 14 one-sided) and bookended 21. Within ±20 kb of each of the 40 exactly trimmed junctions, the patched sequence was identical to T2T-HG002.
+- *Adjacent in the simulation:* compared with the recorded overlap or gap.
+- *Separated by unplaced contigs:* the true distance was computed from the two contigs' benchmark coordinates.
+- *Chromosome ends:* compared with the benchmark sequence before the first or after the last placed contig.
+- *Contigs from different benchmark chromosomes:* excluded (12 in each run).
 
-**Table X.** Junction accuracy on the simulated assembly (autosomes). Exact and within-1 kb counts; extra and missing sequence summed over junctions.
+For each junction, the signed error is the GPatch distance (patch length, or minus the trim length) minus the true distance (gap length, or minus the overlap length). Positive errors mean extra sequence (duplicated overlap or excess patch); negative errors mean missing sequence. T2T-CHM13 v2.0 chrY is the HG002 chrY assembly, so chrY junctions are trivially accurate. We therefore report autosomal results; Table X gives all three configurations.
 
-| Junction class | n | Method | Exact | ≤ 1 kb | Extra (bp) | Missing (bp) |
-|---|---|---|---|---|---|---|
-| True overlap | 31 | Soft-clip | 0 | 10 | 5,579,963 | 1,612,778 |
-| | | Revised | 22 | 24 | 119,773 | 11,276 |
-| True gap | 21 | Soft-clip | 0 | 2 | 1,388,600 | 1,979,288 |
-| | | Revised | 0 | 9 | 1,046,076 | 312,430 |
-| Chromosome end | 39 | Soft-clip | 7 | 14 | 1,459,457 | 499,657 |
-| | | Revised | 11 | 26 | 297,671 | 65,110 |
-| Flanking unplaced contigs | 32 | Soft-clip | 0 | 0 | 20,722,546 | 33,566,957 |
-| | | Revised | 2 | 2 | 8,873,435 | 32,955,618 |
-| All | 123 | Soft-clip | 7 | 26 | 29,150,566 | 37,658,680 |
-| | | Revised | 35 | 61 | 10,336,955 | 33,344,434 |
+*Overlaps.* The revised junction handling was compared with soft-clip extrapolation (configurations 1 and 2).
+
+- *Trimmed exactly:* 24 of 33 true overlaps, against 0 of 31.
+- *Detected:* every true overlap except one, at a contig GPatch placed in the opposite orientation to the benchmark, where no overlap exists in placement orientation.
+- *Over-trimming,* which deletes real sequence: 1.61 Mb at 11 junctions under soft-clip extrapolation, against 11.3 kb at 4.
+- *Under-trimming,* which duplicates sequence: similar for both (18.2 kb at 14 junctions against 18.8 kb at 4).
+
+Under soft-clip extrapolation, the largest errors arose where unaligned contig ends were extrapolated across sequence whose length differs between HG002 and CHM13. At the chr10 centromere, the two contigs' unaligned ends (3.68 and 3.13 Mb) were extrapolated across 5.82 Mb of CHM13 sequence, producing a 993 kb trim at a true 2.6 kb overlap. Soft-clip extrapolation also patched 6 true overlaps (2.9–903 kb), duplicating 5.6 Mb. It trimmed 10 true gaps by 1.6–619 kb; the revised procedure trimmed 3, by 1.7–8.0 kb, through false overlaps in tandem arrays.
+
+*Gaps.* Of the 18 true gaps patched by the revised procedure, 9 were within 1 kb of the true gap length (median absolute error 1.5 kb). Under soft-clip extrapolation, 2 of 11 were (median 28 kb). Most remaining patch-length errors reflect genuine differences in length between the HG002 gap sequence and the CHM13 sequence used to fill it, such as an 845 kb excess at chr7_7/chr7_8.
+
+*Totals.* Across all autosomal junctions and chromosome ends:
+
+| Measure | Soft-clip extrapolation | Revised procedure |
+|---|---|---|
+| Extra sequence | 29.2 Mb | 10.3 Mb |
+| Missing sequence | 37.7 Mb | 33.4 Mb |
+| Total absolute junction error | 66.8 Mb | 43.7 Mb |
+
+Most of the remaining error (41.8 Mb) lies at junctions flanking contigs that GPatch did not place. There, the true distance includes the sequence of the unplaced contigs, so junction handling cannot recover it.
+
+*With overlap extension (configuration 3):*
+
+- *Accuracy:* 39 of 49 true overlaps were trimmed exactly, and total junction error fell to 42.6 Mb, with less missing sequence (32.3 Mb).
+- *New true gaps:* extension turns some junctions that previously flanked unplaced contigs into junctions between true neighbours. Some of these gaps are patched with large errors, for example 1.10 Mb at chr14_14/chr14_15 and 316 kb at chr9_3/chr9_4. Positions carried through overlaps from the walk's starting contig accumulate the HG002–CHM13 length difference across the walk, and those errors now appear under true gaps.
+- *Decisions:* of the 153 junctions between adjacent placed contigs, GPatch trimmed 82 (70 single overlaps and 12 ambiguous), patched 51 (37 with a trusted estimate and 14 one-sided) and bookended 20.
+- *Sequence check:* within ±20 kb of each of the 60 exactly trimmed junctions, the patched sequence was identical to T2T-HG002.
+
+**Table X.** Junction accuracy on the simulated assembly (autosomes), GPatch v0.6.0. Configuration 1 is `--legacy_junctions` (equivalent to GPatch 0.4.0 with trimming); 2 is `--no_extension`; 3 is the default. n is the number of junctions in each class, which differs between configurations because they place different contigs. Exact and within-1 kb are junction counts; extra, missing and total error are summed over junctions.
+
+| Junction class | Configuration | n | Exact | ≤ 1 kb | Extra (bp) | Missing (bp) | Total error (bp) |
+|---|---|---|---|---|---|---|---|
+| True overlap | 1 | 31 | 0 | 10 | 5,579,963 | 1,612,778 | 7,192,741 |
+| | 2 | 33 | 24 | 26 | 119,773 | 11,276 | 131,049 |
+| | 3 | 49 | 39 | 41 | 129,969 | 11,276 | 141,245 |
+| True gap | 1 | 21 | 0 | 2 | 1,388,600 | 1,979,288 | 3,367,888 |
+| | 2 | 24 | 0 | 9 | 1,052,053 | 316,759 | 1,368,812 |
+| | 3 | 32 | 0 | 9 | 2,467,034 | 708,465 | 3,175,499 |
+| Chromosome end | 1 | 39 | 7 | 14 | 1,459,457 | 499,657 | 1,959,114 |
+| | 2 | 39 | 11 | 26 | 297,671 | 65,110 | 362,781 |
+| | 3 | 39 | 11 | 26 | 297,671 | 65,110 | 362,781 |
+| Flanking unplaced contigs | 1 | 32 | 0 | 0 | 20,722,546 | 33,566,957 | 54,289,503 |
+| | 2 | 33 | 1 | 2 | 8,877,639 | 32,963,786 | 41,841,425 |
+| | 3 | 27 | 1 | 2 | 7,462,658 | 31,505,801 | 38,968,459 |
+| All | 1 | 123 | 7 | 26 | 29,150,566 | 37,658,680 | 66,809,246 |
+| | 2 | 130 | 37 | 64 | 10,347,136 | 33,356,931 | 43,704,067 |
+| | 3 | 148 | 52 | 79 | 10,357,332 | 32,290,652 | 42,647,984 |
 
 ### Contig placement: unplaced contigs, nested-contig detection and overlap-based extension
 
@@ -108,7 +148,7 @@ The extra error comes from joins between chromosomes and misoriented contigs. Wi
 - 86 (10.6 Mb) also had false partners in tandem arrays;
 - requiring consistency with each contig's CHM13 alignment (same chromosome, within 1 Mb) reduced false overlaps from 6,966 to 334.
 
-On this basis, GPatch includes a conservative extension step that runs after alignment-based placement. It is enabled by default and disabled with `--no_extension`. Contigs left out for low mapping quality or nesting are candidates. For each gap between adjacent placed contigs, and for each chromosome end, walks extend from both flanking contigs into the gap. At each step, an unplaced contig is added if:
+On this basis, GPatch (v0.6.0) includes a conservative extension step that runs after alignment-based placement. It is enabled by default and disabled with `--no_extension`. Contigs left out for low mapping quality or nesting are candidates. For each gap between adjacent placed contigs, and for each chromosome end, walks extend from both flanking contigs into the gap. At each step, an unplaced contig is added if:
 
 1. it overlaps the current contig end by ≥ 5 kb;
 2. it is the only unplaced contig to do so;
@@ -149,21 +189,27 @@ Notes for authors (delete before submission):
   overlap). Placement accuracy should be reported separately.
 - Thresholds (10 kb residual, 500 bp anchors, 99.9% identity) were chosen on this simulation, the
   same data used to evaluate them; consider validating on an independent assembly.
-- Junction code: GPatch commit b02e259 (default mode; soft-clip baseline = --legacy_junctions).
-  Evaluation: compare_overlap_trimming.py v0.2.0; prototype gpatch_junction_prototype.py v0.3.0
-  produced identical outputs to GPatch b02e259 on these data.
-- Placement changes: GPatch commit 9008618 (unplaced report; nested check on chained extents) and
-  commit e72d0cb (overlap extension). e72d0cb is after the v0.5.0 tag, so the version that
-  includes extension still needs a release/version number. GPatch e72d0cb reproduces the
-  prototype (overlap_extension_prototype.py v0.1.0 + gpatch_junction_prototype.py --propagated)
-  exactly on these data (176 contigs placed; identical contigs.bed, patches.bed and junction
-  decisions). The 5 kb minimum overlap was chosen after observing one spurious 585 bp overlap on
-  this same simulation.
+- GPatch versions. All changes described here are in GPatch 0.6.0 (commit fda475d): revised
+  junction handling (commit b02e259), unplaced-contig report and chained-extent nested check
+  (9008618; also in 0.5.0), and overlap extension (e72d0cb; first released in 0.6.0, on by
+  default, --no_extension disables it). The soft-clip baseline is --legacy_junctions, which
+  reproduces GPatch 0.4.0 outputs byte-for-byte when trimming is enabled (the 0.4.0 default
+  disabled trimming; see the baseline note above).
+- Which run produced which numbers:
+  - Table X and the junction-benchmark text: GPatch 0.6.0 (fda475d) run as --legacy_junctions,
+    --no_extension and default (outputs in GPatch_v0.6.0/; table source
+    GPatch_v0.6.0/T2T-HG002.HG002.1.simulated.merge100000.benchmark-table.txt). The legacy run is
+    byte-identical to the original GPatch 0.4.0 (+trimming) run; the other two are identical to
+    the validated test runs.
+  - Placement section: 155 contigs = 0.6.0 --no_extension; 176 contigs = 0.6.0 default. Both
+    were verified identical to the prototypes (overlap_extension_prototype.py v0.1.0 +
+    gpatch_junction_prototype.py --propagated) on these data (identical contigs.bed,
+    patches.bed and junction decisions).
+  - Evaluation script: compare_overlap_trimming.py v0.2.0.
+- The 5 kb minimum overlap for extension was chosen after observing one spurious 585 bp overlap
+  on this same simulation.
 - The -m 1 / -m 0 junction errors exclude junctions between contigs from different benchmark
   chromosomes, so they understate the cost of lowering the threshold.
-- The Table X benchmark (148 placed) predates the chained-extent nested check; rerunning it on the
-  155-contig placement changes the totals only slightly (43.69 vs 43.71 Mb, all chromosomes) but
-  the numbers in the text would need updating if the paper reports the final GPatch version.
 - Code: simulation/T2T-HG002/simulate_contigs_from_alignments.sh (-M 100000),
   paf_to_simulated_contigs.py v0.2.0, get_hg002_annotations.sh, breakpoint_repeat_enrichment.py
   v0.1.0 (seed 20261109). Results: T2T-HG002.HG002.1.simulated.merge100000.breakpoint-enrichment.tsv
