@@ -125,7 +125,7 @@ D=GPatch_prototype/overlap_extension
 ./gpatch_junction_prototype.py -b GPatch/$P.bam -c $D/$P.extension.placement.bed -a $P.contigs.fa \
     -r <CHM13> -x $D/$P.extension --propagated $D/$P.extension.propagated.tsv -j 24
 ```
-Starting from GPatch with chained-extent nesting (155 contigs placed), this inserts 22 contigs, all
+Starting from GPatch with chained-extent nesting (155 contigs placed), this inserts 21 contigs (5.4 Mb), all
 in the correct order. All chromosomes:
 
 | Measure | Before | After |
@@ -135,6 +135,9 @@ in the correct order. All chromosomes:
 | Total junction error | 43.71 Mb | 42.66 Mb |
 
 Results are in `GPatch_prototype/overlap_extension/`.
+
+This is now part of GPatch (commit e72d0cb; on by default, `--no_extension` disables it). On this
+simulation it reproduces the prototype's outputs exactly.
 
 ## Outputs (prefix `T2T-HG002.HG002.1.simulated`)
 
