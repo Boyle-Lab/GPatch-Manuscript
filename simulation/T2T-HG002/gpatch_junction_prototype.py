@@ -249,6 +249,11 @@ def main():
     p.add_argument("--minimap2", default="minimap2")
     p.add_argument("-j", "--jobs", type=int, default=12)
     p.add_argument("--tmpdir", default=None)
+    p.add_argument("--propagated", default=None,
+                   help="TSV (contig, direction, anchor, overlap) of contigs placed by overlap extension. Their "
+                        "reference extents are derived from the anchor contig through the overlap (fwd: start = "
+                        "anchor end - overlap; bwd: end = anchor start + overlap) and inherit the anchor's residual "
+                        "at that end, instead of coming from their own alignments.")
     a = p.parse_args()
 
     order = defaultdict(list)
@@ -278,6 +283,33 @@ def main():
             d = chain_extent(pr, supps[name], a)
             d.update(name=name, strand=strand, len=fa.get_reference_length(name))
             info[name] = d
+
+    # Extents of contigs placed by overlap extension, carried through overlaps.
+    if a.propagated:
+        prop = {}
+        with open(a.propagated) as f:
+            next(f)
+            for line in f:
+                n, d, anc, o = line.rstrip("\n").split("\t")
+                prop[n] = (d, anc, int(o))
+        pending = dict(prop)
+        while pending:
+            progress = False
+            for n, (d, anc, o) in list(pending.items()):
+                if anc in pending:
+                    continue
+                A, C = info[anc], info[n]
+                if d == "fwd":
+                    s0 = A["ext_end"] - o
+                    C.update(ext_start=s0, ext_end=s0 + C["len"], resid5=A["resid3"], resid3=A["resid3"])
+                else:
+                    e0 = A["ext_start"] + o
+                    C.update(ext_start=e0 - C["len"], ext_end=e0, resid5=A["resid5"], resid3=A["resid5"])
+                C["nchain"] = 0
+                del pending[n]
+                progress = True
+            if not progress:
+                sys.exit("cyclic --propagated anchors: %s" % ",".join(pending))
 
     # ---- Option 2 for every adjacent pair (in parallel) ---------------------
     pairs = []

@@ -104,6 +104,38 @@ Autosomal results on the same placement:
 | Sequence lost to over-trimming | 1.6 Mb | 11 kb |
 | Total net junction error | 66.8 Mb | 43.7 Mb |
 
+## Placing unplaced contigs by overlap extension (prototype)
+
+`overlap_extension_prototype.py` takes a GPatch placement (`contigs.bed`) and its
+`unplaced.tsv`, then extends each gap from both flanking placed contigs through unplaced contigs.
+A contig is added only if:
+- it overlaps the current contig by ≥ 5 kb, measured with the anchored overlap test;
+- it is the only unplaced contig that does;
+- its CHM13 alignment agrees with the gap's chromosome, region and orientation.
+
+A walk stops at the first ambiguity or when it reaches the contig on the other side of the gap.
+The output is an augmented placement. Each inserted contig's reference position comes from the
+contig its walk started from, carried through the measured overlaps
+(`gpatch_junction_prototype.py --propagated`), not from its own low-MAPQ alignment.
+```
+D=GPatch_prototype/overlap_extension
+./overlap_extension_prototype.py -c <gpatch>.contigs.bed -u <gpatch>.unplaced.tsv -b GPatch/$P.bam \
+    -a $P.contigs.fa -r <CHM13>.fai -o $D/$P.extension.placement.bed -l $D/$P.extension.walks.tsv \
+    -e $D/$P.extension.propagated.tsv
+./gpatch_junction_prototype.py -b GPatch/$P.bam -c $D/$P.extension.placement.bed -a $P.contigs.fa \
+    -r <CHM13> -x $D/$P.extension --propagated $D/$P.extension.propagated.tsv -j 24
+```
+Starting from GPatch with chained-extent nesting (155 contigs placed), this inserts 22 contigs, all
+in the correct order. All chromosomes:
+
+| Measure | Before | After |
+|---|---|---|
+| Contigs placed | 155 | 176 |
+| Junctions between true neighbours | 88 | 116 |
+| Total junction error | 43.71 Mb | 42.66 Mb |
+
+Results are in `GPatch_prototype/overlap_extension/`.
+
 ## Outputs (prefix `T2T-HG002.HG002.1.simulated`)
 
 | File | Contents |
