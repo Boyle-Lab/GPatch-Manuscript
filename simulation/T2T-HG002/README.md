@@ -139,6 +139,61 @@ Results are in `GPatch_prototype/overlap_extension/`.
 This is now part of GPatch (commit e72d0cb; on by default, `--no_extension` disables it). On this
 simulation it reproduces the prototype's outputs exactly.
 
+## Unplaced contigs in GPatch 0.6.0 (`GPatch/`)
+
+This applies the NA12878 unplaced-contig analysis to the GPatch 0.6.0 run in `GPatch/` (`-m 10`,
+default junction handling and overlap extension). The scripts are in `../T2T_NA12878/`. Repeat context
+uses CHM13 CenSat/SD at each contig's CHM13 alignment, so it is directly comparable with NA12878.
+```
+P=T2T-HG002.HG002.1.simulated.merge100000; S=../T2T_NA12878; A=$S/annotation/raw
+$S/characterize_unplaced_contigs.py -s $P.contigs.bed -j $P.junctions.tsv -a $P.contigs.fa \
+    -g GPatch/$P.contigs.bed -u GPatch/$P.unplaced.tsv -e GPatch/$P.extension.tsv -b GPatch/$P.bam \
+    --censat $A/chm13v2.0_censat_v2.1.bed --sd $A/chm13v2.0_SD.bed \
+    -o GPatch/$P.unplaced-characterization.tsv > GPatch/$P.unplaced-characterization.summary.txt
+$S/analyze_extension_limits.py -s $P.contigs.bed -j $P.junctions.tsv -g GPatch/$P.contigs.bed \
+    -u GPatch/$P.unplaced.tsv -e GPatch/$P.extension.tsv -b GPatch/$P.bam > GPatch/$P.extension-limits.txt
+```
+
+| | HG002 | NA12878 |
+|---|---|---|
+| Simulated contigs | 332 | 7,400 |
+| Placed (by extension) | 176 (21) | 2,704 (296) |
+| Unplaced | 156 (20.69 Mb, 0.71%) | 4,696 (93.11 Mb, 3.17%) |
+| Low MAPQ | 141 (17.14 Mb; median 49 kb) | 4,516 (89.58 Mb; median 15 kb) |
+| Nested | 15 (3.56 Mb) | 174 (3.52 Mb) |
+| Unmapped | 0 | 6 (13 kb) |
+| Low-MAPQ contigs in CHM13 CenSat/SD (≥ 50%) | 141 of 141 | 4,515 of 4,516 |
+| Low-MAPQ contigs between their placed neighbours (CHM13, ± 2 Mb) | 117 | 3,207 |
+| Low-MAPQ contigs on the wrong chromosome | 22 | 326 |
+| Unplaced, reachable by overlaps ≥ 5 kb from a placed contig | 37 (6.39 Mb) | 376 (11.58 Mb) |
+| Unplaced, cut off by gaps or overlaps < 5 kb | 119 (14.31 Mb) | 4,030 (76.75 Mb) |
+| Overlap islands of unplaced contigs (≥ 100 kb span) | 87 (33; 15.9 Mb) | 2,644 (110; 19.4 Mb) |
+
+**Low MAPQ.** All 141 HG002 low-MAPQ contigs are CenSat/SD at their CHM13 alignment (132 CenSat),
+and 126 are also satellite-like by sequence. Most are on chr21 (39), chr5 (27), chr6 (16) and chr18 (9).
+
+**Nested.**
+* 4 are nested by their own aligned coordinates, all acrocentric: chr13_1, chr14_0 and chr15_1 in
+  chr21_3/chr22_0, and chr14_11 in chr14_12.
+* 11 are nested only by the containing contig's chained extent. Six of them lie within the span of
+  the container's high-quality alignments, which are not necessarily colinear:
+  * chr1_3, 2.54 Mb with MAPQ 60, inside the 1q12 array span of chr1_2, which is 19.2 Mb with only
+    1.08 Mb in its primary alignment;
+  * chr9_17–chr9_20 in chr9_22;
+  * chr13_0 in chr22_0.
+* The other five are nested only through residual extrapolation: chr9_16, chr13_3, chr14_19,
+  chr14_20, chr21_13.
+
+**Extension walks.** Of 254 walk ends:
+* 56 reached the flanking contig;
+* 130 met a true gap or overlap < 5 kb (101 next to an already placed neighbour);
+* 41 reached the end of a chromosome;
+* 4 stopped at ambiguous candidates;
+* 9 stopped because a truly overlapping neighbour was excluded by the alignment rules (5 on
+  another chromosome, 2 opposite orientation, 2 outside the gap region);
+* 12 stopped next to a neighbour already placed elsewhere despite an overlap ≥ 5 kb;
+* 2 ended in a contig later rejected as claimed by several walks.
+
 ## Outputs (prefix `T2T-HG002.HG002.1.simulated`)
 
 | File | Contents |
