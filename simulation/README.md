@@ -59,6 +59,9 @@ share `split_benchmark.py`. The originals are unchanged.
 * **Sequence:** a complete chromosome (the only benchmark contig for its chromosome) is compared
   over the whole patched chromosome, as in the original. Fragmented ones are compared over the
   span of their contigs on the target (`--scope span` uses spans for all).
+* `compile_mapping_stats_split.Rscript` summarizes `compare_contig_positions_split.py` output. It is
+  the same as `compile_mapping_stats.Rscript`, except that clustering accuracy compares only the
+  chromosome part of `ref_chrom` (before `.`) with `mapped_chrom`.
 * Output columns are the same as the originals, with one row per benchmark contig. `-d` writes
   per-benchmark-contig orientation, target, strand agreement and scope.
 

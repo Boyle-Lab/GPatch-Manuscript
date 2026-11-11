@@ -1,0 +1,30 @@
+#!/usr/bin/env -S Rscript --vanilla
+
+# Version of compile_mapping_stats.Rscript for output of
+# compare_contig_positions_split.py, where ref_chrom is a benchmark contig ID
+# of the form <chrom><sep><descriptor> (e.g. chr1.mat-0000003). Clustering
+# accuracy compares the chromosome part of ref_chrom (before the first sep)
+# with mapped_chrom. All other statistics are computed as in the original.
+#
+# Usage: compile_mapping_stats_split.Rscript mapping-stats.txt [sep (default ".")]
+
+args = commandArgs(trailingOnly=TRUE)
+
+stats_f = args[1]
+sep = if (length(args) > 1) args[2] else "."
+
+mdat = read.table(stats_f, header=TRUE, stringsAsFactors=FALSE, sep="\t")
+ref_chrom = sapply(strsplit(mdat$ref_chrom, sep, fixed=TRUE), `[`, 1)
+
+n_contigs = nrow(mdat)
+n_mapped = length(which(mdat$is_mapped == "True"))
+n_mapped_correctly = length(which(mdat$is_mapped_correctly == "True"))
+pct_mapped_correctly = n_mapped_correctly / n_mapped
+
+# Clustering Accuracy:
+clust_accuracy = length(which(mdat$is_mapped == "True" & ref_chrom == mdat$mapped_chrom)) / n_mapped
+
+# Orientation Accuracy:
+orientation_accuracy = length(which(mdat$is_mapped == "True" & mdat$is_correct_orientation == "True")) / n_mapped
+
+print(c("n_contigs"=n_contigs, "n_mapped"=n_mapped, "n_mapped_correctly"=n_mapped_correctly, "pct_mapped_correctly"=pct_mapped_correctly, "clustering_accuracy"=clust_accuracy, "orientation_accuracy"=orientation_accuracy))

@@ -182,6 +182,7 @@ P=NA12878.1.NA12878.2.simulated.merge100000
 S=..
 $S/compare_contig_ordering_split.py  -r $P.contigs.bed -p GPatch/<out>.contigs.bed -d GPatch/<out>.ordering-details.tsv > GPatch/<out>.contigs.ordering-stats.txt
 $S/compare_contig_positions_split.py -r $P.contigs.bed -p GPatch/<out>.contigs.bed -b GPatch/<out>.bam > GPatch/<out>.contigs.mapping-stats.txt
+$S/compile_mapping_stats_split.Rscript GPatch/<out>.contigs.mapping-stats.txt > GPatch/<out>.contigs.mapping-summary.txt
 $S/compare_fasta_by_editdist_split.py -r NA12878.1.chroms.renamed.fa -p GPatch/<out>.patched.fasta \
     -s $P.contigs.bed -g GPatch/<out>.contigs.bed -d GPatch/<out>.editdist-details.tsv > GPatch/<out>.contigs.editdist-stats.txt
 ```
