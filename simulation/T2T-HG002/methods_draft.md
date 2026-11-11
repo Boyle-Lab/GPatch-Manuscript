@@ -286,6 +286,23 @@ Order is checked against the previous placed contig of the same benchmark sequen
 
 Benchmark sequences with no placed contigs are skipped, as unplaced chromosomes are in the original scripts. On the HG002 simulation, whose benchmark is not fragmented, the per-benchmark-sequence versions reproduce the original edit distances, orientation calls and sequence distances. Results are unchanged when a patched chromosome is reversed (coordinates, strands and sequence).
 
+*Contig mapping accuracy.* Each simulated contig was scored as mapped (placed in the patched genome), correctly mapped (relative-offset test above), on the correct chromosome, in the correct orientation and in the correct order. Mapping statistics were summarized with `compile_mapping_stats_split.Rscript`, which computes clustering accuracy from the chromosome part of the benchmark sequence ID. For HG002 we report both the per-benchmark-sequence definitions and the original exact-coordinate definitions; clustering and orientation accuracy are identical under both.
+
+| Measure (GPatch v0.6.0, default) | HG002 | NA12878 |
+|---|---|---|
+| Simulated contigs | 332 | 7,400 |
+| Contigs mapped (placed) | 176 (53.0%; 2,905.8 Mb) | 2,704 (36.5%; 2,845.2 Mb) |
+| Clustering accuracy (correct chromosome) | 0.943 | 0.950 |
+| Orientation accuracy | 0.960 | 0.926 |
+| Correct order | 0.909 (original definition: 0.636) | 0.878 |
+| Correctly mapped (common offset) | 0.170 (original exact coordinates: 0.023) | 0.034 |
+
+Fractions are of mapped contigs. Clustering and orientation accuracy are similar for the two genomes. Although NA12878 has more than 20 times as many contigs, only 5.0% of its placed contigs are on the wrong chromosome and 7.4% in the wrong orientation (HG002: 5.7% and 4.0%). Placed contigs cover similar amounts of sequence in both genomes, because the unplaced NA12878 contigs are small.
+
+The correctly-mapped fraction is low in both genomes. That test requires every junction between a contig and the most common offset of its benchmark sequence to be exact. A single mis-sized patch or trim upstream shifts all subsequent contigs, so the junction-level evaluation above is the more informative measure of positional accuracy.
+
+Order accuracy is lower for NA12878 than for HG002. Many NA12878 contigs are short satellite fragments placed by overlap extension or by low-uniqueness alignments within arrays, where order is hardest to resolve.
+
 <!--
 Notes for authors (delete before submission):
 - Enrichment p-values assume independent units. Breakpoints cluster within the same centromeres
@@ -337,6 +354,13 @@ Notes for authors (delete before submission):
   revisiting the nested check (e.g. require the nested contig's alignment to lie within the
   container's chained aligned blocks, not the extrapolated residual).
 - NA12878 -m 1 / -m 0 runs and an island-based placement strategy were not tested.
+- Mapping statistics: NA12878 from compare_contig_positions_split.py +
+  compile_mapping_stats_split.Rscript (T2T_NA12878/GPatch/*.mapping-stats.txt, *.mapping-summary.txt).
+  HG002 "per-benchmark-sequence" values were computed with compare_contig_positions_split.py on
+  T2T-HG002/GPatch (not written to the results folder); the "original definition" values are from
+  T2T-HG002/GPatch/*.mapping-stats.txt (compare_contig_positions.py). The original order test
+  compares a contig's patched start with the previous reference contig's benchmark end (mixing
+  coordinate frames, and counting unplaced predecessors), which is why it gives 0.636.
 - NA12878 code/results: simulation/T2T_NA12878/ (rename_benchmark_contigs.sh,
   simulate_contigs_from_alignments.sh -M 100000, characterize_unplaced_contigs.py v0.1.1,
   analyze_extension_limits.py v0.1.0; excluded_contigs/; GPatch/*.unplaced-characterization.*,
