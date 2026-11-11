@@ -20,6 +20,46 @@ Of the 762 HG002.1 contigs, 251 (2.941 Gb) contributed to the simulated assembly
 
 The remaining 91 contigs (3.07 Mb; median 28.1 kb, maximum 194 kb) produced no alignment to T2T-HG002. To determine their origin, we aligned them to T2T-CHM13 v2.0 (GCA_009914755.4, including chrX, chrY and chrM) with minimap2 using both the `asm5` and the more permissive `asm20` presets. Only one contig aligned (23.2 kb; CHM13 chr14:100,297,932–100,321,107, MAPQ 60), within the immunoglobulin heavy-chain (IGH) locus. This contig also aligned to T2T-HG002 maternal chr14 (99.8% identity) but not to paternal chr14. This is consistent with paternal IGH sequence that is absent from the paternal T2T-HG002 assembly, as expected after V(D)J recombination in a B-lymphoblastoid cell line. Because HG002 DNA derives from an Epstein–Barr virus (EBV)-transformed lymphoblastoid cell line, and several unaligned contigs carried ~3.07 kb tandem repeats with ~60% GC (characteristic of the EBV major internal repeat, IR1), we aligned the unaligned contigs to the EBV type 1 reference genome (NC_007605.1) with minimap2 (`-x asm20 -c`). Forty-six contigs (1.43 Mb) aligned to EBV over ≥93% of their length. For the remaining 44 contigs (1.62 Mb; GC 18–60%), we searched a 2 kb segment from the midpoint of each against the NCBI core nucleotide database (core_nt) with megablast through the NCBI BLAST web service (Biopython 1.84 `NCBIWWW.qblast`; E-value ≤ 1e-20; top 5 hits). All 44 had high-identity matches (98.7–100% identity over ≥1.1 kb, E ≈ 0) to non-human organisms commonly found as laboratory or reagent contaminants: *Escherichia coli* (17 contigs, 0.46 Mb), *Saccharomyces cerevisiae* (13 contigs, 0.30 Mb; nuclear, rRNA and mitochondrial), and grapevine (*Vitis vinifera*; 14 contigs, 0.86 Mb), comprising the mitochondrial genome (12 contigs), a 194 kb contig matching the chloroplast genome, and one nuclear rDNA contig. Top-5 hits were concordant for every contig at the genus level, apart from related plant mitochondrial or yeast rRNA entries. In summary, 90 of the 91 unaligned contigs are EBV or non-human contaminants, and the single human contig represents IGH sequence absent from the paternal T2T-HG002 haplotype. None of the excluded contigs therefore represents T2T-HG002 paternal sequence missing from the simulation.
 
+### Simulation of a second contig-level assembly from a fragmented benchmark (NA12878)
+
+To test GPatch on a more fragmented assembly, we applied the same procedure to NA12878.
+* *Model assembly (NA12878.2):* the HGSVC v12 haplotype-1 assembly (PacBio CCS, Strand-seq phased; `h1-un`; 10,406 contigs, 2.983 Gb, contig N50 18.3 Mb).
+* *Benchmark (NA12878.1):* the maternal chromosome-scale assembly (3.015 Gb in 54 sequences).
+  * 13 chromosomes are single sequences: chr3, 4, 8, 10–13, 15–19 and X.
+  * The other 10 are split into 2–14 sequences of unknown relative order and orientation.
+  * All sequences of a chromosome share the same identifier, so we renamed each as `<chromosome>.<descriptor>` (e.g. `chr1.mat-0000003`) before alignment. The sequences were not changed.
+
+Alignment, merging (≤ 100 kb), length and containment filters were as for HG002. Contigs were named `<benchmark sequence>_<rank>`, ranked within each benchmark sequence, and ground truth was recorded in benchmark-sequence coordinates. Junctions are defined only between contigs on the same benchmark sequence.
+* *Filtering:* 4,395 blocks were merged away, 1,379 final blocks comprise two or more alignment blocks, 1,277 blocks shorter than 1 kb were removed, and 8,975 contained blocks were removed.
+* *Simulated assembly:* 7,400 contigs (contig N50 18.3 Mb; 3,713 reverse-complemented) cover 2.896 Gb (96.1%) of the 48 benchmark sequences that received contigs. The six benchmark sequences without contigs are all < 150 kb.
+* *Junctions:* of 7,352 junctions, 4,269 (58.1%) are overlaps (median 8.4 kb, range 3 bp–153 kb), 3,081 (41.9%) are gaps (median 13.4 kb, range 2 bp–1.30 Mb) and 2 abut.
+* *Contigs:* most are small (median 16 kb), reflecting the model assembly; 570 model contigs contributed more than one simulated contig.
+
+Breakpoint repeat enrichment was not tested, because NA12878.1 has no repeat annotation.
+
+*Haplotype of the model assembly.* The HGSVC v12 haplotypes are phased with Strand-seq, without parental assignment. To determine which parent h1 represents, we aligned 31 h1 contigs of 1–5 Mb (73 Mb) to the maternal (NA12878.1) and paternal (NA12878.2 chromosome-scale) assemblies with minimap2 (`-x asm5`). We compared the length-weighted gap-compressed divergence of the MAPQ 60 alignments. 26 contigs matched one parent with divergence ≤ 0.0002 and the other at ~0.001. The parent was consistent within each chromosome but varied between chromosomes:
+* maternal: chr1, 5, 8, 12, 16, 17, 18 and X;
+* paternal: chr2, 4, 6, 7, 10, 11, 14, 15, 19 and 22.
+
+The simulated contig sequences always come from the maternal benchmark. On about half of the chromosomes, however, the breakpoints come from paternal contigs aligned to the maternal benchmark, and may include alignment breaks at heterozygous structural variants.
+
+*Model-assembly contigs excluded from the simulation.* Of the 10,406 contigs, 6,724 (2.924 Gb) contributed to the simulation and 3,682 (59.0 Mb; 1.98%) did not.
+
+Contained contigs, 3,667 (58.8 Mb; median 14.3 kb, maximum 181 kb), account for almost all of them:
+* *Containing interval:* 2,367 (35.2 Mb) lie within a single alignment block of a retained contig. The other 1,300 (23.6 Mb) lie within a span bridged by merging.
+* *Satellite content:* 2,789 (46.8 Mb) are satellite-like by sequence (21-mer diversity < 0.5, or ≥ 20% HSat2/3 `CATTC`/`GAATG` motif).
+* *Location:* they cluster in pericentromeric heterochromatin and acrocentric arms (e.g. chr9q12, chr1q12, chr13/14/22 short arms). 84 one-megabase windows contain 83% of their alignment blocks.
+* *Mapping quality:* best MAPQ was < 10 for 1,716 and ≥ 50 for 731.
+* *Parental origin:* aligning them to both parental assemblies gave mixed results. Of the 878 non-satellite contigs, 232 matched the maternal assembly better, 196 the paternal, 174 both equally and 276 neither at ≥ 99% identity.
+As for HG002, contained contigs add no benchmark sequence not already in the simulation.
+
+Fifteen contigs (0.28 Mb) produced no alignment (4) or only alignment blocks < 1 kb (11). We aligned them to T2T-CHM13, to the paternal assembly and, with `-x asm20`, to the maternal benchmark. None aligned to EBV (NC_007605.1; `-x asm20`), and all 15 were human, so no BLAST search was needed:
+* Five (89 kb) are paternal-specific: they match the paternal assembly at ≥ 99.9% identity but are absent from or highly divergent in the maternal benchmark. Two of these (on chr5 and chr18) barely align to CHM13 and represent non-reference insertions.
+* Nine (121 kb) are centromeric or acrocentric satellites by their CHM13 positions and sequence composition. They include chr4 42 bp AT-rich and chr16 GC-rich satellites, chr8 and chr9 α-satellite, chr14/chr21 short-arm sequence and an HSat3 array absent from both NA12878 assemblies. They align to the benchmark at 72–94% identity or not at all.
+* One (66 kb) is unique sequence (CHM13 chr7:60.36 Mb, MAPQ 60) that falls in the gap between the two chr7 benchmark sequences.
+
+The NA12878 model assembly thus contained no EBV or contaminant contigs. Its excluded contigs reflect redundant satellite fragments, other-haplotype sequence, and sequence missing from the benchmark.
+
 ### Junction handling: overlap trimming, gap patching and bookending
 
 After contigs are placed and ordered along each reference chromosome, GPatch (v0.6.0) decides how to join each pair of adjacent contigs. If the two contigs overlap, it trims the 5′ end of the downstream contig. If there is a gap between them, it fills the gap with reference sequence ("patching"). Otherwise it joins them directly ("bookending"). Patches are written in lower case, and no N characters are introduced except in scaffold-only mode. GPatch versions up to 0.4.0 derived each contig's extent on the reference from its primary alignment, extended at each end by the full length of the soft-clipped sequence, and trimmed or patched by the overlap or distance between those extents. That extrapolation assumes unaligned contig sequence spans the same length of reference as of contig. The assumption fails when the unaligned sequence lies in a centromere, segmental duplication or structural variant, where it can be hundreds of kilobases to megabases long. We therefore replaced it with a procedure that estimates contig extents more conservatively and measures overlaps directly from the contig sequences.
@@ -172,6 +212,80 @@ Starting from the 155 contigs placed by GPatch, extension inserted 21 contigs (5
 
 Of the 254 walk ends, 194 stopped for lack of a qualifying candidate, 4 at ambiguous candidates, and 56 on reaching the opposite flanking contig. The remaining unplaced sequence (20.7 Mb) lies almost entirely in centromeric arrays. There, walks stop at ambiguous candidates or false closures, where short false overlaps between flanking contigs make a gap appear closed. Some candidates are also excluded because their alignment is on another chromosome or in the opposite orientation.
 
+### Unplaced contigs after GPatch 0.6.0 placement (HG002 and NA12878)
+
+For both simulations, we aligned the simulated contigs to T2T-CHM13 v2.0 (minimap2 `-x asm20 -a`) and ran GPatch v0.6.0 with default settings (`-d -m 10`, revised junction handling and overlap extension). We then characterized every contig in the unplaced-contig report.
+
+NA12878.1 has no repeat annotation, so for both genomes repeat context was taken from two sources:
+* the T2T-CHM13 v2.0 CenSat (v2.1, excluding centromeric transition entries) and SD annotations, over each contig's primary CHM13 alignment;
+* the contig sequence itself: 21-mer diversity < 0.5, or ≥ 20% HSat2/3 motif.
+
+For each unplaced contig we also recorded:
+* *location:* whether the primary alignment lies on the correct chromosome between the CHM13 positions of its nearest placed neighbours from the same benchmark sequence (± 2 Mb);
+* *overlaps:* its true overlaps with benchmark neighbours;
+* *nesting type:* for nested contigs, whether the contig is nested by its aligned coordinates or only by the containing contig's chained extent.
+
+To understand the limits of overlap extension, we did two further analyses:
+* *Walk stops:* for each walk that stopped without a candidate, we classified the true benchmark neighbour of its last contig.
+* *Reachability:* we determined which unplaced contigs can be reached from a placed contig of the same benchmark sequence through a chain of true overlaps ≥ 5 kb.
+
+| Measure | HG002 | NA12878 |
+|---|---|---|
+| Simulated contigs | 332 | 7,400 |
+| Placed (of which by overlap extension) | 176 (21) | 2,704 (296) |
+| Unplaced | 156 (20.7 Mb; 0.71%) | 4,696 (93.1 Mb; 3.17%) |
+| Low mapping quality | 141 (17.1 Mb; median 49 kb) | 4,516 (89.6 Mb; median 15 kb) |
+| Nested | 15 (3.6 Mb) | 174 (3.5 Mb) |
+| Unaligned | 0 | 6 (13 kb) |
+| Low-MAPQ contigs ≥ 50% CenSat/SD at CHM13 alignment | 141 of 141 | 4,515 of 4,516 |
+| Low-MAPQ contigs between placed neighbours | 117 | 3,207 |
+| Low-MAPQ contigs on another chromosome | 22 | 326 |
+| Unplaced, reachable through overlaps ≥ 5 kb | 37 (6.4 Mb) | 376 (11.6 Mb) |
+| Unplaced, cut off by gaps or overlaps < 5 kb | 119 (14.3 Mb) | 4,030 (76.8 Mb) |
+| Overlap islands of unplaced contigs (≥ 100 kb span) | 87 (33; 15.9 Mb) | 2,644 (110; 19.4 Mb) |
+
+In both genomes, low mapping quality accounts for most unplaced contigs, and these contigs lie almost exclusively in centromeric satellites or SDs. Their alignments are complete (median aligned fraction 1.00) but not unique.
+
+NA12878 differs in scale. Its model assembly breaks centromeric and pericentromeric satellite arrays into thousands of ~15 kb contigs, most prominently in chr1q12 (1,020 unplaced contigs on chr1), chr9, chr16, chr15, chr3 and chr19.
+* Thirteen small benchmark sequences on chr1, chr5, chr6 and chr20 have no placed contig at all (290 contigs, 4.8 Mb).
+* Lowering the mapping-quality threshold would misplace many of these contigs: 326 low-MAPQ contigs align to another chromosome and 698 elsewhere on the correct chromosome.
+
+*Nested contigs.*
+* *HG002:* 4 of the 15 are nested by their aligned coordinates, all through acrocentric short-arm homology. The other 11 are nested only by the containing contig's chained extent:
+  * six lie within the span of the container's high-quality alignments. They include chr1_3 (2.54 Mb, MAPQ 60), nested within the extent of the 19.2 Mb chr1q12 contig chr1_2, of which only 1.08 Mb is in the primary alignment.
+  * five are nested only through residual extrapolation.
+* *NA12878:* 134 of the 174 are nested by aligned coordinates and 40 only by chained extent.
+
+*Limits of overlap extension.* Overlap extension can only walk inward from placed contigs. Within runs of unplaced contigs, a third of NA12878 junctions are true gaps (1,398 of 4,193) and 743 are overlaps < 5 kb.
+* *NA12878:* only 376 unplaced contigs (11.6 Mb) are reachable from a placed contig through true overlaps ≥ 5 kb, although 2,892 (68.1 Mb) overlap a true neighbour by ≥ 5 kb. Of 4,240 walk ends:
+  * 577 reached the flanking contig;
+  * 3,363 stopped at a true gap or overlap < 5 kb, of which 2,597 were beside an already placed neighbour, where there was nothing to insert;
+  * 59 stopped at ambiguous candidates;
+  * 72 stopped because the alignment-consistency rules excluded a truly overlapping neighbour (46 outside the gap region, 17 on another chromosome, 9 in the opposite orientation).
+* *HG002:* of 254 walk ends, 56 reached the flanking contig, 130 met a true gap or overlap < 5 kb, 41 reached a chromosome end and 9 were blocked by the alignment rules.
+
+In both genomes, the remaining unplaced sequence forms many small overlap islands, separated from placed contigs by gaps. Placing it would require assembling these islands and positioning them as units, rather than extending further from placed contigs.
+
+### Evaluating against a fragmented benchmark
+
+Because the relative order and orientation of NA12878.1 sequences from the same chromosome are unknown, contig order, contig placement and sequence accuracy are evaluated within each benchmark sequence. Each benchmark sequence may lie in either orientation relative to the patched genome (`compare_contig_ordering_split.py`, `compare_contig_positions_split.py` and `compare_fasta_by_editdist_split.py`).
+
+For each benchmark sequence:
+* *Orientation:* + if the length-weighted majority of its placed contigs lie on the same strand as in the simulation, − otherwise. For − sequences, the expected strand of each contig is reversed, as is the expected order of its contigs, and the patched sequence is reverse-complemented before comparison.
+* *Target:* the patched chromosome holding most of its placed contig sequence.
+
+*Ordering.* Edit distance, adjacent-pair recovery and switch errors compare the benchmark order of the sequence's contigs with their order on the target. The comparison spans from the first to the last of these contigs. Contigs from other benchmark sequences placed between them count as errors; contigs outside the span are not compared.
+
+*Placement.* The exact-coordinate test of the original scripts is replaced by a relative one. A contig is correctly placed if:
+* it lies on the target chromosome named after its benchmark chromosome; and
+* its start and end offsets (patched minus benchmark coordinate, after orientation) both equal the most frequent offset among contigs of the same benchmark sequence.
+
+Order is checked against the previous placed contig of the same benchmark sequence.
+
+*Sequence.* A benchmark sequence that is the only one for its chromosome is compared with the whole patched chromosome, as for HG002. Fragmented ones are compared with the patched interval spanning their placed contigs.
+
+Benchmark sequences with no placed contigs are skipped, as unplaced chromosomes are in the original scripts. On the HG002 simulation, whose benchmark is not fragmented, the per-benchmark-sequence versions reproduce the original edit distances, orientation calls and sequence distances. Results are unchanged when a patched chromosome is reversed (coordinates, strands and sequence).
+
 <!--
 Notes for authors (delete before submission):
 - Enrichment p-values assume independent units. Breakpoints cluster within the same centromeres
@@ -210,6 +324,24 @@ Notes for authors (delete before submission):
   on this same simulation.
 - The -m 1 / -m 0 junction errors exclude junctions between contigs from different benchmark
   chromosomes, so they understate the cost of lowering the threshold.
+- NA12878: the h1 parent assignment is from a 31-contig sample; the per-chromosome pattern was
+  consistent but not every chromosome was sampled (chr3, 9, 13, 20, 21 untested). A
+  parent-consistent model (h1 or h2 per chromosome, matched to the maternal benchmark) would make
+  the NA12878 simulation equivalent to HG002's; not done.
+- NA12878 repeat context uses CHM13 annotations at each contig's CHM13 alignment (and sequence
+  composition), not benchmark annotations; low-MAPQ contigs may align to the wrong copy of an
+  array, but the repeat class is unlikely to change. For HG002, the earlier unplaced-contig
+  numbers (184 contigs, 152 ≥ 50% CenSat) used HG002 benchmark annotations at true coordinates and
+  the original GPatch placement; the 0.6.0 comparison table uses CHM13 annotations for both genomes.
+- HG002 chr1_3 (2.54 Mb, MAPQ 60) is dropped as nested in chr1_2's chained extent; worth
+  revisiting the nested check (e.g. require the nested contig's alignment to lie within the
+  container's chained aligned blocks, not the extrapolated residual).
+- NA12878 -m 1 / -m 0 runs and an island-based placement strategy were not tested.
+- NA12878 code/results: simulation/T2T_NA12878/ (rename_benchmark_contigs.sh,
+  simulate_contigs_from_alignments.sh -M 100000, characterize_unplaced_contigs.py v0.1.1,
+  analyze_extension_limits.py v0.1.0; excluded_contigs/; GPatch/*.unplaced-characterization.*,
+  GPatch/*.extension-limits.txt). HG002 0.6.0 unplaced results: T2T-HG002/GPatch/. Split
+  comparison scripts: simulation/*_split.py + split_benchmark.py v0.1.0.
 - Code: simulation/T2T-HG002/simulate_contigs_from_alignments.sh (-M 100000),
   paf_to_simulated_contigs.py v0.2.0, get_hg002_annotations.sh, breakpoint_repeat_enrichment.py
   v0.1.0 (seed 20261109). Results: T2T-HG002.HG002.1.simulated.merge100000.breakpoint-enrichment.tsv
