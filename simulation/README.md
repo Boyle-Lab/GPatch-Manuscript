@@ -31,3 +31,39 @@ Genome lengths in Tables S2 and S3 can be found in {NA12878,HG002}/{GPatch,RagTa
 
 Counts needed to calculate patched genome contig coverage %, and % assembly localized (Table S3) are also found in {NA12878,HG002}/{GPatch,RagTag}/\*.stats
 Remaining rows, with the exception of runtime and max memory, are from simulation_stats.*.combined.txt
+
+### Comparisons against fragmented benchmarks (`*_split.py`)
+`compare_contig_ordering_split.py`, `compare_contig_positions_split.py` and
+`compare_fasta_by_editdist_split.py` are versions of the three comparison scripts for benchmark
+assemblies whose chromosomes are split into several contigs (NA12878.1; see `T2T_NA12878/`). They
+share `split_benchmark.py`. The originals are unchanged.
+
+* The simulated-contig BED must use unique benchmark contig IDs `<chrom>.<descriptor>`
+  (`--sep` changes the separator). Simulated contigs are named `<benchmark contig>_<rank>`.
+* Comparisons are made within one benchmark contig at a time, because the order and orientation
+  of benchmark contigs from the same chromosome are unknown.
+* Each benchmark contig gets an orientation from the length-weighted majority of its placed
+  contigs: `-` when they mostly lie on the opposite strand to their simulated strand. Expected
+  strands and order are reversed for `-` contigs, and patched sequence is reverse-complemented
+  before the sequence comparison.
+* The *target* sequence of a benchmark contig is the patched sequence holding most of its placed
+  contigs.
+* **Ordering:** the patched vector runs from the benchmark contig's first to its last contig on
+  the target. Contigs from other benchmark contigs placed in between are kept and count as
+  errors. Contigs outside that span are not compared, unlike the whole-chromosome original.
+* **Positions:** the original's exact-coordinate test becomes a relative one. A contig is
+  correctly mapped if it is on the target, the target is named after the benchmark chromosome,
+  and its start and end offsets (patched − benchmark, after orientation) equal the benchmark
+  contig's most common offset. Order is checked against the previous *placed* contig of the same
+  benchmark contig.
+* **Sequence:** a complete chromosome (the only benchmark contig for its chromosome) is compared
+  over the whole patched chromosome, as in the original. Fragmented ones are compared over the
+  span of their contigs on the target (`--scope span` uses spans for all).
+* Output columns are the same as the originals, with one row per benchmark contig. `-d` writes
+  per-benchmark-contig orientation, target, strand agreement and scope.
+
+On the T2T-HG002 simulation (unfragmented benchmark), the split versions reproduce the originals'
+edit distances, orientation calls and sequence distances exactly. Pair accuracy differs on
+chromosomes with foreign contigs outside the span, and position/order calls differ by
+definition. Flipping a patched chromosome (coordinates, strands and sequence) leaves all
+results unchanged.

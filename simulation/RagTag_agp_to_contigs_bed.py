@@ -3,7 +3,7 @@
 import sys, os, re
 from argparse import ArgumentParser
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 """
 Given a set of AGP files from RagTag Patch, cross-reference data in
@@ -71,7 +71,9 @@ def get_chrom_name(reference_agp, scf_agp, ctg_agp):
     #sys.stderr.write("%s\t%s\n" % (ctg_agp[scf_agp[0][5]][0], scf_agp[0][0]))
     for rec in scf_agp:
         ctg = ctg_agp[rec[5]]
-        chrom = ctg[0].split("_")[0]
+        # Contig names are <chrom>_<rank> or, for fragmented benchmarks with
+        # unique benchmark contig IDs, <chrom>.<descriptor>_<rank>.
+        chrom = ctg[0].rsplit("_", 1)[0].split(".")[0]
         if chrom not in qseq:
             qseq[chrom] = chrom
     if len(qseq.keys()) == 1:
