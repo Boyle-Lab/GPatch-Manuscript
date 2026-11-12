@@ -26,6 +26,18 @@ paste HG002/GPatch/CHM13.HG002.1.SURVIVOR.contigs.ordering-stats.txt <(awk '{for
 ./do_barplots.Rscript simulation_stats.combined.txt "simulation_stats.combined"
 ```
 
+### Figure 2: GPatch vs. RagTag scaffold on the T2T-HG002 and NA12878 contig simulations
+```
+./do_figure2_barplots.Rscript    # -> figure2.simulation_barplots.pdf (7.5 x 4.5 in) + .txt values
+```
+Reads the merge100000 GPatch results in `T2T-HG002/GPatch` and `T2T_NA12878/GPatch` and the
+RagTag results in `*/RagTag/SCAFFOLD`. % Contigs Placed = n_mapped / n_contigs from the mapping
+summary (RagTag: `*.bulk-mapping-summary.txt`); % Assembly Localized = placed contig bases /
+contig-level assembly size from `*.stats`; orientation accuracy from the mapping summary; ordering
+and bag-distance statistics from the Average rows of `*.ordering-stats.txt` and
+`*.editdist-stats.txt`. Y axes vary per facet from 0. Written with the base `pdf()` device and
+open axis lines (no panel border) so lines remain editable strokes in Illustrator.
+
 ### Data for Tables S2 and S3
 Genome lengths in Tables S2 and S3 can be found in {NA12878,HG002}/{GPatch,RagTag}/\*.stats
 

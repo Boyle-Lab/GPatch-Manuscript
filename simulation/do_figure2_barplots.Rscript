@@ -1,0 +1,131 @@
+#!/usr/bin/env -S Rscript --vanilla
+
+# Figure 2: GPatch vs. RagTag scaffold on the HG002 and NA12878 contig-level
+# simulations. One facet per statistic, four facets per row, y scaled per facet from 0.
+#
+# Usage (from manuscript/simulation):
+#   ./do_figure2_barplots.Rscript [out.pdf (default figure2.simulation_barplots.pdf)]
+#
+# Also writes the plotted values to <out>.txt.
+#
+# Statistic sources (per sample and method):
+#   % Contigs Placed       n_mapped / n_contigs in *mapping-summary.txt
+#                          (RagTag: ragtag.scaffold.contigs.bulk-mapping-summary.txt)
+#   % Assembly Localized   "pre-break contig base count" /
+#                          "Initial unpatched assembly genome size (bp)" in *.stats
+#   Orientation accuracy   orientation_accuracy in the same mapping summary
+#   Ordering statistics    first "Average" row of *.contigs.ordering-stats.txt
+#   Bag distance           first "average" row of *.contigs.editdist-stats.txt
+
+suppressPackageStartupMessages(library(ggplot2))
+
+args = commandArgs(trailingOnly=TRUE)
+out_f = if (length(args) > 0) args[1] else "figure2.simulation_barplots.pdf"
+
+hg = "T2T-HG002/GPatch/T2T-HG002.HG002.1.simulated.merge100000"
+na = "T2T_NA12878/GPatch/NA12878.1.NA12878.2.simulated.merge100000"
+rt_hg = "T2T-HG002/RagTag/SCAFFOLD/ragtag.scaffold"
+rt_na = "T2T_NA12878/RagTag/SCAFFOLD/ragtag.scaffold"
+
+runs = data.frame(
+    Sample = c("HG002", "NA12878", "HG002", "NA12878"),
+    Method = c("GPatch", "GPatch", "RagTag", "RagTag"),
+    summary = c(paste0(hg, ".contigs.mapping-summary.txt"),
+                paste0(na, ".contigs.mapping-summary.txt"),
+                paste0(rt_hg, ".contigs.bulk-mapping-summary.txt"),
+                paste0(rt_na, ".contigs.bulk-mapping-summary.txt")),
+    stats = c(paste0(hg, ".stats"), paste0(na, ".stats"),
+              paste0(rt_hg, ".stats"), paste0(rt_na, ".stats")),
+    ordering = c(paste0(hg, ".contigs.ordering-stats.txt"),
+                 paste0(na, ".contigs.ordering-stats.txt"),
+                 paste0(rt_hg, ".contigs.ordering-stats.txt"),
+                 paste0(rt_na, ".contigs.ordering-stats.txt")),
+    editdist = c(paste0(hg, ".contigs.editdist-stats.txt"),
+                 paste0(na, ".contigs.editdist-stats.txt"),
+                 paste0(rt_hg, ".contigs.editdist-stats.txt"),
+                 paste0(rt_na, ".contigs.editdist-stats.txt")),
+    stringsAsFactors = FALSE)
+
+# Mapping summaries are print()ed named vectors: alternating name / value lines.
+read_summary = function(f) {
+    l = readLines(f)
+    l = l[nzchar(trimws(l))]
+    nm = unlist(lapply(l[seq(1, length(l), 2)], function(x) strsplit(trimws(x), "\\s+")[[1]]))
+    val = as.numeric(unlist(lapply(l[seq(2, length(l), 2)], function(x) strsplit(trimws(x), "\\s+")[[1]])))
+    setNames(val, nm)
+}
+
+read_stat = function(f, key) {
+    l = readLines(f)
+    hit = l[startsWith(l, key)]
+    if (length(hit) != 1) stop(sprintf("%s: expected one '%s' line", f, key))
+    as.numeric(sub(".*:\\s*", "", hit))
+}
+
+average_row = function(f) {
+    d = read.table(f, header=TRUE, sep="\t", stringsAsFactors=FALSE)
+    d[which(tolower(d[, 1]) == "average")[1], ]
+}
+
+rows = lapply(seq_len(nrow(runs)), function(i) {
+    r = runs[i, ]
+    s = read_summary(r$summary)
+    o = average_row(r$ordering)
+    e = average_row(r$editdist)
+    data.frame(
+        Sample = r$Sample, Method = r$Method,
+        pct_contigs_placed = s[["n_mapped"]] / s[["n_contigs"]],
+        pct_assembly_localized = read_stat(r$stats, "pre-break contig base count") /
+            read_stat(r$stats, "Initial unpatched assembly genome size (bp)"),
+        orientation_accuracy = s[["orientation_accuracy"]],
+        norm_edit_dist = o$norm_edit_dist,
+        norm_bag_dist = e$norm_bag_dist,
+        pct_pairs_recovered = o$pct_pairs_recovered,
+        pct_pairs_correct = o$pct_pairs_correct,
+        switch_err_rate = o$switch_err_rate,
+        stringsAsFactors = FALSE)
+})
+dat = do.call(rbind, rows)
+write.table(dat, sub("\\.pdf$", ".txt", out_f), sep="\t", quote=FALSE, row.names=FALSE)
+
+stat_labels = c(
+    pct_contigs_placed = "% Contigs Placed",
+    pct_assembly_localized = "% Assembly Localized",
+    orientation_accuracy = "Avg. Orientation Accuracy",
+    norm_edit_dist = "Avg. Normalized Ordering Edit Distance",
+    norm_bag_dist = "Avg. Normalized Bag Distance",
+    pct_pairs_recovered = "% Pairs Recovered",
+    pct_pairs_correct = "% Pairs Correct",
+    switch_err_rate = "Ordering Error Rate")
+
+long = do.call(rbind, lapply(names(stat_labels), function(st)
+    data.frame(Sample = dat$Sample, Method = dat$Method,
+               Statistic = stat_labels[[st]], value = dat[[st]],
+               stringsAsFactors = FALSE)))
+long$Statistic = factor(long$Statistic, levels = unname(stat_labels))
+long$Method = factor(long$Method, levels = c("GPatch", "RagTag"))
+long$Sample = factor(long$Sample, levels = c("HG002", "NA12878"))
+
+p = ggplot(long, aes(x = Method, y = value, fill = Sample)) +
+    geom_col(position = position_dodge(width = 0.8), width = 0.75) +
+    facet_wrap(~ Statistic, ncol = 4, labeller = label_wrap_gen(width = 26),
+               scales = "free_y") +
+    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.05))) +
+    scale_fill_manual(values = c(HG002 = "#FFCB05", NA12878 = "#00274C")) +
+    labs(x = NULL, y = NULL, fill = NULL) +
+    theme_bw(base_size = 8) +
+    theme(legend.position = "bottom",
+          legend.key.size = unit(0.3, "cm"),
+          legend.margin = margin(0, 0, 0, 0),
+          strip.background = element_rect(fill = "grey92"),
+          # Axes as open line segments (not the closed panel.border rect) so
+          # they stay editable strokes in Illustrator.
+          panel.border = element_blank(),
+          axis.line = element_line(colour = "grey20", linewidth = 0.4),
+          axis.ticks = element_line(colour = "grey20", linewidth = 0.4),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor = element_blank())
+
+# Base pdf() device: unclipped stroke paths and live Helvetica text, which
+# import cleanly into Illustrator (cairo_pdf wraps every element in a clip group).
+ggsave(out_f, p, width = 7.5, height = 4.5, units = "in", device = pdf, useDingbats = FALSE)
