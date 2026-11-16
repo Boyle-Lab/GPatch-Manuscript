@@ -38,6 +38,15 @@ and bag-distance statistics from the Average rows of `*.ordering-stats.txt` and
 `*.editdist-stats.txt`. Y axes vary per facet from 0. Written with the base `pdf()` device and
 open axis lines (no panel border) so lines remain editable strokes in Illustrator.
 
+### Dot-plot thumbnails (T2T simulations)
+```
+./make_dotplot_thumbnails.py -o simulation_dotplot_thumbnails.pdf \
+    "HG002 - GPatch=T2T-HG002/GPatch" "HG002 - RagTag scaffold=T2T-HG002/RagTag/SCAFFOLD" \
+    "NA12878 - GPatch=T2T_NA12878/GPatch" "NA12878 - RagTag scaffold=T2T_NA12878/RagTag/SCAFFOLD"
+```
+Tiles each set's `*.dotplot.*.chr*.pdf` as vector thumbnails, 4 x 4 per US Letter page with 0.5"
+margins, in chromosome order, each set starting on a new page. Requires `pypdf`.
+
 ### Data for Tables S2 and S3
 Genome lengths in Tables S2 and S3 can be found in {NA12878,HG002}/{GPatch,RagTag}/\*.stats
 
