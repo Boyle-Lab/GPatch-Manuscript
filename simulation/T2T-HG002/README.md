@@ -194,6 +194,38 @@ and 126 are also satellite-like by sequence. Most are on chr21 (39), chr5 (27), 
 * 12 stopped next to a neighbour already placed elsewhere despite an overlap ≥ 5 kb;
 * 2 ended in a contig later rejected as claimed by several walks.
 
+## MAPQ threshold sweep, GPatch 0.6.0 (`GPatch_v0.6.0/mapq_sweep/`)
+
+GPatch v0.6.0 run on `GPatch/<prefix>.bam` with `-d -m N` (defaults otherwise) for N = 0, 1, 10,
+20, 30, 40, each in `mapq_sweep/mN/`. The `-m 10` run is identical to `GPatch_v0.6.0/default` and
+`GPatch/`. Each run was scored with:
+
+```
+P=T2T-HG002.HG002.1.simulated.merge100000; d=GPatch_v0.6.0/mapq_sweep/m$N/$P
+./compare_overlap_trimming.py -l "GPatch 0.6.0 -m $N" -g $d.contigs.bed -P $d.patches.bed \
+    -s $P.contigs.bed -j $P.junctions.tsv --ref-fai <CHM13 .fai> \
+    --bench-paf T2T-HG002.HG002.1.simulated.paf -o $d.trim-vs-overlap.tsv > $d.trim-vs-overlap.summary.txt
+../compare_contig_ordering.py -r $P.contigs.bed -p $d.contigs.bed > $d.contigs.ordering-stats.txt
+../compare_contig_positions.py -r $P.contigs.bed -p $d.contigs.bed -b GPatch/$P.bam > $d.contigs.mapping-stats.txt
+../compile_mapping_stats.Rscript $d.contigs.mapping-stats.txt > $d.contigs.mapping-summary.txt
+./compile_mapq_sweep.py > GPatch_v0.6.0/mapq_sweep/$P.mapq-sweep.tsv
+```
+
+| -m | Placed (by extension) | Placed Mb vs -m 10 | Diff-chrom joins | Misoriented | Autosomal junction error | Pairs correct | Switch error rate |
+|---|---|---|---|---|---|---|---|
+| 0 | 221 (14) | +7.2 | 23 | 11 | 52.2 Mb | 0.692 | 0.071 |
+| 1 | 216 (16) | +6.9 | 19 | 11 | 45.5 Mb | 0.720 | 0.057 |
+| 10 | 176 (21) | 0 | 12 | 7 | 42.6 Mb | 0.739 | 0.026 |
+| 20 | 169 (23) | −6.4 | 12 | 7 | 48.0 Mb | 0.733 | 0.027 |
+| 30 | 165 (32) | −7.9 | 12 | 6 | 32.4 Mb | 0.725 | 0.014 |
+| 40 | 160 (33) | −12.4 | 13 | 6 | 40.9 Mb | 0.715 | 0.022 |
+
+Junction error is dominated by a few multi-Mb joins:
+
+- chr16_8 (MAPQ 28) is placed out of order at -m 10/20, causing 11.6 Mb of error. It is excluded at -m 30.
+- chr9_3→chr9_7 is over-patched by 8.9 Mb at -m 40, after chr9_4 (MAPQ 33) and chr9_6 (MAPQ 39) are
+  excluded.
+
 ## Outputs (prefix `T2T-HG002.HG002.1.simulated`)
 
 | File | Contents |

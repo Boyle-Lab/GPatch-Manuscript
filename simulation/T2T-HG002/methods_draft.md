@@ -171,15 +171,25 @@ Of the 332 simulated contigs, the original implementation left 184 (26.3 Mb; 0.9
 
 *Nested-contig detection.* GPatch now identifies nested contigs using the chained extents used for junction handling (primary alignment plus colinear supplementary alignments, extrapolated only by the residual unaligned sequence). Previously it used extents extended by the full soft-clips; that behavior is retained with `--legacy_junctions`. This placed 155 contigs instead of 148 without changing the order of the others. Total junction error was unchanged (43.71 vs 43.69 Mb, all chromosomes).
 
-*Mapping-quality threshold.* Lowering the threshold recovered contigs at the cost of accuracy.
+*Mapping-quality threshold.* We ran GPatch v0.6.0 (`-d`, with revised junction handling, chained-extent nesting and overlap extension; see below) at six mapping-quality thresholds on the same alignments. Junctions were scored against the simulation truth as above, and contig ordering and orientation with `compare_contig_ordering.py` and `compare_contig_positions.py`.
 
-| Threshold | Contigs placed | Extra sequence placed | Autosomal junction error |
-|---|---|---|---|
-| `-m 10` (default) | 148 | — | 43.7 Mb |
-| `-m 1` | 184 | +7.3 Mb | 45.0 Mb |
-| `-m 0` | 191 | +7.7 Mb | 52.3 Mb |
+| Threshold | Contigs placed (by extension) | Sequence placed vs `-m 10` | Joins between chromosomes | Misoriented contigs | Autosomal junction error | Pairs correct | Ordering error rate |
+|---|---|---|---|---|---|---|---|
+| `-m 0` | 221 (14) | +7.2 Mb | 23 | 11 | 52.2 Mb | 0.692 | 0.071 |
+| `-m 1` | 216 (16) | +6.9 Mb | 19 | 11 | 45.5 Mb | 0.720 | 0.057 |
+| `-m 10` (default) | 176 (21) | — | 12 | 7 | 42.6 Mb | 0.739 | 0.026 |
+| `-m 20` | 169 (23) | −6.4 Mb | 12 | 7 | 48.0 Mb | 0.733 | 0.027 |
+| `-m 30` | 165 (32) | −7.9 Mb | 12 | 6 | 32.4 Mb | 0.725 | 0.014 |
+| `-m 40` | 160 (33) | −12.4 Mb | 13 | 6 | 40.9 Mb | 0.715 | 0.022 |
 
-The extra error comes from joins between chromosomes and misoriented contigs. Within satellite arrays, the CHM13 alignment of a low-mapping-quality contig does not reliably determine its order relative to other contigs, because HG002 and CHM13 arrays differ in structure. We therefore retained `-m 10`.
+Lowering the threshold below 10 placed 40–45 more contigs but only ~7 Mb more sequence. It also added joins between chromosomes and misoriented contigs, and raised the ordering error rate two- to three-fold. Within satellite arrays, the CHM13 alignment of a low-mapping-quality contig does not reliably determine its order relative to other contigs, because HG002 and CHM13 arrays differ in structure.
+
+Raising the threshold above 10 removed 6–12 Mb of placed sequence. Overlap extension recovered some of the excluded contigs (21 at `-m 10`, 33 at `-m 40`), but the fraction of correct adjacent pairs still fell. Junction error did not change monotonically: a few large out-of-order or over-patched joins dominate it.
+
+- At `-m 10` and `-m 20`, chr16_8 (710 kb; MAPQ 28) aligns ~2 Mb beyond chr16_11 in CHM13 and is placed out of order, creating two incorrect joins with 11.6 Mb of missing sequence. At `-m 30` it is excluded and chr16_11–chr16_12 becomes a correct join, which accounts for most of the lower error at `-m 30`.
+- At `-m 40`, two small chr9 pericentromeric contigs (chr9_4, 27 kb, MAPQ 33; chr9_6, 3 kb, MAPQ 39) are excluded. The gap between chr9_3 and chr9_7 is then filled with 9.0 Mb of CHM13 sequence, where the true gap is 156 kb.
+
+`-m 10` gave the highest fraction of correct adjacent pairs and was tied for the fewest joins between chromosomes, without the sequence losses of higher thresholds. We therefore retained `-m 10` as the default.
 
 *Overlap-based extension.* Contigs that cannot be placed by alignment can often be placed by sequence overlap with a placed neighbour. Of the 184 unplaced contigs, 141 (20.9 Mb) overlapped at least one benchmark neighbour by ≥ 500 bp. We tested every unplaced contig, in both orientations, against all other contigs with the anchored overlap test (above). The results were:
 
@@ -339,8 +349,15 @@ Notes for authors (delete before submission):
   - Evaluation script: compare_overlap_trimming.py v0.2.0.
 - The 5 kb minimum overlap for extension was chosen after observing one spurious 585 bp overlap
   on this same simulation.
-- The -m 1 / -m 0 junction errors exclude junctions between contigs from different benchmark
-  chromosomes, so they understate the cost of lowering the threshold.
+- MAPQ sweep (-m 0, 1, 10, 20, 30, 40): GPatch v0.6.0 runs in
+  T2T-HG002/GPatch_v0.6.0/mapq_sweep/m<N>/ (-m 10 is identical to GPatch_v0.6.0/default and GPatch/);
+  table from compile_mapq_sweep.py v0.1.0 (mapq_sweep/*.mapq-sweep.tsv). These replace the earlier
+  -m 10 / -m 1 / -m 0 numbers (148 / 184 / 191 placed), which were from the pre-0.5.0 code.
+- Junction errors exclude junctions between contigs from different benchmark chromosomes, so they
+  understate the cost of low thresholds. They are dominated by a few multi-Mb joins (chr16_8 at
+  -m 10/20; chr9_3-chr9_7 at -m 40), so differences between thresholds of a few Mb are not
+  meaningful on their own. -m 30 has the lowest junction error and ordering error rate, at the cost
+  of 11 contigs (7.9 Mb) relative to -m 10; the choice of default is a judgment call.
 - NA12878: the h1 parent assignment is from a 31-contig sample; the per-chromosome pattern was
   consistent but not every chromosome was sampled (chr3, 9, 13, 20, 21 untested). A
   parent-consistent model (h1 or h2 per chromosome, matched to the maternal benchmark) would make
