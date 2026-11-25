@@ -1,0 +1,13 @@
+resolution	threshold	test_group	background	test_n_ge	test_n	test_frac	bg_n_ge	bg_n	bg_frac	odds_ratio	OR_95CI_lower	p_value	p_bonferroni	p_note
+5kb	>=1Mb	scaffold-only loops absent from patched	scaffold-only loops also in patched	366	1277	0.2866	15	9591	0.0016	256.2	164.5	0	0	p < 2.2e-308 (below machine precision)
+5kb	>=2Mb	scaffold-only loops absent from patched	scaffold-only loops also in patched	281	1277	0.22	0	9591	0	Inf	902.7	6.09e-275	7.31e-274	
+5kb	>=1Mb	scaffold-only loops absent from patched	all patched loops	366	1277	0.2866	16	9786	0.0016	245.1	158.8	0	0	p < 2.2e-308 (below machine precision)
+5kb	>=2Mb	scaffold-only loops absent from patched	all patched loops	281	1277	0.22	0	9786	0	Inf	927.6	3.85e-277	4.62e-276	
+5kb	>=1Mb	scaffold-only loops absent from patched	all T2T-CHM13 loops	366	1277	0.2866	18	9987	0.0018	222.3	147.5	0	0	p < 2.2e-308 (below machine precision)
+5kb	>=2Mb	scaffold-only loops absent from patched	all T2T-CHM13 loops	281	1277	0.22	0	9987	0	Inf	953.8	2.29e-279	2.75e-278	
+10kb	>=1Mb	scaffold-only loops absent from patched	scaffold-only loops also in patched	2480	4264	0.5816	222	19555	0.0114	120.6	106.6	0	0	p < 2.2e-308 (below machine precision)
+10kb	>=2Mb	scaffold-only loops absent from patched	scaffold-only loops also in patched	2050	4264	0.4808	34	19555	0.0017	526.6	394.7	0	0	p < 2.2e-308 (below machine precision)
+10kb	>=1Mb	scaffold-only loops absent from patched	all patched loops	2480	4264	0.5816	256	20056	0.0128	107.5	95.36	0	0	p < 2.2e-308 (below machine precision)
+10kb	>=2Mb	scaffold-only loops absent from patched	all patched loops	2050	4264	0.4808	54	20056	0.0027	342.8	269.5	0	0	p < 2.2e-308 (below machine precision)
+10kb	>=1Mb	scaffold-only loops absent from patched	all T2T-CHM13 loops	2480	4264	0.5816	187	19918	0.0094	147	128	0	0	p < 2.2e-308 (below machine precision)
+10kb	>=2Mb	scaffold-only loops absent from patched	all T2T-CHM13 loops	2050	4264	0.4808	22	19918	0.0011	833.6	576.9	0	0	p < 2.2e-308 (below machine precision)

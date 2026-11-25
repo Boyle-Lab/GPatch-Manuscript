@@ -52,11 +52,14 @@ The NA12878-only loop count was taken as the difference between total loops and 
 ### Loop length distributions by sharing category
 Requires `loop_intervals.{5kb,10kb}.bed` in each `*_loops` directory (generated as described in the per-assembly READMEs) and the decomposed/lifted anchor files above, for both `patched` and `scaffold-only`. Lengths are x1..y2 in native assembly coordinates. Also reports scaffold-only loops absent from the patched assembly (same anchor bins, with 0/1/2-bin tolerance) and the fraction of loops spanning a contig junction.
 ```
-./loop_length_dists.py . loop_length_dists.txt
+mkdir -p loop_lengths
+./loop_length_dists.py . loop_lengths/NA12878_loops
+# -> loop_lengths/NA12878_loops.by_T2T_sharing.tsv, loop_lengths/NA12878_loops.scaffold_vs_patched.tsv
 ```
 
 ### Test enrichment of long loops among scaffold-only loops absent from the patched assembly
-One-sided Fisher's exact tests for loops >= 1Mb and >= 2Mb. Counts are taken from `loop_length_dists.txt` (exact anchor-bin matching) and hard-coded in the script.
+One-sided Fisher's exact tests for loops >= 1Mb and >= 2Mb. Counts are read from the tables written by `loop_length_dists.py` (exact anchor-bin matching).
 ```
-./loop_enrichment_fisher.R loop_enrichment_fisher.txt
+./loop_enrichment_fisher.R loop_lengths/NA12878_loops
+# -> loop_lengths/NA12878_loops.fisher_long_loops.tsv
 ```
