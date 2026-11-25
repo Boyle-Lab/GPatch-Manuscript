@@ -63,3 +63,10 @@ One-sided Fisher's exact tests for loops >= 1Mb and >= 2Mb. Counts are read from
 ./loop_enrichment_fisher.R loop_lengths/NA12878_loops
 # -> loop_lengths/NA12878_loops.fisher_long_loops.tsv
 ```
+
+### Formatted summary tables
+Condensed, human-readable versions of the three tables above (formatted lengths and percentages).
+```
+./make_display_tables.py loop_lengths/NA12878_loops
+# -> loop_lengths/NA12878_loops.summary.{by_T2T_sharing,scaffold_not_in_patched,fisher_long_loops}.tsv
+```

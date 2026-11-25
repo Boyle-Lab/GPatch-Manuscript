@@ -1,0 +1,5 @@
+Res	Group	n	Median	Mean	≥1 Mb	≥2 Mb	Crosses a contig junction
+5kb	Scaffold-only, not in patched	1,277	245 kb	10.1 Mb	28.7%	22.0%	47.4%
+5kb	In both assemblies	9,591	120 kb	163 kb	0.16%	0	1.1%
+10kb	Scaffold-only, not in patched	4,264	1.73 Mb	13.9 Mb	58.2%	48.1%	83.7%
+10kb	In both assemblies	19,555	170 kb	260 kb	1.14%	0.17%	2.1%

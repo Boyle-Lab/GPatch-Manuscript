@@ -1,0 +1,13 @@
+Assembly	Res	Category	n	Median	Mean	≥1 Mb	≥2 Mb	Crosses a contig junction
+Patched	5kb	Fully shared	7,540	120 kb	162 kb	0.11%	0	1.1%
+Patched	5kb	Partially shared	1,157	120 kb	169 kb	0.17%	0	2.0%
+Patched	5kb	Unique	1,089	90 kb	154 kb	0.55%	0	2.0%
+Patched	10kb	Fully shared	17,214	170 kb	245 kb	1.02%	0.13%	2.2%
+Patched	10kb	Partially shared	1,883	150 kb	368 kb	2.44%	0.80%	5.7%
+Patched	10kb	Unique	959	120 kb	649 kb	3.55%	1.77%	12.1%
+Scaffold-only	5kb	Fully shared	7,734	120 kb	163 kb	0.12%	0	1.1%
+Scaffold-only	5kb	Partially shared	1,262	120 kb	704 kb	1.66%	1.35%	4.4%
+Scaffold-only	5kb	Unique	1,872	150 kb	6.5 Mb	18.8%	14.1%	30.8%
+Scaffold-only	10kb	Fully shared	17,296	170 kb	255 kb	1.14%	0.17%	2.2%
+Scaffold-only	10kb	Partially shared	2,610	200 kb	3.6 Mb	18.5%	14.1%	28.5%
+Scaffold-only	10kb	Unique	3,913	1.14 Mb	12.9 Mb	51.7%	43.1%	72.5%
