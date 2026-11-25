@@ -48,3 +48,15 @@ grep '\.' loops.10kb.T2T-CHM13.shared.bed | wc -l
 ```
 
 The NA12878-only loop count was taken as the difference between total loops and the sum of fully-conserved and partially-conserved loops.
+
+### Loop length distributions by sharing category
+Requires `loop_intervals.{5kb,10kb}.bed` in each `*_loops` directory (generated as described in the per-assembly READMEs) and the decomposed/lifted anchor files above, for both `patched` and `scaffold-only`. Lengths are x1..y2 in native assembly coordinates. Also reports scaffold-only loops absent from the patched assembly (same anchor bins, with 0/1/2-bin tolerance) and the fraction of loops spanning a contig junction.
+```
+./loop_length_dists.py . loop_length_dists.txt
+```
+
+### Test enrichment of long loops among scaffold-only loops absent from the patched assembly
+One-sided Fisher's exact tests for loops >= 1Mb and >= 2Mb. Counts are taken from `loop_length_dists.txt` (exact anchor-bin matching) and hard-coded in the script.
+```
+./loop_enrichment_fisher.R loop_enrichment_fisher.txt
+```
