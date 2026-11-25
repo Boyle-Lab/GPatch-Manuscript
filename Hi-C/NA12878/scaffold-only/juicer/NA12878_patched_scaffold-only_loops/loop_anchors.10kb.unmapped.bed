@@ -1,0 +1,1910 @@
+#Deleted in new
+chr10	5030000	5040000	loop16_2
+#Deleted in new
+chr10	5030000	5040000	loop17_2
+#Deleted in new
+chr10	5030000	5040000	loop18_2
+#Partially deleted in new
+chr10	13240000	13250000	loop81_1
+#Partially deleted in new
+chr10	26740000	26750000	loop156_1
+#Deleted in new
+chr10	48490000	48500000	loop244_2
+#Deleted in new
+chr10	48480000	48490000	loop264_2
+#Deleted in new
+chr10	48490000	48500000	loop265_2
+#Deleted in new
+chr10	48500000	48510000	loop266_2
+#Deleted in new
+chr10	48470000	48480000	loop276_2
+#Deleted in new
+chr10	48480000	48490000	loop277_2
+#Deleted in new
+chr10	48490000	48500000	loop278_2
+#Deleted in new
+chr10	48470000	48480000	loop279_2
+#Deleted in new
+chr10	48480000	48490000	loop280_2
+#Deleted in new
+chr10	48490000	48500000	loop281_2
+#Deleted in new
+chr10	48640000	48650000	loop298_1
+#Deleted in new
+chr10	48940000	48950000	loop298_2
+#Deleted in new
+chr10	48650000	48660000	loop299_1
+#Deleted in new
+chr10	48910000	48920000	loop299_2
+#Deleted in new
+chr10	48650000	48660000	loop300_1
+#Deleted in new
+chr10	48920000	48930000	loop300_2
+#Deleted in new
+chr10	48650000	48660000	loop301_1
+#Deleted in new
+chr10	48930000	48940000	loop301_2
+#Deleted in new
+chr10	48650000	48660000	loop302_1
+#Deleted in new
+chr10	48940000	48950000	loop302_2
+#Deleted in new
+chr10	48660000	48670000	loop303_1
+#Deleted in new
+chr10	48940000	48950000	loop303_2
+#Deleted in new
+chr10	48480000	48490000	loop340_1
+#Deleted in new
+chr10	48490000	48500000	loop341_1
+#Deleted in new
+chr10	48490000	48500000	loop342_1
+#Deleted in new
+chr10	48520000	48530000	loop343_1
+#Deleted in new
+chr10	48490000	48500000	loop355_1
+#Deleted in new
+chr10	48490000	48500000	loop356_1
+#Deleted in new
+chr10	48500000	48510000	loop357_1
+#Deleted in new
+chr10	80620000	80630000	loop360_2
+#Deleted in new
+chr10	80640000	80650000	loop361_2
+#Deleted in new
+chr10	80670000	80680000	loop362_2
+#Deleted in new
+chr10	48480000	48490000	loop372_1
+#Deleted in new
+chr10	48490000	48500000	loop373_1
+#Partially deleted in new
+chr10	51610000	51620000	loop375_1
+#Deleted in new
+chr10	80610000	80620000	loop385_2
+#Deleted in new
+chr10	80620000	80630000	loop386_2
+#Deleted in new
+chr10	80630000	80640000	loop387_2
+#Deleted in new
+chr10	80670000	80680000	loop388_2
+#Deleted in new
+chr10	80610000	80620000	loop389_2
+#Deleted in new
+chr10	80620000	80630000	loop390_2
+#Deleted in new
+chr10	80630000	80640000	loop391_2
+#Deleted in new
+chr10	80640000	80650000	loop392_2
+#Deleted in new
+chr10	80650000	80660000	loop393_2
+#Deleted in new
+chr10	80660000	80670000	loop394_2
+#Deleted in new
+chr10	80670000	80680000	loop395_2
+#Deleted in new
+chr10	80610000	80620000	loop396_2
+#Deleted in new
+chr10	80620000	80630000	loop397_2
+#Deleted in new
+chr10	80630000	80640000	loop398_2
+#Deleted in new
+chr10	80640000	80650000	loop399_2
+#Deleted in new
+chr10	80650000	80660000	loop400_2
+#Deleted in new
+chr10	80660000	80670000	loop401_2
+#Deleted in new
+chr10	80670000	80680000	loop402_2
+#Deleted in new
+chr10	80610000	80620000	loop403_2
+#Deleted in new
+chr10	80620000	80630000	loop404_2
+#Deleted in new
+chr10	80630000	80640000	loop405_2
+#Deleted in new
+chr10	80640000	80650000	loop406_2
+#Deleted in new
+chr10	80650000	80660000	loop407_2
+#Deleted in new
+chr10	80660000	80670000	loop408_2
+#Deleted in new
+chr10	80670000	80680000	loop409_2
+#Split in new
+chr10	70450000	70460000	loop518_1
+#Split in new
+chr10	70450000	70460000	loop519_1
+#Partially deleted in new
+chr10	80600000	80610000	loop639_1
+#Deleted in new
+chr10	80610000	80620000	loop640_1
+#Partially deleted in new
+chr10	80590000	80600000	loop657_1
+#Partially deleted in new
+chr10	80600000	80610000	loop658_1
+#Deleted in new
+chr10	80610000	80620000	loop659_1
+#Deleted in new
+chr10	80610000	80620000	loop660_1
+#Deleted in new
+chr10	80610000	80620000	loop661_1
+#Deleted in new
+chr10	80620000	80630000	loop662_1
+#Deleted in new
+chr10	80620000	80630000	loop663_1
+#Deleted in new
+chr10	80630000	80640000	loop664_1
+#Deleted in new
+chr10	80630000	80640000	loop665_1
+#Deleted in new
+chr10	80640000	80650000	loop666_1
+#Deleted in new
+chr10	80650000	80660000	loop667_1
+#Deleted in new
+chr10	80650000	80660000	loop668_1
+#Deleted in new
+chr10	80660000	80670000	loop669_1
+#Deleted in new
+chr10	80660000	80670000	loop670_1
+#Deleted in new
+chr10	80660000	80670000	loop671_1
+#Deleted in new
+chr10	80670000	80680000	loop672_1
+#Deleted in new
+chr10	80670000	80680000	loop673_1
+#Deleted in new
+chr10	80670000	80680000	loop674_1
+#Deleted in new
+chr10	80670000	80680000	loop675_1
+#Deleted in new
+chr10	80680000	80690000	loop676_1
+#Deleted in new
+chr10	80680000	80690000	loop677_1
+#Deleted in new
+chr11	410000	420000	loop1126_2
+#Partially deleted in new
+chr11	420000	430000	loop1127_2
+#Deleted in new
+chr11	410000	420000	loop1129_2
+#Deleted in new
+chr11	410000	420000	loop1130_2
+#Split in new
+chr11	360000	370000	loop1131_2
+#Split in new
+chr11	360000	370000	loop1132_1
+#Deleted in new
+chr11	410000	420000	loop1132_2
+#Partially deleted in new
+chr11	65830000	65840000	loop1723_1
+#Partially deleted in new
+chr11	67050000	67060000	loop1749_1
+#Partially deleted in new
+chr11	120450000	120460000	loop2205_1
+#Partially deleted in new
+chr11	120450000	120460000	loop2206_1
+#Partially deleted in new
+chr11	120450000	120460000	loop2207_1
+#Partially deleted in new
+chr11	120450000	120460000	loop2208_1
+#Partially deleted in new
+chr11	120450000	120460000	loop2209_1
+#Partially deleted in new
+chr12	9390000	9400000	loop2512_2
+#Partially deleted in new
+chr12	9240000	9250000	loop2522_1
+#Partially deleted in new
+chr13	14010000	14020000	loop3430_2
+#Partially deleted in new
+chr13	44780000	44790000	loop3605_1
+#Partially deleted in new
+chr13	45820000	45830000	loop3619_1
+#Split in new
+chr13	51720000	51730000	loop3664_1
+#Split in new
+chr13	51720000	51730000	loop3665_1
+#Partially deleted in new
+chr14	16870000	16880000	loop3874_1
+#Partially deleted in new
+chr14	16870000	16880000	loop3875_1
+#Partially deleted in new
+chr14	16870000	16880000	loop3876_1
+#Partially deleted in new
+chr14	16980000	16990000	loop3898_1
+#Partially deleted in new
+chr14	29660000	29670000	loop4006_1
+#Partially deleted in new
+chr14	29660000	29670000	loop4007_1
+#Partially deleted in new
+chr14	29660000	29670000	loop4008_1
+#Partially deleted in new
+chr14	29670000	29680000	loop4009_1
+#Partially deleted in new
+chr14	29670000	29680000	loop4010_1
+#Partially deleted in new
+chr14	29670000	29680000	loop4011_1
+#Partially deleted in new
+chr14	58360000	58370000	loop4151_1
+#Partially deleted in new
+chr14	58360000	58370000	loop4152_1
+#Partially deleted in new
+chr14	58370000	58380000	loop4153_1
+#Partially deleted in new
+chr14	59460000	59470000	loop4161_2
+#Partially deleted in new
+chr14	85880000	85890000	loop4399_2
+#Deleted in new
+chr14	100800000	100810000	loop4536_2
+#Partially deleted in new
+chr14	100810000	100820000	loop4537_2
+#Partially deleted in new
+chr14	100810000	100820000	loop4539_2
+#Deleted in new
+chr14	100800000	100810000	loop4540_2
+#Deleted in new
+chr14	100760000	100770000	loop4542_2
+#Deleted in new
+chr14	100770000	100780000	loop4543_2
+#Deleted in new
+chr14	100780000	100790000	loop4544_2
+#Deleted in new
+chr14	100790000	100800000	loop4545_2
+#Deleted in new
+chr14	100780000	100790000	loop4546_2
+#Deleted in new
+chr14	100800000	100810000	loop4547_2
+#Deleted in new
+chr14	100780000	100790000	loop4548_2
+#Partially deleted in new
+chr14	100810000	100820000	loop4549_2
+#Deleted in new
+chr14	100800000	100810000	loop4550_1
+#Deleted in new
+chr14	100800000	100810000	loop4551_1
+#Deleted in new
+chr14	100800000	100810000	loop4552_1
+#Partially deleted in new
+chr14	100810000	100820000	loop4553_1
+#Partially deleted in new
+chr15	16410000	16420000	loop4558_2
+#Partially deleted in new
+chr15	16410000	16420000	loop4562_2
+#Deleted in new
+chr15	31140000	31150000	loop4598_2
+#Deleted in new
+chr15	31100000	31110000	loop4625_2
+#Deleted in new
+chr15	31110000	31120000	loop4626_2
+#Deleted in new
+chr15	31120000	31130000	loop4627_2
+#Deleted in new
+chr15	31130000	31140000	loop4628_2
+#Deleted in new
+chr15	31140000	31150000	loop4629_2
+#Deleted in new
+chr15	31090000	31100000	loop4630_2
+#Deleted in new
+chr15	31090000	31100000	loop4631_2
+#Deleted in new
+chr15	31110000	31120000	loop4632_2
+#Deleted in new
+chr15	31120000	31130000	loop4633_2
+#Deleted in new
+chr15	30680000	30690000	loop4634_2
+#Deleted in new
+chr15	30690000	30700000	loop4635_2
+#Deleted in new
+chr15	31090000	31100000	loop4636_2
+#Deleted in new
+chr15	31090000	31100000	loop4637_2
+#Deleted in new
+chr15	31140000	31150000	loop4638_2
+#Deleted in new
+chr15	31130000	31140000	loop4645_2
+#Deleted in new
+chr15	31140000	31150000	loop4653_2
+#Partially deleted in new
+chr15	31150000	31160000	loop4654_2
+#Partially deleted in new
+chr15	31150000	31160000	loop4656_2
+#Partially deleted in new
+chr15	31150000	31160000	loop4713_2
+#Partially deleted in new
+chr15	32310000	32320000	loop4723_1
+#Split in new
+chr15	42160000	42170000	loop4836_1
+#Partially deleted in new
+chr15	49150000	49160000	loop4879_2
+#Partially deleted in new
+chr15	55800000	55810000	loop4931_2
+#Partially deleted in new
+chr15	55800000	55810000	loop4936_2
+#Partially deleted in new
+chr15	77550000	77560000	loop5211_2
+#Partially deleted in new
+chr15	77550000	77560000	loop5213_2
+#Partially deleted in new
+chr15	83670000	83680000	loop5269_2
+#Partially deleted in new
+chr15	88220000	88230000	loop5346_1
+#Partially deleted in new
+chr15	97580000	97590000	loop5439_1
+#Partially deleted in new
+chr15	98390000	98400000	loop5446_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5487_2
+#Partially deleted in new
+chr16	2630000	2640000	loop5488_2
+#Partially deleted in new
+chr16	2630000	2640000	loop5489_2
+#Partially deleted in new
+chr16	2610000	2620000	loop5492_1
+#Partially deleted in new
+chr16	2610000	2620000	loop5493_1
+#Deleted in new
+chr16	2620000	2630000	loop5494_1
+#Deleted in new
+chr16	2620000	2630000	loop5495_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5496_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5497_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5498_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5499_1
+#Partially deleted in new
+chr16	2630000	2640000	loop5500_1
+#Partially deleted in new
+chr16	76240000	76250000	loop5521_2
+#Deleted in new
+chr16	76280000	76290000	loop5522_2
+#Partially deleted in new
+chr16	8610000	8620000	loop5523_1
+#Partially deleted in new
+chr16	8610000	8620000	loop5524_1
+#Partially deleted in new
+chr16	8610000	8620000	loop5525_1
+#Partially deleted in new
+chr16	8610000	8620000	loop5526_1
+#Deleted in new
+chr16	14790000	14800000	loop5636_1
+#Partially deleted in new
+chr16	16590000	16600000	loop5652_2
+#Deleted in new
+chr16	16520000	16530000	loop5661_1
+#Deleted in new
+chr16	16530000	16540000	loop5662_1
+#Deleted in new
+chr16	16530000	16540000	loop5663_1
+#Deleted in new
+chr16	16540000	16550000	loop5664_1
+#Deleted in new
+chr16	16540000	16550000	loop5665_1
+#Deleted in new
+chr16	16550000	16560000	loop5666_1
+#Deleted in new
+chr16	16560000	16570000	loop5667_1
+#Deleted in new
+chr16	16570000	16580000	loop5668_1
+#Deleted in new
+chr16	16570000	16580000	loop5669_1
+#Deleted in new
+chr16	76300000	76310000	loop5691_2
+#Deleted in new
+chr16	76250000	76260000	loop5701_2
+#Deleted in new
+chr16	76260000	76270000	loop5702_2
+#Deleted in new
+chr16	76280000	76290000	loop5703_2
+#Partially deleted in new
+chr16	76240000	76250000	loop5707_2
+#Deleted in new
+chr16	76260000	76270000	loop5708_2
+#Deleted in new
+chr16	76250000	76260000	loop5711_2
+#Deleted in new
+chr16	76260000	76270000	loop5712_2
+#Partially deleted in new
+chr16	20400000	20410000	loop5731_1
+#Partially deleted in new
+chr16	20400000	20410000	loop5732_1
+#Partially deleted in new
+chr16	20400000	20410000	loop5733_1
+#Partially deleted in new
+chr16	20400000	20410000	loop5734_1
+#Partially deleted in new
+chr16	20400000	20410000	loop5735_1
+#Partially deleted in new
+chr16	20410000	20420000	loop5736_1
+#Partially deleted in new
+chr16	20410000	20420000	loop5737_1
+#Partially deleted in new
+chr16	20420000	20430000	loop5738_1
+#Partially deleted in new
+chr16	20420000	20430000	loop5739_1
+#Partially deleted in new
+chr16	20420000	20430000	loop5740_1
+#Partially deleted in new
+chr16	29710000	29720000	loop5997_1
+#Partially deleted in new
+chr16	94630000	94640000	loop6471_1
+#Partially deleted in new
+chr16	95990000	96000000	loop6476_1
+#Partially deleted in new
+chr17	1950000	1960000	loop6513_1
+#Partially deleted in new
+chr17	1950000	1960000	loop6514_1
+#Partially deleted in new
+chr17	2960000	2970000	loop6530_1
+#Partially deleted in new
+chr17	2960000	2970000	loop6531_1
+#Partially deleted in new
+chr17	8330000	8340000	loop6616_1
+#Partially deleted in new
+chr17	8330000	8340000	loop6617_1
+#Partially deleted in new
+chr17	8340000	8350000	loop6618_1
+#Partially deleted in new
+chr17	18440000	18450000	loop6623_2
+#Deleted in new
+chr17	63290000	63300000	loop6630_2
+#Deleted in new
+chr17	63300000	63310000	loop6631_2
+#Deleted in new
+chr17	63290000	63300000	loop6632_2
+#Deleted in new
+chr17	63300000	63310000	loop6633_2
+#Partially deleted in new
+chr17	18440000	18450000	loop6670_2
+#Partially deleted in new
+chr17	18440000	18450000	loop6673_2
+#Partially deleted in new
+chr17	18440000	18450000	loop6675_2
+#Partially deleted in new
+chr17	17310000	17320000	loop6682_2
+#Partially deleted in new
+chr17	15830000	15840000	loop6701_1
+#Partially deleted in new
+chr17	20350000	20360000	loop6714_2
+#Split in new
+chr17	20580000	20590000	loop6715_2
+#Partially deleted in new
+chr17	20600000	20610000	loop6720_2
+#Split in new
+chr17	20580000	20590000	loop6721_2
+#Split in new
+chr17	20580000	20590000	loop6723_2
+#Partially deleted in new
+chr17	20600000	20610000	loop6725_2
+#Partially deleted in new
+chr17	20600000	20610000	loop6727_2
+#Partially deleted in new
+chr17	20350000	20360000	loop6729_2
+#Partially deleted in new
+chr17	18440000	18450000	loop6743_1
+#Partially deleted in new
+chr17	18440000	18450000	loop6764_1
+#Partially deleted in new
+chr17	18440000	18450000	loop6765_1
+#Partially deleted in new
+chr17	18440000	18450000	loop6766_1
+#Deleted in new
+chr17	63290000	63300000	loop6778_2
+#Deleted in new
+chr17	63290000	63300000	loop6779_2
+#Deleted in new
+chr17	63290000	63300000	loop6780_2
+#Deleted in new
+chr17	63300000	63310000	loop6781_2
+#Deleted in new
+chr17	63290000	63300000	loop6782_2
+#Deleted in new
+chr17	63300000	63310000	loop6783_2
+#Partially deleted in new
+chr17	18440000	18450000	loop6787_1
+#Partially deleted in new
+chr17	19190000	19200000	loop6790_1
+#Partially deleted in new
+chr17	19190000	19200000	loop6791_1
+#Partially deleted in new
+chr17	19190000	19200000	loop6792_1
+#Partially deleted in new
+chr17	20350000	20360000	loop6792_2
+#Partially deleted in new
+chr17	19200000	19210000	loop6793_1
+#Partially deleted in new
+chr17	20350000	20360000	loop6799_2
+#Split in new
+chr17	20580000	20590000	loop6830_2
+#Partially deleted in new
+chr17	22640000	22650000	loop6850_2
+#Partially deleted in new
+chr17	22640000	22650000	loop6851_2
+#Deleted in new
+chr17	63290000	63300000	loop6868_2
+#Split in new
+chr17	31650000	31660000	loop6946_1
+#Deleted in new
+chr17	37530000	37540000	loop6979_2
+#Deleted in new
+chr17	37530000	37540000	loop6980_2
+#Partially deleted in new
+chr17	47480000	47490000	loop6993_2
+#Partially deleted in new
+chr17	47480000	47490000	loop6997_2
+#Deleted in new
+chr17	63290000	63300000	loop7002_2
+#Deleted in new
+chr17	37530000	37540000	loop7066_2
+#Deleted in new
+chr17	37530000	37540000	loop7078_2
+#Deleted in new
+chr17	37530000	37540000	loop7081_2
+#Deleted in new
+chr17	37530000	37540000	loop7088_1
+#Deleted in new
+chr17	37530000	37540000	loop7089_1
+#Deleted in new
+chr17	37530000	37540000	loop7090_1
+#Deleted in new
+chr17	37530000	37540000	loop7091_1
+#Deleted in new
+chr17	37530000	37540000	loop7092_1
+#Deleted in new
+chr17	37530000	37540000	loop7093_1
+#Deleted in new
+chr17	37530000	37540000	loop7094_1
+#Partially deleted in new
+chr17	37520000	37530000	loop7128_1
+#Deleted in new
+chr17	37530000	37540000	loop7129_1
+#Deleted in new
+chr17	37530000	37540000	loop7130_1
+#Partially deleted in new
+chr17	63230000	63240000	loop7143_2
+#Deleted in new
+chr17	63240000	63250000	loop7144_2
+#Deleted in new
+chr17	63250000	63260000	loop7145_2
+#Deleted in new
+chr17	63260000	63270000	loop7146_2
+#Deleted in new
+chr17	63270000	63280000	loop7147_2
+#Partially deleted in new
+chr17	63320000	63330000	loop7148_2
+#Deleted in new
+chr17	37530000	37540000	loop7149_1
+#Deleted in new
+chr17	37530000	37540000	loop7150_1
+#Deleted in new
+chr17	63290000	63300000	loop7302_2
+#Deleted in new
+chr17	63290000	63300000	loop7314_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7500_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7501_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7503_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7506_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7510_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7515_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7517_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7534_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7541_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7548_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7554_2
+#Partially deleted in new
+chr17	47480000	47490000	loop7643_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7644_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7645_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7646_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7647_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7790_1
+#Partially deleted in new
+chr17	47480000	47490000	loop7805_1
+#Partially deleted in new
+chr17	60960000	60970000	loop7899_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7917_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7918_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7919_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7920_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7921_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7922_2
+#Deleted in new
+chr17	63240000	63250000	loop7923_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7924_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7925_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7926_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7927_2
+#Deleted in new
+chr17	63240000	63250000	loop7928_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7929_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7930_2
+#Deleted in new
+chr17	63240000	63250000	loop7931_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7932_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7933_2
+#Deleted in new
+chr17	63240000	63250000	loop7934_2
+#Partially deleted in new
+chr17	63230000	63240000	loop7937_2
+#Deleted in new
+chr17	63310000	63320000	loop7938_2
+#Partially deleted in new
+chr17	63320000	63330000	loop7939_2
+#Deleted in new
+chr17	63310000	63320000	loop7941_2
+#Partially deleted in new
+chr17	63320000	63330000	loop7942_2
+#Deleted in new
+chr17	63310000	63320000	loop7943_2
+#Deleted in new
+chr17	63250000	63260000	loop7944_2
+#Deleted in new
+chr17	63260000	63270000	loop7945_2
+#Deleted in new
+chr17	63270000	63280000	loop7946_2
+#Deleted in new
+chr17	63250000	63260000	loop7947_2
+#Deleted in new
+chr17	63260000	63270000	loop7948_2
+#Partially deleted in new
+chr17	65190000	65200000	loop7974_2
+#Partially deleted in new
+chr17	65190000	65200000	loop7977_2
+#Partially deleted in new
+chr17	65190000	65200000	loop7981_2
+#Deleted in new
+chr17	63290000	63300000	loop8020_1
+#Deleted in new
+chr17	63300000	63310000	loop8021_1
+#Partially deleted in new
+chr17	79190000	79200000	loop8202_1
+#Partially deleted in new
+chr17	79190000	79200000	loop8203_1
+#Split in new
+chr17	84080000	84090000	loop8252_1
+#Split in new
+chr17	84080000	84090000	loop8253_1
+#Partially deleted in new
+chr18	10810000	10820000	loop8327_1
+#Partially deleted in new
+chr19	3950000	3960000	loop8731_1
+#Partially deleted in new
+chr19	16200000	16210000	loop8955_1
+#Partially deleted in new
+chr19	40290000	40300000	loop9100_2
+#Split in new
+chr19	42880000	42890000	loop9169_1
+#Partially deleted in new
+chr19	51740000	51750000	loop9331_2
+#Partially deleted in new
+chr19	51740000	51750000	loop9335_2
+#Partially deleted in new
+chr19	52000000	52010000	loop9338_2
+#Partially deleted in new
+chr19	52000000	52010000	loop9340_2
+#Partially deleted in new
+chr19	54150000	54160000	loop9368_2
+#Deleted in new
+chr19	58870000	58880000	loop9420_1
+#Deleted in new
+chr19	58880000	58890000	loop9421_1
+#Deleted in new
+chr19	58880000	58890000	loop9422_1
+#Deleted in new
+chr19	58890000	58900000	loop9423_1
+#Deleted in new
+chr19	58890000	58900000	loop9424_1
+#Deleted in new
+chr19	58890000	58900000	loop9425_1
+#Deleted in new
+chr19	58900000	58910000	loop9426_1
+#Deleted in new
+chr19	58900000	58910000	loop9427_1
+#Deleted in new
+chr19	58900000	58910000	loop9428_1
+#Partially deleted in new
+chr19	58910000	58920000	loop9429_1
+#Partially deleted in new
+chr19	58910000	58920000	loop9430_1
+#Partially deleted in new
+chr19	58910000	58920000	loop9431_1
+#Partially deleted in new
+chr1	1300000	1310000	loop9451_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9601_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9602_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9603_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9604_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9605_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9606_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9607_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9608_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9609_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9610_1
+#Partially deleted in new
+chr1	12630000	12640000	loop9611_2
+#Partially deleted in new
+chr1	12640000	12650000	loop9612_2
+#Partially deleted in new
+chr1	12640000	12650000	loop9613_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9624_1
+#Partially deleted in new
+chr1	12350000	12360000	loop9625_1
+#Deleted in new
+chr1	234640000	234650000	loop9625_2
+#Partially deleted in new
+chr1	21260000	21270000	loop9722_2
+#Partially deleted in new
+chr1	15990000	16000000	loop9744_1
+#Deleted in new
+chr1	234640000	234650000	loop9755_2
+#Deleted in new
+chr1	234640000	234650000	loop9757_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9758_2
+#Deleted in new
+chr1	234630000	234640000	loop9759_2
+#Deleted in new
+chr1	234640000	234650000	loop9760_2
+#Partially deleted in new
+chr1	234650000	234660000	loop9761_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9763_2
+#Deleted in new
+chr1	234630000	234640000	loop9764_2
+#Deleted in new
+chr1	234640000	234650000	loop9765_2
+#Partially deleted in new
+chr1	234650000	234660000	loop9766_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9767_2
+#Deleted in new
+chr1	234630000	234640000	loop9768_2
+#Deleted in new
+chr1	234640000	234650000	loop9769_2
+#Partially deleted in new
+chr1	234650000	234660000	loop9770_2
+#Deleted in new
+chr1	234640000	234650000	loop9771_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9772_2
+#Deleted in new
+chr1	234640000	234650000	loop9773_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9774_2
+#Deleted in new
+chr1	234640000	234650000	loop9775_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9776_2
+#Deleted in new
+chr1	234640000	234650000	loop9777_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9778_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9779_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9898_2
+#Deleted in new
+chr1	234640000	234650000	loop9899_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9900_2
+#Deleted in new
+chr1	234640000	234650000	loop9901_2
+#Partially deleted in new
+chr1	21260000	21270000	loop9902_1
+#Partially deleted in new
+chr1	234620000	234630000	loop9902_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9903_2
+#Deleted in new
+chr1	234630000	234640000	loop9904_2
+#Deleted in new
+chr1	234640000	234650000	loop9905_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9906_2
+#Deleted in new
+chr1	234630000	234640000	loop9907_2
+#Deleted in new
+chr1	234640000	234650000	loop9908_2
+#Partially deleted in new
+chr1	234650000	234660000	loop9909_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9910_2
+#Deleted in new
+chr1	234630000	234640000	loop9911_2
+#Deleted in new
+chr1	234640000	234650000	loop9912_2
+#Partially deleted in new
+chr1	234620000	234630000	loop9913_2
+#Deleted in new
+chr1	234630000	234640000	loop9914_2
+#Deleted in new
+chr1	234640000	234650000	loop9915_2
+#Partially deleted in new
+chr1	31210000	31220000	loop10083_1
+#Split in new
+chr1	83280000	83290000	loop10508_1
+#Split in new
+chr1	83370000	83380000	loop10508_2
+#Partially deleted in new
+chr1	85400000	85410000	loop10553_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10554_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10555_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10556_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10557_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10560_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10561_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10562_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10565_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10566_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10567_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10568_1
+#Partially deleted in new
+chr1	85400000	85410000	loop10575_1
+#Partially deleted in new
+chr1	109230000	109240000	loop10671_2
+#Partially deleted in new
+chr1	121130000	121140000	loop11020_1
+#Partially deleted in new
+chr1	121130000	121140000	loop11021_1
+#Partially deleted in new
+chr1	234620000	234630000	loop11032_2
+#Deleted in new
+chr1	234640000	234650000	loop11033_2
+#Partially deleted in new
+chr1	234650000	234660000	loop11034_2
+#Split in new
+chr1	142450000	142460000	loop11041_1
+#Split in new
+chr1	142450000	142460000	loop11042_1
+#Split in new
+chr1	142450000	142460000	loop11043_1
+#Split in new
+chr1	142450000	142460000	loop11044_1
+#Partially deleted in new
+chr1	146680000	146690000	loop11129_2
+#Partially deleted in new
+chr1	234620000	234630000	loop11195_2
+#Deleted in new
+chr1	234630000	234640000	loop11196_2
+#Deleted in new
+chr1	234640000	234650000	loop11197_2
+#Partially deleted in new
+chr1	234650000	234660000	loop11198_2
+#Deleted in new
+chr1	234640000	234650000	loop11203_2
+#Partially deleted in new
+chr1	234650000	234660000	loop11204_2
+#Deleted in new
+chr1	234640000	234650000	loop11208_2
+#Partially deleted in new
+chr1	234650000	234660000	loop11209_2
+#Partially deleted in new
+chr1	146680000	146690000	loop11229_1
+#Deleted in new
+chr1	234630000	234640000	loop11335_2
+#Deleted in new
+chr1	234640000	234650000	loop11336_2
+#Partially deleted in new
+chr1	234620000	234630000	loop11337_2
+#Deleted in new
+chr1	234630000	234640000	loop11338_2
+#Deleted in new
+chr1	234640000	234650000	loop11339_2
+#Partially deleted in new
+chr1	234650000	234660000	loop11340_2
+#Deleted in new
+chr1	161010000	161020000	loop11549_2
+#Deleted in new
+chr1	161020000	161030000	loop11550_2
+#Partially deleted in new
+chr1	161060000	161070000	loop11551_2
+#Deleted in new
+chr1	161010000	161020000	loop11552_2
+#Deleted in new
+chr1	161020000	161030000	loop11553_2
+#Deleted in new
+chr1	161010000	161020000	loop11554_1
+#Deleted in new
+chr1	161010000	161020000	loop11555_1
+#Deleted in new
+chr1	161010000	161020000	loop11556_1
+#Deleted in new
+chr1	161020000	161030000	loop11557_1
+#Deleted in new
+chr1	161020000	161030000	loop11558_1
+#Deleted in new
+chr1	161020000	161030000	loop11559_1
+#Deleted in new
+chr1	161020000	161030000	loop11560_1
+#Partially deleted in new
+chr1	161060000	161070000	loop11563_1
+#Partially deleted in new
+chr1	161060000	161070000	loop11564_1
+#Partially deleted in new
+chr1	161070000	161080000	loop11565_1
+#Partially deleted in new
+chr1	162240000	162250000	loop11615_1
+#Partially deleted in new
+chr1	162240000	162250000	loop11616_1
+#Partially deleted in new
+chr1	162240000	162250000	loop11617_1
+#Partially deleted in new
+chr1	162240000	162250000	loop11618_1
+#Deleted in new
+chr1	196330000	196340000	loop11866_2
+#Deleted in new
+chr1	196330000	196340000	loop11867_2
+#Deleted in new
+chr1	196340000	196350000	loop11868_2
+#Deleted in new
+chr1	196350000	196360000	loop11869_2
+#Partially deleted in new
+chr1	196310000	196320000	loop11870_1
+#Partially deleted in new
+chr1	196360000	196370000	loop11870_2
+#Partially deleted in new
+chr1	196320000	196330000	loop11871_1
+#Split in new
+chr1	207250000	207260000	loop12079_1
+#Partially deleted in new
+chr1	211980000	211990000	loop12128_2
+#Partially deleted in new
+chr1	244690000	244700000	loop12352_2
+#Split in new
+chr1	248330000	248340000	loop12391_1
+#Partially deleted in new
+chr1	248430000	248440000	loop12391_2
+#Partially deleted in new
+chr1	248430000	248440000	loop12392_2
+#Partially deleted in new
+chr20	37140000	37150000	loop12632_1
+#Partially deleted in new
+chr20	37140000	37150000	loop12633_1
+#Partially deleted in new
+chr20	37140000	37150000	loop12634_1
+#Partially deleted in new
+chr20	46690000	46700000	loop12770_1
+#Partially deleted in new
+chr21	10320000	10330000	loop13024_2
+#Partially deleted in new
+chr21	10320000	10330000	loop13025_2
+#Partially deleted in new
+chr21	10320000	10330000	loop13026_2
+#Partially deleted in new
+chr21	42110000	42120000	loop13204_1
+#Partially deleted in new
+chr22	16980000	16990000	loop13250_1
+#Partially deleted in new
+chr22	17110000	17120000	loop13253_2
+#Partially deleted in new
+chr22	17110000	17120000	loop13257_2
+#Partially deleted in new
+chr22	19580000	19590000	loop13285_1
+#Partially deleted in new
+chr22	19580000	19590000	loop13286_1
+#Partially deleted in new
+chr22	19580000	19590000	loop13287_1
+#Partially deleted in new
+chr22	19610000	19620000	loop13288_1
+#Deleted in new
+chr22	23410000	23420000	loop13297_2
+#Deleted in new
+chr22	23420000	23430000	loop13298_2
+#Deleted in new
+chr22	23420000	23430000	loop13299_2
+#Deleted in new
+chr22	23410000	23420000	loop13316_2
+#Deleted in new
+chr22	23420000	23430000	loop13317_2
+#Deleted in new
+chr22	23430000	23440000	loop13318_2
+#Deleted in new
+chr22	23500000	23510000	loop13319_2
+#Deleted in new
+chr22	23510000	23520000	loop13320_2
+#Deleted in new
+chr22	23410000	23420000	loop13322_2
+#Deleted in new
+chr22	23420000	23430000	loop13323_2
+#Deleted in new
+chr22	23500000	23510000	loop13324_2
+#Deleted in new
+chr22	23420000	23430000	loop13325_2
+#Deleted in new
+chr22	23420000	23430000	loop13326_2
+#Deleted in new
+chr22	23500000	23510000	loop13328_2
+#Deleted in new
+chr22	23410000	23420000	loop13329_2
+#Deleted in new
+chr22	23420000	23430000	loop13330_2
+#Deleted in new
+chr22	23430000	23440000	loop13331_2
+#Deleted in new
+chr22	23420000	23430000	loop13332_2
+#Partially deleted in new
+chr22	19580000	19590000	loop13344_1
+#Partially deleted in new
+chr22	19610000	19620000	loop13346_1
+#Split in new
+chr22	25900000	25910000	loop13371_2
+#Deleted in new
+chr22	23410000	23420000	loop13374_1
+#Deleted in new
+chr22	23410000	23420000	loop13375_1
+#Deleted in new
+chr22	23420000	23430000	loop13376_1
+#Deleted in new
+chr22	23560000	23570000	loop13377_1
+#Deleted in new
+chr22	23800000	23810000	loop13377_2
+#Deleted in new
+chr22	23570000	23580000	loop13378_1
+#Deleted in new
+chr22	23800000	23810000	loop13378_2
+#Deleted in new
+chr22	23890000	23900000	loop13379_1
+#Deleted in new
+chr22	24010000	24020000	loop13379_2
+#Deleted in new
+chr22	23890000	23900000	loop13380_1
+#Deleted in new
+chr22	24020000	24030000	loop13380_2
+#Deleted in new
+chr22	23890000	23900000	loop13381_1
+#Deleted in new
+chr22	25480000	25490000	loop13381_2
+#Deleted in new
+chr22	23910000	23920000	loop13382_1
+#Deleted in new
+chr22	24010000	24020000	loop13382_2
+#Deleted in new
+chr22	24010000	24020000	loop13383_1
+#Deleted in new
+chr22	25470000	25480000	loop13383_2
+#Deleted in new
+chr22	24010000	24020000	loop13384_1
+#Deleted in new
+chr22	25480000	25490000	loop13384_2
+#Deleted in new
+chr22	24010000	24020000	loop13385_1
+#Deleted in new
+chr22	25490000	25500000	loop13385_2
+#Deleted in new
+chr22	24020000	24030000	loop13386_1
+#Deleted in new
+chr22	25480000	25490000	loop13386_2
+#Deleted in new
+chr22	24030000	24040000	loop13387_1
+#Deleted in new
+chr22	25470000	25480000	loop13387_2
+#Deleted in new
+chr22	24030000	24040000	loop13388_1
+#Deleted in new
+chr22	25480000	25490000	loop13388_2
+#Deleted in new
+chr22	24030000	24040000	loop13389_1
+#Deleted in new
+chr22	25490000	25500000	loop13389_2
+#Deleted in new
+chr22	24040000	24050000	loop13390_1
+#Deleted in new
+chr22	25470000	25480000	loop13390_2
+#Deleted in new
+chr22	24040000	24050000	loop13391_1
+#Deleted in new
+chr22	25480000	25490000	loop13391_2
+#Deleted in new
+chr22	24040000	24050000	loop13392_1
+#Deleted in new
+chr22	25490000	25500000	loop13392_2
+#Split in new
+chr22	25900000	25910000	loop13417_2
+#Deleted in new
+chr22	25480000	25490000	loop13426_1
+#Deleted in new
+chr22	25480000	25490000	loop13427_1
+#Partially deleted in new
+chr22	37000000	37010000	loop13559_2
+#Partially deleted in new
+chrX	52260000	52270000	loop13962_2
+#Partially deleted in new
+chrX	52260000	52270000	loop13967_2
+#Partially deleted in new
+chrX	56130000	56140000	loop13987_1
+#Split in new
+chrX	134230000	134240000	loop14172_1
+#Split in new
+chrX	140080000	140090000	loop14180_2
+#Split in new
+chrX	140080000	140090000	loop14181_2
+#Split in new
+chrX	140080000	140090000	loop14184_1
+#Partially deleted in new
+chrX	148160000	148170000	loop14190_2
+#Deleted in new
+chrX	148170000	148180000	loop14191_2
+#Deleted in new
+chrX	148180000	148190000	loop14192_2
+#Partially deleted in new
+chrX	152660000	152670000	loop14236_2
+#Partially deleted in new
+chrX	152660000	152670000	loop14239_2
+#Partially deleted in new
+chrX	152660000	152670000	loop14244_2
+#Partially deleted in new
+chrX	152660000	152670000	loop14251_1
+#Partially deleted in new
+chrX	152660000	152670000	loop14252_1
+#Partially deleted in new
+chrX	152660000	152670000	loop14253_1
+#Partially deleted in new
+chrX	152660000	152670000	loop14254_1
+#Partially deleted in new
+chrX	152660000	152670000	loop14255_1
+#Partially deleted in new
+chr2	11200000	11210000	loop14321_2
+#Partially deleted in new
+chr2	24510000	24520000	loop14393_1
+#Partially deleted in new
+chr2	24510000	24520000	loop14394_1
+#Partially deleted in new
+chr2	88910000	88920000	loop14921_2
+#Partially deleted in new
+chr2	88910000	88920000	loop14923_2
+#Partially deleted in new
+chr2	88910000	88920000	loop14924_2
+#Partially deleted in new
+chr2	112680000	112690000	loop14946_2
+#Partially deleted in new
+chr2	112680000	112690000	loop14949_2
+#Partially deleted in new
+chr2	112680000	112690000	loop14952_2
+#Partially deleted in new
+chr2	113040000	113050000	loop14956_2
+#Partially deleted in new
+chr2	112690000	112700000	loop14958_2
+#Partially deleted in new
+chr2	113040000	113050000	loop14961_2
+#Deleted in new
+chr2	113030000	113040000	loop14964_2
+#Deleted in new
+chr2	113030000	113040000	loop14965_2
+#Partially deleted in new
+chr2	113040000	113050000	loop14966_2
+#Partially deleted in new
+chr2	109530000	109540000	loop14967_2
+#Deleted in new
+chr2	113000000	113010000	loop14978_2
+#Deleted in new
+chr2	112710000	112720000	loop15052_2
+#Deleted in new
+chr2	112710000	112720000	loop15053_2
+#Deleted in new
+chr2	112710000	112720000	loop15054_2
+#Deleted in new
+chr2	112710000	112720000	loop15055_2
+#Deleted in new
+chr2	112710000	112720000	loop15056_2
+#Deleted in new
+chr2	112710000	112720000	loop15057_2
+#Partially deleted in new
+chr2	107310000	107320000	loop15140_2
+#Partially deleted in new
+chr2	107310000	107320000	loop15145_2
+#Partially deleted in new
+chr2	107310000	107320000	loop15149_2
+#Partially deleted in new
+chr2	109530000	109540000	loop15159_2
+#Partially deleted in new
+chr2	109530000	109540000	loop15171_2
+#Deleted in new
+chr2	107320000	107330000	loop15223_1
+#Deleted in new
+chr2	109500000	109510000	loop15223_2
+#Deleted in new
+chr2	107320000	107330000	loop15224_1
+#Deleted in new
+chr2	109510000	109520000	loop15224_2
+#Deleted in new
+chr2	107320000	107330000	loop15225_1
+#Partially deleted in new
+chr2	113040000	113050000	loop15230_2
+#Partially deleted in new
+chr2	109530000	109540000	loop15239_2
+#Deleted in new
+chr2	109490000	109500000	loop15242_1
+#Partially deleted in new
+chr2	109530000	109540000	loop15243_1
+#Partially deleted in new
+chr2	109530000	109540000	loop15244_1
+#Partially deleted in new
+chr2	109530000	109540000	loop15245_1
+#Deleted in new
+chr2	112880000	112890000	loop15300_2
+#Deleted in new
+chr2	112890000	112900000	loop15301_2
+#Deleted in new
+chr2	112900000	112910000	loop15302_2
+#Deleted in new
+chr2	112700000	112710000	loop15305_2
+#Deleted in new
+chr2	112710000	112720000	loop15306_2
+#Deleted in new
+chr2	112720000	112730000	loop15307_2
+#Deleted in new
+chr2	112700000	112710000	loop15308_2
+#Deleted in new
+chr2	112710000	112720000	loop15309_2
+#Deleted in new
+chr2	112720000	112730000	loop15310_2
+#Deleted in new
+chr2	112700000	112710000	loop15311_2
+#Deleted in new
+chr2	112710000	112720000	loop15312_2
+#Deleted in new
+chr2	112720000	112730000	loop15313_2
+#Deleted in new
+chr2	112700000	112710000	loop15314_2
+#Deleted in new
+chr2	112940000	112950000	loop15315_2
+#Deleted in new
+chr2	112950000	112960000	loop15316_2
+#Deleted in new
+chr2	112960000	112970000	loop15317_2
+#Deleted in new
+chr2	112930000	112940000	loop15318_2
+#Deleted in new
+chr2	112940000	112950000	loop15319_2
+#Deleted in new
+chr2	112950000	112960000	loop15320_2
+#Deleted in new
+chr2	112960000	112970000	loop15321_2
+#Deleted in new
+chr2	112940000	112950000	loop15322_2
+#Deleted in new
+chr2	112950000	112960000	loop15323_2
+#Deleted in new
+chr2	112960000	112970000	loop15324_2
+#Deleted in new
+chr2	112960000	112970000	loop15326_2
+#Deleted in new
+chr2	112960000	112970000	loop15327_2
+#Deleted in new
+chr2	112930000	112940000	loop15330_2
+#Deleted in new
+chr2	112920000	112930000	loop15331_2
+#Deleted in new
+chr2	112930000	112940000	loop15332_2
+#Deleted in new
+chr2	112920000	112930000	loop15333_2
+#Partially deleted in new
+chr2	113040000	113050000	loop15334_2
+#Partially deleted in new
+chr2	113040000	113050000	loop15335_2
+#Partially deleted in new
+chr2	113040000	113050000	loop15336_2
+#Partially deleted in new
+chr2	112680000	112690000	loop15337_1
+#Partially deleted in new
+chr2	113040000	113050000	loop15337_2
+#Partially deleted in new
+chr2	112690000	112700000	loop15338_1
+#Partially deleted in new
+chr2	113040000	113050000	loop15338_2
+#Deleted in new
+chr2	109470000	109480000	loop15345_1
+#Deleted in new
+chr2	109470000	109480000	loop15346_1
+#Deleted in new
+chr2	109470000	109480000	loop15347_1
+#Deleted in new
+chr2	109470000	109480000	loop15348_1
+#Deleted in new
+chr2	109480000	109490000	loop15349_1
+#Deleted in new
+chr2	109480000	109490000	loop15350_1
+#Deleted in new
+chr2	109500000	109510000	loop15351_1
+#Deleted in new
+chr2	109510000	109520000	loop15352_1
+#Deleted in new
+chr2	109510000	109520000	loop15353_1
+#Partially deleted in new
+chr2	109530000	109540000	loop15354_1
+#Partially deleted in new
+chr2	131860000	131870000	loop15431_2
+#Partially deleted in new
+chr2	131860000	131870000	loop15435_2
+#Partially deleted in new
+chr2	132880000	132890000	loop15440_2
+#Partially deleted in new
+chr2	132880000	132890000	loop15443_1
+#Partially deleted in new
+chr2	149790000	149800000	loop15506_2
+#Partially deleted in new
+chr2	193060000	193070000	loop15685_2
+#Partially deleted in new
+chr2	193060000	193070000	loop15689_2
+#Partially deleted in new
+chr2	193060000	193070000	loop15692_2
+#Partially deleted in new
+chr2	196930000	196940000	loop15701_1
+#Partially deleted in new
+chr3	132730000	132740000	loop16873_2
+#Partially deleted in new
+chr3	132730000	132740000	loop16879_2
+#Partially deleted in new
+chr3	195810000	195820000	loop17253_2
+#Partially deleted in new
+chr3	198430000	198440000	loop17311_1
+#Partially deleted in new
+chr4	6870000	6880000	loop17415_1
+#Partially deleted in new
+chr4	6870000	6880000	loop17416_1
+#Partially deleted in new
+chr4	6870000	6880000	loop17417_1
+#Partially deleted in new
+chr4	49780000	49790000	loop17618_1
+#Partially deleted in new
+chr4	55320000	55330000	loop17618_2
+#Partially deleted in new
+chr4	57450000	57460000	loop17632_1
+#Partially deleted in new
+chr4	57450000	57460000	loop17633_1
+#Partially deleted in new
+chr4	177640000	177650000	loop18045_2
+#Partially deleted in new
+chr5	10640000	10650000	loop18114_2
+#Partially deleted in new
+chr5	10640000	10650000	loop18116_2
+#Partially deleted in new
+chr5	10640000	10650000	loop18119_1
+#Deleted in new
+chr5	22330000	22340000	loop18149_2
+#Partially deleted in new
+chr5	22340000	22350000	loop18150_2
+#Deleted in new
+chr5	22330000	22340000	loop18151_2
+#Partially deleted in new
+chr5	22340000	22350000	loop18152_2
+#Partially deleted in new
+chr5	22340000	22350000	loop18153_2
+#Deleted in new
+chr5	22330000	22340000	loop18157_1
+#Deleted in new
+chr5	34390000	34400000	loop18157_2
+#Deleted in new
+chr5	22330000	22340000	loop18158_1
+#Deleted in new
+chr5	34400000	34410000	loop18158_2
+#Partially deleted in new
+chr5	22340000	22350000	loop18159_1
+#Deleted in new
+chr5	34390000	34400000	loop18159_2
+#Partially deleted in new
+chr5	22340000	22350000	loop18160_1
+#Deleted in new
+chr5	34400000	34410000	loop18160_2
+#Split in new
+chr5	70830000	70840000	loop18161_2
+#Partially deleted in new
+chr5	70820000	70830000	loop18165_2
+#Partially deleted in new
+chr5	70820000	70830000	loop18169_2
+#Split in new
+chr5	22210000	22220000	loop18170_1
+#Split in new
+chr5	22210000	22220000	loop18171_1
+#Split in new
+chr5	22210000	22220000	loop18172_1
+#Partially deleted in new
+chr5	70800000	70810000	loop18172_2
+#Split in new
+chr5	22210000	22220000	loop18173_1
+#Split in new
+chr5	22210000	22220000	loop18174_1
+#Partially deleted in new
+chr5	70820000	70830000	loop18174_2
+#Split in new
+chr5	22210000	22220000	loop18175_1
+#Split in new
+chr5	70830000	70840000	loop18175_2
+#Split in new
+chr5	22210000	22220000	loop18176_1
+#Split in new
+chr5	22210000	22220000	loop18177_1
+#Split in new
+chr5	22210000	22220000	loop18178_1
+#Split in new
+chr5	22210000	22220000	loop18179_1
+#Split in new
+chr5	22210000	22220000	loop18180_1
+#Split in new
+chr5	22210000	22220000	loop18181_1
+#Deleted in new
+chr5	22330000	22340000	loop18182_1
+#Deleted in new
+chr5	22330000	22340000	loop18183_1
+#Deleted in new
+chr5	22330000	22340000	loop18184_1
+#Deleted in new
+chr5	22330000	22340000	loop18185_1
+#Deleted in new
+chr5	22330000	22340000	loop18186_1
+#Partially deleted in new
+chr5	22340000	22350000	loop18187_1
+#Partially deleted in new
+chr5	22340000	22350000	loop18188_1
+#Partially deleted in new
+chr5	22340000	22350000	loop18189_1
+#Partially deleted in new
+chr5	22340000	22350000	loop18190_1
+#Split in new
+chr5	70830000	70840000	loop18243_2
+#Split in new
+chr5	70830000	70840000	loop18245_2
+#Partially deleted in new
+chr5	34380000	34390000	loop18247_1
+#Partially deleted in new
+chr5	34380000	34390000	loop18248_1
+#Partially deleted in new
+chr5	34720000	34730000	loop18249_1
+#Partially deleted in new
+chr5	34720000	34730000	loop18250_1
+#Partially deleted in new
+chr5	34720000	34730000	loop18251_1
+#Partially deleted in new
+chr5	70800000	70810000	loop18386_1
+#Split in new
+chr5	70830000	70840000	loop18387_1
+#Deleted in new
+chr5	177050000	177060000	loop19154_2
+#Deleted in new
+chr5	177060000	177070000	loop19155_2
+#Partially deleted in new
+chr5	177070000	177080000	loop19156_2
+#Deleted in new
+chr5	177020000	177030000	loop19163_2
+#Deleted in new
+chr5	177050000	177060000	loop19164_2
+#Deleted in new
+chr5	177060000	177070000	loop19165_2
+#Partially deleted in new
+chr5	177070000	177080000	loop19166_2
+#Partially deleted in new
+chr5	177010000	177020000	loop19191_1
+#Deleted in new
+chr5	177020000	177030000	loop19192_1
+#Deleted in new
+chr5	177030000	177040000	loop19193_1
+#Deleted in new
+chr5	177040000	177050000	loop19194_1
+#Deleted in new
+chr5	177060000	177070000	loop19195_1
+#Deleted in new
+chr6	148390000	148400000	loop19284_2
+#Deleted in new
+chr6	148410000	148420000	loop19285_2
+#Deleted in new
+chr6	148420000	148430000	loop19286_2
+#Deleted in new
+chr6	148430000	148440000	loop19287_2
+#Deleted in new
+chr6	148480000	148490000	loop19288_2
+#Partially deleted in new
+chr6	7130000	7140000	loop19310_1
+#Partially deleted in new
+chr6	7130000	7140000	loop19311_1
+#Split in new
+chr6	26610000	26620000	loop19498_2
+#Partially deleted in new
+chr6	57640000	57650000	loop19536_2
+#Split in new
+chr6	26610000	26620000	loop19547_1
+#Split in new
+chr6	26610000	26620000	loop19548_1
+#Partially deleted in new
+chr6	31160000	31170000	loop19623_2
+#Split in new
+chr6	32380000	32390000	loop19651_2
+#Split in new
+chr6	32380000	32390000	loop19655_2
+#Split in new
+chr6	32380000	32390000	loop19657_2
+#Partially deleted in new
+chr6	32300000	32310000	loop19658_1
+#Split in new
+chr6	32380000	32390000	loop19658_2
+#Partially deleted in new
+chr6	32440000	32450000	loop19659_2
+#Partially deleted in new
+chr6	56710000	56720000	loop19967_1
+#Partially deleted in new
+chr6	130930000	130940000	loop20235_2
+#Partially deleted in new
+chr6	130930000	130940000	loop20240_2
+#Deleted in new
+chr7	32930000	32940000	loop20772_2
+#Deleted in new
+chr7	32930000	32940000	loop20773_2
+#Partially deleted in new
+chr7	32940000	32950000	loop20774_2
+#Partially deleted in new
+chr7	35380000	35390000	loop20835_1
+#Deleted in new
+chr7	78650000	78660000	loop20835_2
+#Partially deleted in new
+chr7	35390000	35400000	loop20836_1
+#Deleted in new
+chr7	78650000	78660000	loop20836_2
+#Partially deleted in new
+chr7	35390000	35400000	loop20837_1
+#Deleted in new
+chr7	78660000	78670000	loop20837_2
+#Split in new
+chr7	35310000	35320000	loop20838_1
+#Partially deleted in new
+chr7	35380000	35390000	loop20839_1
+#Partially deleted in new
+chr7	35390000	35400000	loop20840_1
+#Partially deleted in new
+chr7	35390000	35400000	loop20841_1
+#Partially deleted in new
+chr7	35390000	35400000	loop20842_1
+#Partially deleted in new
+chr7	35390000	35400000	loop20843_1
+#Deleted in new
+chr7	44230000	44240000	loop20902_2
+#Deleted in new
+chr7	44290000	44300000	loop20903_2
+#Deleted in new
+chr7	44350000	44360000	loop20904_2
+#Partially deleted in new
+chr7	44360000	44370000	loop20905_2
+#Partially deleted in new
+chr7	44360000	44370000	loop20906_2
+#Deleted in new
+chr7	44290000	44300000	loop20907_2
+#Partially deleted in new
+chr7	44200000	44210000	loop20909_1
+#Deleted in new
+chr7	44230000	44240000	loop20910_1
+#Deleted in new
+chr7	44230000	44240000	loop20911_1
+#Deleted in new
+chr7	44230000	44240000	loop20912_1
+#Deleted in new
+chr7	44230000	44240000	loop20913_1
+#Deleted in new
+chr7	44230000	44240000	loop20914_1
+#Deleted in new
+chr7	44290000	44300000	loop20915_1
+#Deleted in new
+chr7	44340000	44350000	loop20915_2
+#Deleted in new
+chr7	44290000	44300000	loop20916_1
+#Deleted in new
+chr7	44350000	44360000	loop20916_2
+#Deleted in new
+chr7	46120000	46130000	loop20945_1
+#Deleted in new
+chr7	44250000	44260000	loop20946_1
+#Deleted in new
+chr7	69140000	69150000	loop20946_2
+#Deleted in new
+chr7	44250000	44260000	loop20947_1
+#Deleted in new
+chr7	44250000	44260000	loop20948_1
+#Deleted in new
+chr7	44250000	44260000	loop20949_1
+#Deleted in new
+chr7	44250000	44260000	loop20950_1
+#Deleted in new
+chr7	44260000	44270000	loop20951_1
+#Deleted in new
+chr7	78740000	78750000	loop20952_2
+#Partially deleted in new
+chr7	44200000	44210000	loop20953_1
+#Deleted in new
+chr7	78740000	78750000	loop20953_2
+#Partially deleted in new
+chr7	44200000	44210000	loop20954_1
+#Partially deleted in new
+chr7	44200000	44210000	loop20955_1
+#Deleted in new
+chr7	44230000	44240000	loop20956_1
+#Deleted in new
+chr7	78730000	78740000	loop20956_2
+#Deleted in new
+chr7	44230000	44240000	loop20957_1
+#Deleted in new
+chr7	78740000	78750000	loop20957_2
+#Deleted in new
+chr7	44230000	44240000	loop20958_1
+#Deleted in new
+chr7	44230000	44240000	loop20959_1
+#Deleted in new
+chr7	44230000	44240000	loop20960_1
+#Deleted in new
+chr7	44230000	44240000	loop20961_1
+#Deleted in new
+chr7	44230000	44240000	loop20962_1
+#Deleted in new
+chr7	44250000	44260000	loop20963_1
+#Deleted in new
+chr7	44250000	44260000	loop20964_1
+#Deleted in new
+chr7	44250000	44260000	loop20965_1
+#Deleted in new
+chr7	44250000	44260000	loop20966_1
+#Deleted in new
+chr7	44250000	44260000	loop20967_1
+#Deleted in new
+chr7	44250000	44260000	loop20968_1
+#Partially deleted in new
+chr7	78570000	78580000	loop20968_2
+#Deleted in new
+chr7	44250000	44260000	loop20969_1
+#Deleted in new
+chr7	44260000	44270000	loop20970_1
+#Deleted in new
+chr7	44270000	44280000	loop20974_1
+#Deleted in new
+chr7	44280000	44290000	loop20975_1
+#Partially deleted in new
+chr7	44200000	44210000	loop20978_1
+#Deleted in new
+chr7	44260000	44270000	loop20979_1
+#Deleted in new
+chr7	44270000	44280000	loop20980_1
+#Deleted in new
+chr7	44270000	44280000	loop20981_1
+#Deleted in new
+chr7	44270000	44280000	loop20982_1
+#Deleted in new
+chr7	44270000	44280000	loop20983_1
+#Deleted in new
+chr7	44270000	44280000	loop20984_1
+#Deleted in new
+chr7	44280000	44290000	loop20985_1
+#Deleted in new
+chr7	44280000	44290000	loop20986_1
+#Deleted in new
+chr7	44280000	44290000	loop20987_1
+#Deleted in new
+chr7	44280000	44290000	loop20988_1
+#Deleted in new
+chr7	44280000	44290000	loop20989_1
+#Deleted in new
+chr7	44280000	44290000	loop20990_1
+#Deleted in new
+chr7	44340000	44350000	loop20991_1
+#Deleted in new
+chr7	44350000	44360000	loop20992_1
+#Deleted in new
+chr7	44350000	44360000	loop20993_1
+#Deleted in new
+chr7	69140000	69150000	loop21083_1
+#Deleted in new
+chr7	69140000	69150000	loop21084_1
+#Deleted in new
+chr7	69140000	69150000	loop21085_1
+#Partially deleted in new
+chr7	76690000	76700000	loop21129_2
+#Deleted in new
+chr7	76800000	76810000	loop21166_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21184_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21185_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21186_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21187_2
+#Partially deleted in new
+chr7	76700000	76710000	loop21213_2
+#Partially deleted in new
+chr7	76700000	76710000	loop21234_2
+#Partially deleted in new
+chr7	76700000	76710000	loop21240_1
+#Deleted in new
+chr7	76800000	76810000	loop21251_1
+#Partially deleted in new
+chr7	78570000	78580000	loop21282_2
+#Partially deleted in new
+chr7	78570000	78580000	loop21284_2
+#Partially deleted in new
+chr7	78570000	78580000	loop21287_2
+#Partially deleted in new
+chr7	78570000	78580000	loop21292_1
+#Deleted in new
+chr7	78660000	78670000	loop21304_1
+#Deleted in new
+chr7	78730000	78740000	loop21305_1
+#Deleted in new
+chr7	78740000	78750000	loop21306_1
+#Deleted in new
+chr7	78740000	78750000	loop21307_1
+#Deleted in new
+chr7	78740000	78750000	loop21308_1
+#Deleted in new
+chr7	78750000	78760000	loop21309_1
+#Deleted in new
+chr7	78750000	78760000	loop21310_1
+#Partially deleted in new
+chr7	102210000	102220000	loop21326_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21327_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21328_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21329_2
+#Deleted in new
+chr7	76800000	76810000	loop21332_1
+#Deleted in new
+chr7	76800000	76810000	loop21333_1
+#Partially deleted in new
+chr7	102220000	102230000	loop21334_2
+#Partially deleted in new
+chr7	102220000	102230000	loop21335_2
+#Partially deleted in new
+chr7	102210000	102220000	loop21336_2
+#Deleted in new
+chr7	78650000	78660000	loop21337_1
+#Deleted in new
+chr7	78650000	78660000	loop21338_1
+#Deleted in new
+chr7	78660000	78670000	loop21339_1
+#Deleted in new
+chr7	78660000	78670000	loop21340_1
+#Partially deleted in new
+chr7	103370000	103380000	loop21496_1
+#Partially deleted in new
+chr7	103370000	103380000	loop21497_1
+#Partially deleted in new
+chr7	144810000	144820000	loop21732_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21749_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21750_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21751_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21752_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21753_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21754_2
+#Partially deleted in new
+chr7	145690000	145700000	loop21776_1
+#Partially deleted in new
+chr7	145690000	145700000	loop21777_1
+#Partially deleted in new
+chr7	145690000	145700000	loop21778_1
+#Partially deleted in new
+chr7	154730000	154740000	loop21809_2
+#Partially deleted in new
+chr7	152790000	152800000	loop21833_1
+#Partially deleted in new
+chr7	154850000	154860000	loop21844_2
+#Partially deleted in new
+chr7	154850000	154860000	loop21845_2
+#Partially deleted in new
+chr7	154850000	154860000	loop21847_2
+#Partially deleted in new
+chr7	154730000	154740000	loop21849_1
+#Partially deleted in new
+chr7	154730000	154740000	loop21850_1
+#Partially deleted in new
+chr7	154730000	154740000	loop21851_1
+#Partially deleted in new
+chr7	154730000	154740000	loop21852_1
+#Deleted in new
+chr7	154830000	154840000	loop21853_1
+#Deleted in new
+chr7	154840000	154850000	loop21854_1
+#Deleted in new
+chr7	154840000	154850000	loop21855_1
+#Partially deleted in new
+chr7	157350000	157360000	loop21879_2
+#Split in new
+chr8	6770000	6780000	loop21921_1
+#Partially deleted in new
+chr8	7430000	7440000	loop21936_2
+#Partially deleted in new
+chr8	101660000	101670000	loop22610_2
+#Partially deleted in new
+chr9	42300000	42310000	loop23124_2
+#Partially deleted in new
+chr9	43410000	43420000	loop23125_2
+#Partially deleted in new
+chr9	42810000	42820000	loop23129_2
+#Partially deleted in new
+chr9	42810000	42820000	loop23134_2
+#Partially deleted in new
+chr9	42300000	42310000	loop23162_1
+#Partially deleted in new
+chr9	42300000	42310000	loop23163_1
+#Partially deleted in new
+chr9	42300000	42310000	loop23164_1
+#Partially deleted in new
+chr9	42300000	42310000	loop23165_1
+#Partially deleted in new
+chr9	42300000	42310000	loop23166_1
+#Partially deleted in new
+chr9	146020000	146030000	loop23757_1
+#Partially deleted in new
+chr9	150350000	150360000	loop23815_1
+#Partially deleted in new
+chr9	150400000	150410000	loop23815_2
