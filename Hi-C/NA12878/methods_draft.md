@@ -30,8 +30,9 @@ Provenance / notes for revision:
 - Quartiles use Python statistics.quantiles (default "exclusive" method).
 - TO CHECK: exact Juicer Tools / HiCCUPS version and parameters. Matrices were built with
   juicer_tools 1.8.9 (pre, MAPQ 0); loops were called with juicer_postprocessing.sh from
-  Juicer 1.6 with defaults. Confirm whether the scaffold-only Hi-C reads were mapped to a
-  separate N-gap FASTA (the scaffold-only Makefile still names ASSEMBLY = NA12878.2.cbreak_2.patched).
+  Juicer 1.6 with defaults.
+- Confirmed: scaffold-only Hi-C reads were mapped to a separate N-gap reference, not the
+  patched assembly. scaffold-only/Makefile's ASSEMBLY = NA12878.2.cbreak_2.patched is stale.
 - TO CHECK: Hi-C data citation (Rao et al. 2014, GM12878 in situ MboI) and whether the
   read-processing description already appears elsewhere in Methods.
 - Known issue: reconstitute_loops.py compares anchor_id (string) to integer 1, so every
