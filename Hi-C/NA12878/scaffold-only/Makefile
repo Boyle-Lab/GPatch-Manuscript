@@ -9,7 +9,7 @@ NAME = NA12878_patched_scaffold-only
 REPLICATES = SRR1658592 SRR1658572
 
 
-ASSEMBLY = NA12878.2.cbreak_2.patched
+ASSEMBLY = NA12878.2.cbreak_2.scaffold-only.patched
 GENOMEDIR = ${ROOTDIR}/genomes
 RE_SITES_FILE = ${ROOTDIR}/genomes/${ASSEMBLY}_MboI.txt
 
